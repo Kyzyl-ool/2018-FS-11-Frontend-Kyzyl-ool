@@ -1,0 +1,22 @@
+{
+  "name": "meowbook",
+  "version": "1.1.0",
+  "description": "first",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kyzyl-ool/2018-FS-11-Frontend-Kyzyl-ool.git"
+  },
+  "keywords": [
+    "meowbook"
+  ],
+  "author": "Kyzyl-ool",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kyzyl-ool/2018-FS-11-Frontend-Kyzyl-ool/issues"
+  },
+  "homepage": "https://github.com/Kyzyl-ool/2018-FS-11-Frontend-Kyzyl-ool#readme"
+}
