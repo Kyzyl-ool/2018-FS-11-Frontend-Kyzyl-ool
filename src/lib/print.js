@@ -1,8 +1,16 @@
 import set_background_color from "./test";
 
 function print_message(text) {
-    set_background_color("red");
-    document.write(text);
+    var div = document.createElement("div");
+    div.innerHTML = text;
+    div.style.height = "20px";
+    div.style.width = "200px";
+    div.border = "5px double black";
+    div.style.backgroundColor = "red";
+    div.align = "center";
+
+
+    document.body.appendChild(div);
 
 }
 
