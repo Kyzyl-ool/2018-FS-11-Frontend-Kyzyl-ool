@@ -1,2 +1,2 @@
-import yay from './lib/test.js';
-alert(yay('Mickey'));
+import set_background_color from './lib/test.js'
+set_background_color("red");

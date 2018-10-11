@@ -1,5 +1,3 @@
-const say = function (name) {
-	return `Hello, ${name}`;
+function set_background_color(color) {
+    document.body.style.backgroundColor = color;
 }
-
-export default say;
