@@ -5,7 +5,7 @@ function print_message(text) {
     div.innerHTML = text;
     div.style.height = "20px";
     div.style.width = "200px";
-    div.border = "5px double black";
+    div.style.border = "5px double black";
     div.style.backgroundColor = "red";
     div.align = "center";
 
