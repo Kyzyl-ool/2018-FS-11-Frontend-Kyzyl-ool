@@ -165,3 +165,12 @@ a:hover {
 #footer a {
 	color: #007700;
 }
+
+    background: crimson;
+    height: 20px;
+    width: 300px;
+    border: 2px solid black;
+    margin: auto;
+    text-align: center;
+    color: white;
+}
