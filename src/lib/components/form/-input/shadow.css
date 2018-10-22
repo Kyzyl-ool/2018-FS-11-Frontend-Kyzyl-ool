@@ -2,8 +2,8 @@ input {
 	display: inline-block;
 	border: 1px solid rgba(25, 25, 25, 0.32);
 	outline: none;
-	width: 82vw;
-	font-size: 4vh;
+	width: 70vw;
+	font-size: 3vh;
 }
 
 form-input {
