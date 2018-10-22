@@ -14,5 +14,3 @@ function getReadableSize(size) {
     }
     return `${size} байт`;
 }
-
-alert(getReadableSize(100000));

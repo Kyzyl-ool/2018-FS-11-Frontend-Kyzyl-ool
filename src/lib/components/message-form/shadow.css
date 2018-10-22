@@ -1,11 +1,13 @@
 form-input {
 	width: 100%;
-}
-
-.result {
-	color: red;
+    background: blue;
 }
 
 input[type=submit] {
 	visibility: collapse;
+}
+
+.result {
+	color: blue;
+	font-size: calc(100vmax*0.03);
 }

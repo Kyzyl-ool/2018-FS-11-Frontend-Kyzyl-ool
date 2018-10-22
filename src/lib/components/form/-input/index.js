@@ -7,7 +7,7 @@ const template = `
 	<slot name="icon"></slot>
 `;
 
-// const iconTemplate = `
+//const iconTemplate = `
 //	<div class="${styles.icon}" />
 // `;
 

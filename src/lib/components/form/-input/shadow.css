@@ -1,7 +1,13 @@
 input {
-	border: 0;
+	display: inline-block;
+	border: 1px solid rgba(25, 25, 25, 0.32);
 	outline: none;
 	width: calc(100% - 2px);
+	font-size: calc(100vmax*0.05);
+}
+
+form-input {
+	width: 100%;
 }
 
 :host {
