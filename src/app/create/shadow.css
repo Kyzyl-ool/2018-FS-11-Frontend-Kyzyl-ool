@@ -1,0 +1,22 @@
+.flex
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    height: 98vmax;
+}
+body
+{
+    background-color: #f0f0f0;
+}
+
+.SendButton
+{
+    border: 1px solid gray;
+    background: bisque;
+    height: 5vh;
+    font-size: 3vw;
+}
+
+
