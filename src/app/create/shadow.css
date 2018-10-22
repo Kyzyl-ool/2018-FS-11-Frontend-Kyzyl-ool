@@ -13,5 +13,10 @@ body
 
 .SendButton
 {
-    font-size: 2vh;
+    border: 1px solid gray;
+    background: bisque;
+    height: 5vh;
+    font-size: 3vw;
 }
+
+

@@ -59,6 +59,8 @@ class MessageForm extends HTMLElement {
     _onKeyPress(event) {
         if (event.keyCode == 13) {
             this._elements.form.dispatchEvent(new Event('submit'));
+            var res = this.shadowRoot.querySelector('.result');
+            res.style.visibility = 'visible';
         }
     }
 }
