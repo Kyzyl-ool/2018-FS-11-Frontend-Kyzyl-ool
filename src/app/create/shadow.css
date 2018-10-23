@@ -15,8 +15,8 @@ body
 {
     border: 1px solid gray;
     background: bisque;
-    height: 5vh;
-    font-size: 3vw;
+    height: 5.6vh;
+    font-size: 2vh;
+    padding: 0.3em;
+    width: 25vw;
 }
-
-
