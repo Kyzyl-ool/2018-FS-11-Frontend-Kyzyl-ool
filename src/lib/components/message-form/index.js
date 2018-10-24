@@ -8,7 +8,7 @@ const template = `
 	<form>
 		<!--<div class="message"></div> -->
 		<form-input name="message_text" placeholder="Введите сообщение" slot="message-input">
-			<span slot="icon"></span>
+			<!--<span slot="icon"></span>-->
 		</form-input>
 	</form>
 `;

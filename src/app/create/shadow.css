@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     position: fixed;
     bottom: 1vh;
 }
@@ -45,3 +44,12 @@ body
     width: 98vw;
 }
 
+.message-file {
+    display: none;
+}
+
+.pin-file-icon {
+    background: darkgrey;
+    max-height: 5vh;
+    padding: 5%;
+}
