@@ -35,16 +35,18 @@ class MessageForm extends HTMLElement {
 
     _initElements() {
         const form = this.shadowRoot.querySelector('form');
+        const sendButton = document.body.querySelector('.message-form-button');
         //const message = this.shadowRoot.querySelector('.message');
         this._elements = {
-            form
-            //message,
+            form,
+            sendButton
         };
     }
 
     _addHandlers() {
         this._elements.form.addEventListener('submit', this._onSubmit.bind(this));
         this._elements.form.addEventListener('keypress', this._onKeyPress.bind(this));
+        this._elements.sendButton.addEventListener('click', this._onSubmit.bind(this));
         // this._elements.inputSlot.addEventListener('slotchange', this._onSlotChange.bind(this));
     }
 
@@ -70,10 +72,6 @@ class MessageForm extends HTMLElement {
     _onKeyPress(event) {
         if (event.keyCode == 13) {
             this._elements.form.dispatchEvent(new Event('submit'));
-            //var res = this.shadowRoot.querySelector('.message');
-            //res.style.visibility = 'visible';
-
-
         }
     }
 }
