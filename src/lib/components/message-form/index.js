@@ -62,6 +62,11 @@ class MessageForm extends HTMLElement {
         newMessage.className = 'message-test';
         messageList.appendChild(newMessage);
 
+        var form_input = this._elements.form.querySelector('form-input');
+        form_input._elements.input.value = '';
+        //alert(messageText);
+
+        //messageText.value = '';
 
         event.preventDefault();
         return false;
