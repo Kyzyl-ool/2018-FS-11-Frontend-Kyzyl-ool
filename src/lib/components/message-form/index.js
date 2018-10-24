@@ -6,7 +6,7 @@ const slotName = 'message-input';
 const template = `
 	<style>${shadowStyles.toString()}</style>
 	<form>
-		<div class="result"></div>
+		<div class="message"></div>
 		<form-input name="message_text" placeholder="Введите сообщение" slot="message-input">
 			<span slot="icon"></span>
 		</form-input>
@@ -35,7 +35,7 @@ class MessageForm extends HTMLElement {
 
     _initElements() {
         const form = this.shadowRoot.querySelector('form');
-        const message = this.shadowRoot.querySelector('.result');
+        const message = this.shadowRoot.querySelector('.message');
         this._elements = {
             form,
             message,
@@ -59,8 +59,10 @@ class MessageForm extends HTMLElement {
     _onKeyPress(event) {
         if (event.keyCode == 13) {
             this._elements.form.dispatchEvent(new Event('submit'));
-            var res = this.shadowRoot.querySelector('.result');
+            var res = this.shadowRoot.querySelector('.message');
             res.style.visibility = 'visible';
+
+
         }
     }
 }

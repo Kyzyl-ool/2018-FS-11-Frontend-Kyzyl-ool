@@ -1,17 +1,17 @@
-.flex
+.message-form
 {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
-    height: 98vmax;
+    height: 100vmax;
 }
 body
 {
     background-color: #f0f0f0;
 }
 
-.SendButton
+.message-form-button
 {
     border: 1px solid gray;
     background: bisque;
@@ -20,3 +20,23 @@ body
     padding: 0.3em;
     width: 25vw;
 }
+
+.message-test {
+    color: dimgrey;
+    font-size: 3vh;
+    background: ghostwhite;
+    border-radius: 40px;
+    border: 1px solid;
+    text-align: right;
+    /* box-sizing: border-box; */
+    padding: 2%;
+    width: 100%;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column-reverse;
+    position: absolute;
+    right: 0;
+}
+
