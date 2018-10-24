@@ -6,7 +6,7 @@ const slotName = 'message-input';
 const template = `
 	<style>${shadowStyles.toString()}</style>
 	<form>
-		<div class="message"></div>
+		<!--<div class="message"></div> -->
 		<form-input name="message_text" placeholder="Введите сообщение" slot="message-input">
 			<span slot="icon"></span>
 		</form-input>
@@ -35,10 +35,10 @@ class MessageForm extends HTMLElement {
 
     _initElements() {
         const form = this.shadowRoot.querySelector('form');
-        const message = this.shadowRoot.querySelector('.message');
+        //const message = this.shadowRoot.querySelector('.message');
         this._elements = {
-            form,
-            message,
+            form
+            //message,
         };
     }
 
@@ -49,9 +49,20 @@ class MessageForm extends HTMLElement {
     }
 
     _onSubmit(event) {
-        this._elements.message.innerText = Array.from(this._elements.form.elements).map(
+        /*this._elements.message.innerText = Array.from(this._elements.form.elements).map(
             el => el.value,
+        ).join(', '); */
+        var messageList = document.body.querySelector('.message-list');
+        //alert(messageList);
+
+        const newMessage = document.createElement('div');
+        newMessage.innerText = Array.from(this._elements.form.elements).map(
+          el => el.value,
         ).join(', ');
+        newMessage.className = 'message-test';
+        messageList.appendChild(newMessage);
+
+
         event.preventDefault();
         return false;
     }
@@ -59,8 +70,8 @@ class MessageForm extends HTMLElement {
     _onKeyPress(event) {
         if (event.keyCode == 13) {
             this._elements.form.dispatchEvent(new Event('submit'));
-            var res = this.shadowRoot.querySelector('.message');
-            res.style.visibility = 'visible';
+            //var res = this.shadowRoot.querySelector('.message');
+            //res.style.visibility = 'visible';
 
 
         }
