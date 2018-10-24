@@ -15,7 +15,7 @@ body
 {
     border: 1px solid gray;
     background: bisque;
-    height: 5.6vh;
+    height: 5vh;
     font-size: 2vh;
     padding: 0.3em;
     width: 25vw;
@@ -29,9 +29,8 @@ body
     border: 1px solid;
     text-align: right;
     box-sizing: border-box;
-    padding: 2%;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
     width: fit-content;
 }
 
@@ -43,5 +42,6 @@ body
     overflow: scroll;
     height: 90vh;
     align-items: flex-end;
+    width: 98vw;
 }
 

@@ -57,6 +57,12 @@ class MessageForm extends HTMLElement {
         newMessage.innerText = Array.from(this._elements.form.elements).map(
           el => el.value,
         ).join(', ');
+
+        if (newMessage.innerText == '') {
+          event.preventDefault();
+          return false;
+        }
+
         newMessage.className = 'message-test';
         messageList.appendChild(newMessage);
 
@@ -66,7 +72,28 @@ class MessageForm extends HTMLElement {
         this._elements.form.reset();
 
         event.preventDefault();
+        this._onSubmitFromFriend('Hello');
         return false;
+    }
+
+    _onSubmitFromFriend(text) {
+      var messageList = document.body.querySelector('.message-list');
+
+      const newMessage = document.createElement('div');
+      newMessage.innerText = text;
+
+      if (newMessage.innerText == '') {
+        event.preventDefault();
+        return 0;
+      }
+
+      newMessage.className = 'message-test';
+      newMessage.style.color = 'brown';
+      newMessage.style.alignSelf = 'flex-start';
+
+
+      messageList.appendChild(newMessage);
+      return 0;
     }
 
     _onKeyPress(event) {
