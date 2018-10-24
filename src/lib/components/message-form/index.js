@@ -49,11 +49,7 @@ class MessageForm extends HTMLElement {
     }
 
     _onSubmit(event) {
-        /*this._elements.message.innerText = Array.from(this._elements.form.elements).map(
-            el => el.value,
-        ).join(', '); */
         var messageList = document.body.querySelector('.message-list');
-        //alert(messageList);
 
         const newMessage = document.createElement('div');
         newMessage.innerText = Array.from(this._elements.form.elements).map(
@@ -64,9 +60,8 @@ class MessageForm extends HTMLElement {
 
         var form_input = this._elements.form.querySelector('form-input');
         form_input._elements.input.value = '';
-        //alert(messageText);
 
-        //messageText.value = '';
+        this._elements.form.reset();
 
         event.preventDefault();
         return false;
