@@ -96,6 +96,7 @@ class MessageForm extends HTMLElement {
       newMessage.className = 'message-test';
       newMessage.style.color = 'brown';
       newMessage.style.alignSelf = 'flex-start';
+      newMessage.style.textAlign = 'left';
 
       messageList.appendChild(newMessage);
       return 0;
