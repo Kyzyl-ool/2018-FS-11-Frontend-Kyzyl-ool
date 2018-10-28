@@ -16,3 +16,7 @@ window.document.body.innerHTML = `
 <button class="message-form-button">Отправить</button>
 </div>
 `;
+
+window.onload = function () {
+
+}

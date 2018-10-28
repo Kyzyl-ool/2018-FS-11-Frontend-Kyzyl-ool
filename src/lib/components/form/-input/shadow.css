@@ -4,6 +4,7 @@ input {
 	outline: none;
 	width: 70vw;
 	font-size: 3vh;
+	height: 5vh;
 }
 
 form-input {

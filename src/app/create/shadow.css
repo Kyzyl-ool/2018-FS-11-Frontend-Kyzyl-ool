@@ -1,9 +1,9 @@
 .message-form {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
-    position: fixed;
-    bottom: 1vh;
+    justify-content: flex-end;
+    margin-top: 100vh;
 }
 body
 {
@@ -16,8 +16,8 @@ body
     background: bisque;
     height: 5vh;
     font-size: 2vh;
-    padding: 0.3em;
-    width: 25vw;
+    /* padding: 0.3em; */
+    width: 20vw;
 }
 
 .message-test {
@@ -49,7 +49,8 @@ body
 }
 
 .pin-file-icon {
-    background: darkgrey;
+    background: whitesmoke;
     max-height: 5vh;
-    padding: 5%;
+    /* padding: 5%; */
+    border: 1px solid;
 }

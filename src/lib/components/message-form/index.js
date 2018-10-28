@@ -93,6 +93,12 @@ class MessageForm extends HTMLElement {
 
 
       messageList.appendChild(newMessage);
+
+      // var msglist = window.document.body.querySelector('.message-list');
+      // msglist.scrollTop = msglist.scrollHeight;
+
+      messageList.scrollTop = messageList.scrollHeight;
+
       return 0;
     }
 
