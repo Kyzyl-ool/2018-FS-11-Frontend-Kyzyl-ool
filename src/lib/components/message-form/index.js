@@ -52,7 +52,6 @@ class MessageForm extends HTMLElement {
 
     _onSubmit(event) {
         var messageList = document.body.querySelector('.message-list');
-        messageList.scrollTop = messageList.scrollHeight;
 
         const newMessage = document.createElement('div');
         newMessage.innerText = Array.from(this._elements.form.elements).map(
@@ -70,6 +69,7 @@ class MessageForm extends HTMLElement {
           newMessage.className = 'message-test';
           messageList.appendChild(newMessage);
         }
+        messageList.scrollTop = messageList.scrollHeight;
 
 
 

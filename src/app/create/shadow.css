@@ -1,9 +1,9 @@
 .message-form {
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: 100vh;
+    /* align-items: center; */
+    justify-content: center;
+    width: 95vw;
 }
 body
 {
@@ -15,8 +15,7 @@ body
     border: 1px solid gray;
     background: bisque;
     height: 5vh;
-    font-size: 2vh;
-    /* padding: 0.3em; */
+    font-size: 150%;
     width: 20vw;
 }
 
@@ -31,17 +30,20 @@ body
     padding-left: 0.5em;
     padding-right: 0.5em;
     width: fit-content;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 1%;
 }
 
 .message-list {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    right: 1vw;
-    overflow: scroll;
-    height: 90vh;
+    justify-content: flex-end;
+    overflow-y: scroll;
     align-items: flex-end;
-    width: 98vw;
+    border: 5px solid gainsboro;
+    height: 87vh;
+    width: 97vw;
 }
 
 .message-file {
@@ -53,4 +55,12 @@ body
     max-height: 5vh;
     /* padding: 5%; */
     border: 1px solid;
+}
+
+.messaging-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100vh;
 }

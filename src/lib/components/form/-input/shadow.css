@@ -2,9 +2,9 @@ input {
 	display: inline-block;
 	border: 1px solid rgba(25, 25, 25, 0.32);
 	outline: none;
-	width: 70vw;
 	font-size: 3vh;
 	height: 5vh;
+	width: 60vw;
 }
 
 form-input {

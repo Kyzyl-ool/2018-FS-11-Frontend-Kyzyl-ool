@@ -4,9 +4,8 @@ import shadowBodystyle from './shadow.css';
 
 window.document.body.innerHTML = `
 <style>${shadowBodystyle.toString()}</style>
-
+<footer class="messaging-window">
 <form class="message-list"></form>
-
 <div class="message-form">
 <message-form> </message-form>
 
@@ -15,6 +14,7 @@ window.document.body.innerHTML = `
 
 <button class="message-form-button">Отправить</button>
 </div>
+</footer>
 `;
 
 window.onload = function () {
