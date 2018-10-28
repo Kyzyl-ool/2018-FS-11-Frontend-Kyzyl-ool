@@ -2,6 +2,7 @@
 import shadowStyles from './shadow.css';
 
 const slotName = 'message-input';
+var amount_of_files = 0;
 
 const template = `
 	<style>${shadowStyles.toString()}</style>
@@ -14,6 +15,7 @@ const template = `
 `;
 
 class MessageForm extends HTMLElement {
+
     constructor() {
         super();
         const shadowRoot = this.attachShadow({ mode: 'open' });
@@ -54,7 +56,11 @@ class MessageForm extends HTMLElement {
         // this._elements.inputSlot.addEventListener('slotchange', this._onSlotChange.bind(this));
     }
 
-    _onNewFile() {
+    _onNewFile(event) {
+        alert('got a file!');
+        amount_of_files++;
+        const file = document.querySelector('#file_input').files[amount_of_files-1];
+        this._newMessage(file.name + '\n' + file.type + '\n' + file.size);
 
     }
 
