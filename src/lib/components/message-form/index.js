@@ -57,11 +57,25 @@ class MessageForm extends HTMLElement {
     }
 
     _onNewFile(event) {
-        alert('got a file!');
-        amount_of_files++;
-        const file = document.querySelector('#file_input').files[amount_of_files-1];
-        this._newMessage(file.name + '\n' + file.type + '\n' + file.size);
+        const file = document.querySelector('#file_input').files[0];
 
+        if (file.type.startsWith('image')) {
+          this._newImageMessage();
+
+          event.preventDefault();
+          return false;
+        }
+
+        this._newMessage('"' + file.name + '"\n' + file.type + '\n' + file.size + ' bytes.');
+
+        event.preventDefault();
+        return false;
+    }
+
+    _newImageMessage() {
+        const messageList = document.querySelector('.message-list');
+
+        alert(image);
     }
 
     _onSubmit(event) {
