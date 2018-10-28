@@ -52,6 +52,7 @@ class MessageForm extends HTMLElement {
 
     _onSubmit(event) {
         var messageList = document.body.querySelector('.message-list');
+        messageList.scrollTop = messageList.scrollHeight;
 
         const newMessage = document.createElement('div');
         newMessage.innerText = Array.from(this._elements.form.elements).map(
@@ -62,9 +63,15 @@ class MessageForm extends HTMLElement {
           event.preventDefault();
           return false;
         }
+        if (newMessage.innerText.startsWith('#')) {
+          this._onSubmitFromFriend(newMessage.innerText.substring(1));
+        }
+        else {
+          newMessage.className = 'message-test';
+          messageList.appendChild(newMessage);
+        }
 
-        newMessage.className = 'message-test';
-        messageList.appendChild(newMessage);
+
 
         var form_input = this._elements.form.querySelector('form-input');
         form_input._elements.input.value = '';
@@ -72,7 +79,6 @@ class MessageForm extends HTMLElement {
         this._elements.form.reset();
 
         event.preventDefault();
-        this._onSubmitFromFriend('Hello');
         return false;
     }
 
@@ -91,14 +97,7 @@ class MessageForm extends HTMLElement {
       newMessage.style.color = 'brown';
       newMessage.style.alignSelf = 'flex-start';
 
-
       messageList.appendChild(newMessage);
-
-      // var msglist = window.document.body.querySelector('.message-list');
-      // msglist.scrollTop = msglist.scrollHeight;
-
-      messageList.scrollTop = messageList.scrollHeight;
-
       return 0;
     }
 
