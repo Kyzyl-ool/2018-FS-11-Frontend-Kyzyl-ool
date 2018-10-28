@@ -10,7 +10,7 @@ window.document.body.innerHTML = `
 <message-form> </message-form>
 
     <label for="file_input"> <img class="pin-file-icon" src="/www/meowbook.org/frontend/public/icons/clip.png"/> </label>
-        <input type="file" formmethod="post" id="file_input" class="message-file"/>    
+        <input type="file" formmethod="post" id="file_input" class="message-file"/> 
 
 <button class="message-form-button">Отправить</button>
 </div>

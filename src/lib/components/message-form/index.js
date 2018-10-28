@@ -36,10 +36,12 @@ class MessageForm extends HTMLElement {
     _initElements() {
         const form = this.shadowRoot.querySelector('form');
         const sendButton = document.body.querySelector('.message-form-button');
+        const sendFile = document.body.querySelector('#file_input');
         //const message = this.shadowRoot.querySelector('.message');
         this._elements = {
             form,
-            sendButton
+            sendButton,
+            sendFile
         };
     }
 
@@ -47,43 +49,59 @@ class MessageForm extends HTMLElement {
         this._elements.form.addEventListener('submit', this._onSubmit.bind(this));
         this._elements.form.addEventListener('keypress', this._onKeyPress.bind(this));
         this._elements.sendButton.addEventListener('click', this._onSubmit.bind(this));
+        this._elements.sendFile.addEventListener('change', this._onNewFile.bind(this));
+
         // this._elements.inputSlot.addEventListener('slotchange', this._onSlotChange.bind(this));
     }
 
-    _onSubmit(event) {
-        var messageList = document.body.querySelector('.message-list');
+    _onNewFile() {
 
-        const newMessage = document.createElement('div');
-        newMessage.innerText = Array.from(this._elements.form.elements).map(
+    }
+
+    _onSubmit(event) {
+        const text = Array.from(this._elements.form.elements).map(
           el => el.value,
         ).join(', ');
 
-        if (newMessage.innerText == '') {
+        if (text == '') {
           event.preventDefault();
           return false;
         }
-        if (newMessage.innerText.startsWith('#')) {
-          this._onSubmitFromFriend(newMessage.innerText.substring(1));
+        if (text.startsWith('#')) {
+          this._newMessageFromFriend(text.substring(1));
         }
         else {
-          newMessage.className = 'message-test';
-          messageList.appendChild(newMessage);
+          this._newMessage(text);
         }
-        messageList.scrollTop = messageList.scrollHeight;
-
 
 
         var form_input = this._elements.form.querySelector('form-input');
         form_input._elements.input.value = '';
-
         this._elements.form.reset();
 
         event.preventDefault();
         return false;
     }
 
-    _onSubmitFromFriend(text) {
+    _newMessage(text) {
       var messageList = document.body.querySelector('.message-list');
+      messageList.scrollTop = messageList.scrollHeight;
+
+      const newMessage = document.createElement('div');
+      newMessage.className = 'message-test';
+      newMessage.innerText = text;
+
+      if (newMessage.innerText == '') {
+        event.preventDefault();
+        return 0;
+      }
+      messageList.appendChild(newMessage);
+      return 0;
+    }
+
+    _newMessageFromFriend(text) {
+      var messageList = document.body.querySelector('.message-list');
+      messageList.scrollTop = messageList.scrollHeight;
 
       const newMessage = document.createElement('div');
       newMessage.innerText = text;
