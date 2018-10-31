@@ -3,6 +3,7 @@ import shadowStyles from './shadow.css';
 import getReadableSize from '../../../../utils/file';
 
 const slotName = 'message-input';
+const USERNAME = 'Cat';
 
 const template = `
 	<style>${shadowStyles.toString()}</style>
@@ -184,24 +185,37 @@ class MessageForm extends HTMLElement {
       }
       messageList.appendChild(newMessage);
 
-      fetch('http://meowbook.org:8081/message', {method: 'POST'}).then(
-        function (response) {
-          if (response.status == 200) {
-            const readLabel = document.createElement('span');
-            readLabel.style.fontSize = '50%';
-            readLabel.innerText = 'Доставлено';
+      newMessage.appendChild(document.createElement('br'));
+      const this_time = new Date();
+      const timeElem = document.createElement('time');
+      timeElem.innerText = ((this_time.getHours() < 10) ? ('0'+this_time.getHours()) : (this_time.getHours())) + ':' + ((this_time.getMinutes() < 10) ? ('0' + this_time.getMinutes()) : (this_time.getMinutes()));
+      timeElem.style.fontSize = '60%';
+      newMessage.appendChild(timeElem);
 
-            newMessage.appendChild(document.createElement('br'));
-            newMessage.appendChild(readLabel);
-          }
-          else {
-            alert('ERROR');
-          }
-        }
-      );
+      const messageFormData = new FormData();
+      messageFormData.append('author', USERNAME);
+      messageFormData.append('time', timeElem.innerText);
+      messageFormData.append('text', newMessage.innerText);
+
+      var request = new XMLHttpRequest();
+      request.open("POST", 'http://meowbook.org:8081/message');
+      request.send(messageFormData);
+      request.addEventListener('loadend', function (event) {
+        const readLabel = document.createElement('span');
+        readLabel.style.fontSize = '40%';
+        readLabel.innerText = 'Доставлено';
+
+
+        // newMessage.appendChild(document.createElement('br'));
+        newMessage.appendChild(readLabel);
+
+      });
+
+
 
       return 0;
     }
+
 
     _newMessageFromFriend(text) {
       var messageList = document.body.querySelector('.message-list');
