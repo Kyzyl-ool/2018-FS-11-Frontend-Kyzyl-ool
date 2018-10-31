@@ -53,11 +53,26 @@ class MessageForm extends HTMLElement {
         this._elements.form.addEventListener('keypress', this._onKeyPress.bind(this));
         this._elements.sendButton.addEventListener('click', this._onSubmit.bind(this));
         this._elements.sendFile.addEventListener('change', this._onNewFile.bind(this));
-
+        document.addEventListener('dragover', function (event) {event.preventDefault();});
+        document.addEventListener('drop', this._onNewFile.bind(this), false);
         // this._elements.inputSlot.addEventListener('slotchange', this._onSlotChange.bind(this));
     }
 
+
     _onNewFile(event) {
+      if (event.type === 'drop') {
+        event.preventDefault();
+
+        const files = event.dataTransfer.files;
+
+        for (var i = 0; i < files.length; i++) {
+            this._newFileMessage(files[i]);
+        }
+
+
+        return false;
+
+      }
         const file = this._elements.sendFile.files[0];
 
         if (file.type.startsWith('image')) {
@@ -67,7 +82,7 @@ class MessageForm extends HTMLElement {
           return false;
         }
 
-        this._newFileMessage(file);
+        this._newNonImageFileMessage(file);
 
         // this._newMessage(file.name + '\n' + file.type + '\n' + getReadableSize(file.size));
 
@@ -76,6 +91,15 @@ class MessageForm extends HTMLElement {
     }
 
     _newFileMessage(file) {
+      if (file.type.startsWith('image')) {
+        this._newImageMessage(file);
+      }
+      else {
+        this._newNonImageFileMessage(file);
+      }
+    }
+
+    _newNonImageFileMessage(file) {
       var messageList = document.body.querySelector('.message-list');
       messageList.scrollTop = messageList.scrollHeight;
 
