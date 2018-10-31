@@ -106,12 +106,17 @@ class MessageForm extends HTMLElement {
 
       const newMessage = document.createElement('div');
       newMessage.className = 'message-test';
-      newMessage.innerText = 'image';  //------
       let imageElem = document.createElement('img');
+      imageElem.style.maxWidth = '30vw';
       imageElem.src = URL.createObjectURL(image);
       imageElem.onload = () => URL.revokeObjectURL(image.src);
       newMessage.classList.add('image');
       newMessage.appendChild(imageElem);
+
+      const size = document.createElement('span');
+      size.innerText = getReadableSize(image.size);
+      newMessage.appendChild(document.createElement('br'));
+      newMessage.appendChild(size);
 
 
       messageList.appendChild(newMessage);

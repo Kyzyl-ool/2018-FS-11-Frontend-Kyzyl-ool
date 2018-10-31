@@ -39,7 +39,7 @@ body
 .message-list {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    /*justify-content: flex-end;*/
     overflow-y: scroll;
     align-items: flex-end;
     border: 5px solid gainsboro;
