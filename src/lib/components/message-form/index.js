@@ -3,7 +3,6 @@ import shadowStyles from './shadow.css';
 import getReadableSize from '../../../../utils/file';
 
 const slotName = 'message-input';
-var amount_of_files = 0;
 
 const template = `
 	<style>${shadowStyles.toString()}</style>
@@ -184,6 +183,23 @@ class MessageForm extends HTMLElement {
         return 0;
       }
       messageList.appendChild(newMessage);
+
+      fetch('http://meowbook.org:8081/message', {method: 'POST'}).then(
+        function (response) {
+          if (response.status == 200) {
+            const readLabel = document.createElement('span');
+            readLabel.style.fontSize = '50%';
+            readLabel.innerText = 'Доставлено';
+
+            newMessage.appendChild(document.createElement('br'));
+            newMessage.appendChild(readLabel);
+          }
+          else {
+            alert('ERROR');
+          }
+        }
+      );
+
       return 0;
     }
 
