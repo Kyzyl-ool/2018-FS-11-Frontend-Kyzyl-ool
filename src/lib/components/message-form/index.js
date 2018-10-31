@@ -1,5 +1,6 @@
 // import styles from './index.css';
 import shadowStyles from './shadow.css';
+import getReadableSize from '../../../../utils/file';
 
 const slotName = 'message-input';
 var amount_of_files = 0;
@@ -66,7 +67,8 @@ class MessageForm extends HTMLElement {
           return false;
         }
 
-        this._newMessage('"' + file.name + '"\n' + file.type + '\n' + file.size + ' bytes.');
+
+        this._newMessage(file.name + '\n' + file.type + '\n' + getReadableSize(file.size));
 
         event.preventDefault();
         return false;

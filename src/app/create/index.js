@@ -16,7 +16,3 @@ window.document.body.innerHTML = `
 </div>
 </footer>
 `;
-
-window.onload = function () {
-
-}

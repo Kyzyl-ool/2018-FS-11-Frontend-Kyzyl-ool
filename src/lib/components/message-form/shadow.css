@@ -1,13 +1,13 @@
-.message {
-    color: dimgrey;
-    font-size: 3.5vh;
-    background: ghostwhite;
-    border-radius: 40px;
-    width: min-content;
-    border: 1px solid;
-    text-align: right;
-    /* box-sizing: border-box; */
-    padding: 2%;
-    visibility: hidden;
-}
+/*.message {*/
+    /*color: dimgrey;*/
+    /*font-size: 3.5vh;*/
+    /*background: ghostwhite;*/
+    /*border-radius: 4px;*/
+    /*width: min-content;*/
+    /*border: 1px solid;*/
+    /*text-align: right;*/
+    /*!* box-sizing: border-box; *!*/
+    /*padding: 2%;*/
+    /*visibility: hidden;*/
+/*}*/
 

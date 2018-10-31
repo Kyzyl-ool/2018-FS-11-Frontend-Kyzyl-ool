@@ -14,3 +14,5 @@ function getReadableSize(size) {
     }
     return `${size} байт`;
 }
+
+export default getReadableSize;
