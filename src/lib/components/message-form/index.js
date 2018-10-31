@@ -105,8 +105,6 @@ class MessageForm extends HTMLElement {
 
       const newMessage = document.createElement('div');
       newMessage.className = 'message-test';
-      newMessage.style.display = 'flex';
-      newMessage.style.flexDirection = 'column';
 
       let filehref = document.createElement('a');
       filehref.innerText = file.name;
@@ -116,6 +114,7 @@ class MessageForm extends HTMLElement {
 
       // newMessage.classList.add('image');
       newMessage.appendChild(filehref);
+      newMessage.appendChild(document.createElement('br'));
 
       newMessage.appendChild(size);
 
