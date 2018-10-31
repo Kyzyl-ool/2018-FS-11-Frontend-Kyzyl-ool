@@ -58,26 +58,58 @@ class MessageForm extends HTMLElement {
     }
 
     _onNewFile(event) {
-        const file = document.querySelector('#file_input').files[0];
+        const file = this._elements.sendFile.files[0];
 
         if (file.type.startsWith('image')) {
-          this._newImageMessage();
+          this._newImageMessage(file);
 
           event.preventDefault();
           return false;
         }
 
+        this._newFileMessage(file);
 
-        this._newMessage(file.name + '\n' + file.type + '\n' + getReadableSize(file.size));
+        // this._newMessage(file.name + '\n' + file.type + '\n' + getReadableSize(file.size));
 
         event.preventDefault();
         return false;
     }
 
-    _newImageMessage() {
-        const messageList = document.querySelector('.message-list');
+    _newFileMessage(file) {
+      var messageList = document.body.querySelector('.message-list');
+      messageList.scrollTop = messageList.scrollHeight;
 
-        alert(image);
+      const newMessage = document.createElement('div');
+      newMessage.className = 'message-test';
+
+      let filehref = document.createElement('a');
+      filehref.innerText = file.name;
+      filehref.href = URL.createObjectURL(file);
+
+      // newMessage.classList.add('image');
+      newMessage.appendChild(filehref);
+
+
+      messageList.appendChild(newMessage);
+      return 0;
+    }
+
+    _newImageMessage(image) {
+      var messageList = document.body.querySelector('.message-list');
+      messageList.scrollTop = messageList.scrollHeight;
+
+      const newMessage = document.createElement('div');
+      newMessage.className = 'message-test';
+      newMessage.innerText = 'image';  //------
+      let imageElem = document.createElement('img');
+      imageElem.src = URL.createObjectURL(image);
+      imageElem.onload = () => URL.revokeObjectURL(image.src);
+      newMessage.classList.add('image');
+      newMessage.appendChild(imageElem);
+
+
+      messageList.appendChild(newMessage);
+      return 0;
     }
 
     _onSubmit(event) {
