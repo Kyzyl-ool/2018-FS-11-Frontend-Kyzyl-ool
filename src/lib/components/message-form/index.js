@@ -197,25 +197,23 @@ class MessageForm extends HTMLElement {
       messageFormData.append('time', timeElem.innerText);
       messageFormData.append('text', newMessage.innerText);
 
+      const littleLabel = document.createElement('span');
+      littleLabel.style.fontSize = '40%';
+      littleLabel.id = 'little_label';
+      littleLabel.innerText = 'Отправка...';
+      newMessage.appendChild(littleLabel);
+
       var request = new XMLHttpRequest();
       request.open("POST", 'http://meowbook.org:8081/message');
       request.send(messageFormData);
-      request.addEventListener('loadend', function (event) {
-        const readLabel = document.createElement('span');
-        readLabel.style.fontSize = '40%';
-        readLabel.innerText = 'Доставлено';
-
-
-        // newMessage.appendChild(document.createElement('br'));
-        newMessage.appendChild(readLabel);
-
-      });
-
-
-
+      request.addEventListener('loadend', this._setLittleText.bind(this, newMessage, 'Доставлено'));
       return 0;
     }
 
+    _setLittleText(messageElem, text) {
+      const LL = messageElem.querySelector('#little_label');
+      LL.innerText = text;
+    }
 
     _newMessageFromFriend(text) {
       var messageList = document.body.querySelector('.message-list');
