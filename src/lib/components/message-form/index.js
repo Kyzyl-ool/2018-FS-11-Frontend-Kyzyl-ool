@@ -216,16 +216,19 @@ class MessageForm extends HTMLElement {
       // request.addEventListener('loadend', this._setLittleText.bind(this, messageElem, 'Доставлено'));
 
 
+      var msg = messageElem;
+      var foo = this._setLittleText;
       fetch('http://meowbook.org:8081/message', {method: 'POST', body: messageFormData}).then(
         function (event) {
           if (event.status == 200) {
-            this._setLittleText(messageElem, 'Доставлено');
+            foo(msg, 'Доставлено');
           }
           else {
-            this._setLittleText(messageElem, 'ERROR');
+            foo(msg, 'ОШИБКА ДОСТАВКИ');
           }
-        }.bind(this, event)
-      );
+        }
+      )
+
     }
 
     _setLittleText(messageElem, text) {
