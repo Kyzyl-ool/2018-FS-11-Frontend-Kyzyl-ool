@@ -118,6 +118,12 @@ class MessageForm extends HTMLElement {
 
       newMessage.appendChild(size);
 
+      this._addTimeElem(newMessage);
+      this._setLittleText(newMessage, 'Отправка...');
+      const messageFormData = this._getFormDataOfMessage(newMessage);
+      messageFormData.append('file', file);
+
+      this._sendMessageData(newMessage, messageFormData);
 
       messageList.appendChild(newMessage);
       return 0;
@@ -141,6 +147,12 @@ class MessageForm extends HTMLElement {
       newMessage.appendChild(document.createElement('br'));
       newMessage.appendChild(size);
 
+      this._addTimeElem(newMessage);
+      this._setLittleText(newMessage, 'Отправка...');
+      const messageFormData = this._getFormDataOfMessage(newMessage);
+      messageFormData.append('file', image);
+
+      this._sendMessageData(newMessage, messageFormData);
 
       messageList.appendChild(newMessage);
       return 0;
@@ -177,7 +189,11 @@ class MessageForm extends HTMLElement {
 
       const newMessage = document.createElement('div');
       newMessage.className = 'message-test';
-      newMessage.innerText = text;
+      const messageText = document.createElement('span');
+      messageText.id = 'message-text';
+      messageText.innerText = text;
+      newMessage.appendChild(messageText);
+
 
       if (newMessage.innerText == '') {
         event.preventDefault();
@@ -186,9 +202,7 @@ class MessageForm extends HTMLElement {
       messageList.appendChild(newMessage);
 
       this._addTimeElem(newMessage);
-
       this._setLittleText(newMessage, 'Отправка...');
-
       const messageFormData = this._getFormDataOfMessage(newMessage);
       this._sendMessageData(newMessage, messageFormData);
 
@@ -196,10 +210,22 @@ class MessageForm extends HTMLElement {
     }
 
     _sendMessageData(messageElem, messageFormData) {
-      var request = new XMLHttpRequest();
-      request.open("POST", 'http://meowbook.org:8081/message');
-      request.send(messageFormData);
-      request.addEventListener('loadend', this._setLittleText.bind(this, messageElem, 'Доставлено'));
+      // var request = new XMLHttpRequest();
+      // request.open("POST", 'http://meowbook.org:8081/message');
+      // request.send(messageFormData);
+      // request.addEventListener('loadend', this._setLittleText.bind(this, messageElem, 'Доставлено'));
+
+
+      fetch('http://meowbook.org:8081/message', {method: 'POST', body: messageFormData}).then(
+        function (event) {
+          if (event.status == 200) {
+            this._setLittleText(messageElem, 'Доставлено');
+          }
+          else {
+            this._setLittleText(messageElem, 'ERROR');
+          }
+        }.bind(this, event)
+      );
     }
 
     _setLittleText(messageElem, text) {
@@ -220,7 +246,9 @@ class MessageForm extends HTMLElement {
       const messageFormData = new FormData();
       messageFormData.append('author', messageElem.author);
       messageFormData.append('time', messageElem.querySelector('time').innerText);
-      messageFormData.append('text', messageElem.innerText);
+      messageFormData.append('text', (messageElem.querySelector('#message-text')) ? messageElem.querySelector('#message-text').innerText : undefined);
+
+      return messageFormData;
     }
 
     _addTimeElem(messageElem) {
@@ -237,7 +265,11 @@ class MessageForm extends HTMLElement {
       messageList.scrollTop = messageList.scrollHeight;
 
       const newMessage = document.createElement('div');
-      newMessage.innerText = text;
+      newMessage.className = 'message-test';
+      const messageText = document.createElement('span');
+      messageText.id = 'message-text';
+      messageText.innerText = text;
+      newMessage.appendChild(messageText);
 
       if (newMessage.innerText == '') {
         event.preventDefault();
