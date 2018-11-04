@@ -69,7 +69,6 @@ class MessageForm extends HTMLElement {
             this._newFileMessage(files[i]);
         }
 
-
         return false;
 
       }
