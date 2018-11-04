@@ -75,17 +75,18 @@ class MessageForm extends HTMLElement {
       }
         const file = this._elements.sendFile.files[0];
 
-        if (file.type.startsWith('image')) {
-          this._newImageMessage(file);
+        if (file != undefined) {
+          if (file.type.startsWith('image')) {
+            this._newImageMessage(file);
 
-          event.preventDefault();
-          return false;
+            event.preventDefault();
+            return false;
+          }
+
+          this._newNonImageFileMessage(file);
+
+          // this._newMessage(file.name + '\n' + file.type + '\n' + getReadableSize(file.size));
         }
-
-        this._newNonImageFileMessage(file);
-
-        // this._newMessage(file.name + '\n' + file.type + '\n' + getReadableSize(file.size));
-
         event.preventDefault();
         return false;
     }
@@ -226,9 +227,11 @@ class MessageForm extends HTMLElement {
           else {
             foo(msg, 'ОШИБКА ДОСТАВКИ');
           }
+        },
+        function () {
+          foo(msg, 'ОШИБКА ДОСТАВКИ');
         }
       )
-
     }
 
     _setLittleText(messageElem, text) {
