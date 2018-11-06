@@ -9,17 +9,17 @@ class InputForm extends Component {
         this.state = {
             text: ''
         };
-        this.updateData = props.updateData;
     }
 
     onSubmit(event) {
-        this.updateData(this.state.text);
+        this.props.onPress();
         this.setState({text: ''});
         event.preventDefault(); //Prevent page refreshing
     }
 
     onChange(event) {
-        this.setState({text: event.target.value});
+        this.props.updateData(event.target.value);
+        this.setState({text: this.props.text});
     }
 
 
