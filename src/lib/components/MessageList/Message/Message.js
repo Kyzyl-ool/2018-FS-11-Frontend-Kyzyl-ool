@@ -21,14 +21,14 @@ class Message extends Component {
       return <span></span>;
     }
     if (value.type.startsWith('image')) {
-      var url = URL.createObjectURL(value);
-      return <img className="AttachedImage" src={url}/>;
+      let url = URL.createObjectURL(value);
       URL.revokeObjectURL(url);
+      return <img alt="attach" className="AttachedImage" src={url}/>;
     }
     else {
-      var url = URL.createObjectURL(value);
-      return <a href={url}>Attachment</a>;
+      let url = URL.createObjectURL(value);
       URL.revokeObjectURL(url);
+      return <a href={url}>Attachment</a>;
     }
   }
 

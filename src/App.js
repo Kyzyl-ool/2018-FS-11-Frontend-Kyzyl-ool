@@ -23,18 +23,22 @@ class App extends Component {
       file: value.file
     };
 
-    this.sendDataToServer(newMessage);
-
-
-    this.setState({msg: newMessage});
-  }
-
-  sendDataToServer(message) {
-    return fetch('http://meowbook.org:8081/message',
+    fetch('http://meowbook.org:8081/message',
       {
         method: 'POST',
-        body: message
-      });
+        body: newMessage
+      }).then(
+      (event) => {
+        if (event.status === 200) {
+          newMessage.status = true;
+        }
+
+        this.setState({msg: newMessage});
+      }
+    );
+
+
+
   }
 
 

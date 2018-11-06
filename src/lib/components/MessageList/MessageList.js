@@ -10,7 +10,9 @@ class MessageList extends Component {
       }
     }
 
-
+    setSuccessfullyDelivered(index) {
+      this.state.messages[index].setSuccess();
+    }
 
 
     render() {
