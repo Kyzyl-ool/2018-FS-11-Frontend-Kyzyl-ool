@@ -22,7 +22,7 @@ class Message extends Component {
     }
     if (value.type.startsWith('image')) {
       var url = URL.createObjectURL(value);
-      return <img src={url}/>;
+      return <img className="AttachedImage" src={url}/>;
       URL.revokeObjectURL(url);
     }
     else {
