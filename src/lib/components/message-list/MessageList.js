@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './MessageList.css';
+import './MessageList.css';
 
 class MessageList extends Component {
     constructor()
@@ -9,8 +9,7 @@ class MessageList extends Component {
 
     render() {
         return (
-            <div>
-                The message list.
+            <div className="MessageList">
             </div>
         );
     }

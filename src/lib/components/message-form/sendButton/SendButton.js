@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './SendButton.css';
+import './SendButton.css';
 
 class SendButton extends Component {
     constructor() {
@@ -8,7 +8,7 @@ class SendButton extends Component {
 
     render() {
         return (
-            <button>Send</button>
+            <button className="SendButton">Send</button>
         );
     }
 }

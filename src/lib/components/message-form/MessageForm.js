@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SendButton from './sendButton/SendButton';
 import InputForm from './InputForm/InputForm';
-import styles from './MessageForm.css';
+import  './MessageForm.css';
 
 class MessageForm extends Component {
     constructor() {
@@ -10,7 +10,7 @@ class MessageForm extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="MessageForm">
                 <InputForm></InputForm>
                 <SendButton></SendButton>
             </div>

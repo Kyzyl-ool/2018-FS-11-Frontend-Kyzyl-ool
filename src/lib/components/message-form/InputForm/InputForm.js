@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './InputForm.css';
+import './InputForm.css';
 
 class InputForm extends Component {
     constructor() {
@@ -8,7 +8,7 @@ class InputForm extends Component {
 
     render() {
         return (
-            <input type="text"/>
+            <input type="text" className="InputForm"/>
         );
     }
 }
