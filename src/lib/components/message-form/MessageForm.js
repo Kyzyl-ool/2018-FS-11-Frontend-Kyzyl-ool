@@ -6,18 +6,17 @@ import  './MessageForm.css';
 class MessageForm extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = props.onSubmit;
+        this.dispatchNewMessageEvent = props.dispatcher;
     }
 
-    handleSubmit(event) {
-        alert("HELLOO");
-        event.preventDefault();
-    }
+    updateData = (value) => {
+        this.dispatchNewMessageEvent(value);
+    };
 
     render() {
         return (
             <div className="MessageForm">
-                <InputForm />
+                <InputForm updateData={this.updateData} />
                 <SendButton />
             </div>
         );

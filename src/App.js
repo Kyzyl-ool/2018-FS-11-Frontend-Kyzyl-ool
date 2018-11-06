@@ -8,20 +8,33 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleNewMessage = this.handleNewMessage.bind(this);
+    this.state = {
+      messages: []
+    }
   }
 
-  handleNewMessage(event) {
-    alert("HIHI");
-    event.preventDefault();
+  handleNewMessage(value) {
+    // alert(value);
+    // let tmp = this.state.messages;
+    const newMessage = {
+      text: value,
+      time: new Date().toLocaleTimeString(),
+      status: false
+    };
+    // tmp.append(newMessage);
 
+    this.setState({messages: newMessage});
   }
+
+
+
 
 
   render() {
     return (
         <div>
-          <MessageList />
-          <MessageForm onSubmit={this.handleNewMessage} />
+          <MessageList messages={this.state.messages}/>
+          <MessageForm dispatcher={this.handleNewMessage} />
         </div>
     );
   }

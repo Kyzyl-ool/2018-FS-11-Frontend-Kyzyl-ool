@@ -3,10 +3,9 @@ import './MessageList.css';
 import Message from './Message/Message';
 
 class MessageList extends Component {
-    constructor(props)
-    {
-        super(props);
-        this.messages = [];
+    constructor(props) {
+      super(props);
+      this.messages = props.messages;
     }
 
     render() {
