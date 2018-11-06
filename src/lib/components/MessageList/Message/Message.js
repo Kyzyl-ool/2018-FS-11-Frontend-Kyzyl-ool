@@ -3,7 +3,7 @@ import  './Message.css';
 
 class Message extends Component {
   constructor(props) {
-      if (props.text == undefined || props.text === '') {
+      if (props.text === undefined || props.text === '') {
         super(props);
         this.hidden = true;
       }
