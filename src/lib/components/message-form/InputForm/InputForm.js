@@ -14,6 +14,7 @@ class InputForm extends Component {
 
     onSubmit(event) {
         this.updateData(this.state.text);
+        this.setState({text: ''});
         event.preventDefault(); //Prevent page refreshing
     }
 

@@ -5,16 +5,24 @@ import Message from './Message/Message';
 class MessageList extends Component {
     constructor(props) {
       super(props);
-      this.messages = props.messages;
+      this.state = {
+          messages: []
+      }
     }
 
+
+
+
     render() {
+        this.state.messages.push({
+          text: this.props.msg.text,
+          time: this.props.msg.time,
+          status: this.props.msg.status
+        });
         return (
             <div className="MessageList">
               {
-                  this.messages.map((value) =>
-                  <Message text={value.text} time={value.time} status={value.status} />
-                  )
+                  this.state.messages.map((value => <Message text={value.text} time={value.time} status={value.status} />))
               }
             </div>
         );

@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.handleNewMessage = this.handleNewMessage.bind(this);
     this.state = {
-      messages: []
+      msg: {}
     }
   }
 
@@ -21,9 +21,7 @@ class App extends Component {
       time: new Date().toLocaleTimeString(),
       status: false
     };
-    // tmp.append(newMessage);
-
-    this.setState({messages: newMessage});
+    this.setState({msg: newMessage});
   }
 
 
@@ -33,7 +31,7 @@ class App extends Component {
   render() {
     return (
         <div>
-          <MessageList messages={this.state.messages}/>
+          <MessageList msg={this.state.msg}/>
           <MessageForm dispatcher={this.handleNewMessage} />
         </div>
     );
