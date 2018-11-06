@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './SendButton.css';
 
 class SendButton extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
         return (
-            <button className="SendButton">Send</button>
+            <input value="Send" type="submit" className="SendButton" />
         );
     }
 }

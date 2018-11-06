@@ -2,13 +2,30 @@ import React, { Component } from 'react';
 import './InputForm.css';
 
 class InputForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.state = {
+            text: ''
+        };
     }
+
+    onSubmit(event) {
+        alert(this.state.text);
+        event.preventDefault(); //Prevent page refreshing
+    }
+
+    onChange(event) {
+        this.setState({text: event.target.value});
+    }
+
 
     render() {
         return (
-            <input type="text" className="InputForm"/>
+          <form onSubmit={this.onSubmit}>
+            <input onChange={this.onChange} value={this.state.text} className="InputForm" type="text" placeholder="Enter your message..."/>
+          </form>
         );
     }
 }
