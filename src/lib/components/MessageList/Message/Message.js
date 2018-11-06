@@ -13,7 +13,6 @@ class Message extends Component {
         this.time = props.time;
         this.status = props.status;
       }
-
   }
 
 

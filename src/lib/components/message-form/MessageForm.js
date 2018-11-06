@@ -23,12 +23,27 @@ class MessageForm extends Component {
     }
 
     render() {
-        return (
-              <form className="MessageForm" onSubmit={this.disp.bind(this)}>
-              <input  value={this.state.text} onChange={this.updateData.bind(this)} className="InputForm" type="text" placeholder="Enter your message..."/>
-                <input onClick={this.disp.bind(this)} className="SendButton" type="submit" value="Send" />
-              </form>
-        );
+
+      let form = (
+        <form className="MessageForm" onSubmit={this.disp.bind(this)}>
+          <div className="FormAndPinButton">
+            <input className="InputForm" value={this.state.text}
+                   onChange={this.updateData.bind(this)} type="text"
+                   placeholder="Enter your message..."/>
+
+
+            <div >
+              <label htmlFor="attach_file">
+                <img className="PinFileIcon" src="http://meowbook.org/attach.png"/>
+              </label>
+              <input hidden="true" id="attach_file" type="file"/>
+            </div>
+
+          </div>
+          <input onClick={this.disp.bind(this)} className="SendButton" type="submit" value="Send"/>
+        </form>
+      );
+      return form;
     }
 }
 

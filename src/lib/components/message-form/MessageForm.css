@@ -23,3 +23,18 @@
     font-family: "American Typewriter", serif;
     border: 1px solid slategrey;
 }
+
+.PinFileIcon {
+    padding: 2%;
+    max-height: 3vh;
+    position: absolute;
+    right: 0;
+}
+.PinFileIcon:hover {
+    max-height: 8vh;
+}
+
+.FormAndPinButton {
+    display: flex;
+    position: relative;
+}
