@@ -20,7 +20,7 @@ class MessageList extends Component {
         return (
             <div className="MessageList">
               {
-                  this.state.messages.map(((value, key) => <Message key={key} text={value.text} time={value.time} spanText={value.spanText} file={value.file} />))
+                  this.state.messages.map(((value, key) => <Message parent={this} key={key} text={value.text} time={value.time} spanText={value.spanText} file={value.file} />))
               }
             </div>
         );

@@ -8,18 +8,31 @@
     font-size: 2vh;
     border-radius: 5px;
     padding: 5px;
-    margin: 2%;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
     text-align: right;
+    text-overflow: clip;
+    word-break: break-all;
+    position: relative;
+    font-weight: 600;
 }
 
 .TimeLabel {
+    position: absolute;
+    left: 1vw;
     text-align: left;
     font-size: 1.5vh;
+    font-style: italic;
+    margin: 2%;
+    font-weight: 400;
 }
 
 .StatusLabel {
     text-align: right;
-    font-size: 1.5vh;
+    font-size: 1vh;
+    font-palette: dark;
+    font-weight: 200;
 }
 
 .AttachedImage {
