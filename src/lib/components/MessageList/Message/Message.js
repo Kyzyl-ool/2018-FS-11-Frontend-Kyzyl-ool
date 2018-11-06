@@ -13,6 +13,10 @@ class Message extends Component {
         this.time = props.time;
         this.spanText = props.spanText;
         this.file = props.file;
+
+        if (this.text.startsWith('#')) {
+          this.notYour = true;
+        }
       }
   }
 
@@ -33,14 +37,19 @@ class Message extends Component {
   }
 
   render() {
-        return (
-            <div className="Message" hidden={this.hidden}>
-              {this.attachment(this.file)}
-              <p>{this.text}</p>
-              <time className="TimeLabel">{this.time}</time>
-              <span className="StatusLabel"> {this.spanText} </span>
-            </div>
-        );
+    if (this.hidden) {
+      return null;
+    }
+    else {
+      return (
+        <div className={this.notYour ? "notYourMessage Message" : "Message"} hidden={this.hidden}>
+          {this.attachment(this.file)}
+          <p>{this.text}</p>
+          <time className="TimeLabel">{this.time}</time>
+          <span className="StatusLabel"> {this.spanText} </span>
+        </div>
+      );
+    }
     }
 }
 
