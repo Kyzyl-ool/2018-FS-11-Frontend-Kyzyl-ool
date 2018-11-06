@@ -1,5 +1,6 @@
 .MessageForm {
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
+    height: 10vh;
+    justify-content: center;
 }

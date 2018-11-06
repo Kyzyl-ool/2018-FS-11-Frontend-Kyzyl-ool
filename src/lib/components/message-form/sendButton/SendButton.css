@@ -1,3 +1,7 @@
 .SendButton {
-    border: 1px solid black;
+    width: 25vw;
+    border-radius: 3px;
+    font-size: 3vh;
+    font-family: "American Typewriter";
+    border: 1px solid slategrey;
 }
