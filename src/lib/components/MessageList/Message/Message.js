@@ -12,13 +12,31 @@ class Message extends Component {
         this.text = props.text;
         this.time = props.time;
         this.status = props.status;
+        this.file = props.file;
       }
+  }
+
+  attachment(value) {
+    if (value === undefined) {
+      return <span></span>;
+    }
+    if (value.type.startsWith('image')) {
+      var url = URL.createObjectURL(value);
+      return <img src={url}/>;
+      URL.revokeObjectURL(url);
+    }
+    else {
+      var url = URL.createObjectURL(value);
+      return <a href={url}>Attachment</a>;
+      URL.revokeObjectURL(url);
+    }
   }
 
 
   render() {
         return (
             <div className="Message" hidden={this.hidden}>
+              {this.attachment(this.file)}
               <p>{this.text}</p>
               <time className="TimeLabel">{this.time}</time>
               <span className="StatusLabel"> {this.status ? 'Delivered' : 'Sending...'} </span>

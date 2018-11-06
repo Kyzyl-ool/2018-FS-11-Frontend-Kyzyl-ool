@@ -16,10 +16,11 @@ class App extends Component {
   handleNewMessage(value) {
     // alert(value);
     // let tmp = this.state.messages;
-    const newMessage = {
-      text: value,
+    var newMessage = {
+      text: value.text,
       time: new Date().toLocaleTimeString(),
-      status: false
+      status: false,
+      file: value.file
     };
     this.setState({msg: newMessage});
   }
@@ -32,7 +33,7 @@ class App extends Component {
     return (
         <div>
           <MessageList msg={this.state.msg}/>
-          <MessageForm dispatcher={this.handleNewMessage} />
+          <MessageForm dispatcher={this.handleNewMessage.bind(this)} />
         </div>
     );
   }
