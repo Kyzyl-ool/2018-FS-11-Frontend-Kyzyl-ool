@@ -19,7 +19,7 @@ class App extends Component {
     var newMessage = {
       text: value.text,
       time: new Date().toLocaleTimeString(),
-      status: false,
+      spanText: 'Sending...',
       file: value.file
     };
 
@@ -30,7 +30,7 @@ class App extends Component {
       }).then(
       (event) => {
         if (event.status === 200) {
-          newMessage.status = true;
+          newMessage.spanText = 'Delivered';
         }
 
         this.setState({msg: newMessage});

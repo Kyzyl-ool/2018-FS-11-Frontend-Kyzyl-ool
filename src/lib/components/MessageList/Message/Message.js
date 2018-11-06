@@ -11,7 +11,7 @@ class Message extends Component {
         super(props);
         this.text = props.text;
         this.time = props.time;
-        this.status = props.status;
+        this.spanText = props.spanText;
         this.file = props.file;
       }
   }
@@ -22,20 +22,15 @@ class Message extends Component {
     }
     if (value.type.startsWith('image')) {
       let url = URL.createObjectURL(value);
-      URL.revokeObjectURL(url);
+      // URL.revokeObjectURL(url);
       return <img alt="attach" className="AttachedImage" src={url}/>;
     }
     else {
       let url = URL.createObjectURL(value);
-      URL.revokeObjectURL(url);
+      // URL.revokeObjectURL(url);
       return <a href={url}>Attachment</a>;
     }
   }
-
-  setSuccess() {
-    this.status = true;
-  }
-
 
   render() {
         return (
@@ -43,7 +38,7 @@ class Message extends Component {
               {this.attachment(this.file)}
               <p>{this.text}</p>
               <time className="TimeLabel">{this.time}</time>
-              <span className="StatusLabel"> {this.status ? 'Delivered' : 'Sending...'} </span>
+              <span className="StatusLabel"> {this.spanText} </span>
             </div>
         );
     }

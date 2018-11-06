@@ -10,22 +10,17 @@ class MessageList extends Component {
       }
     }
 
-    setSuccessfullyDelivered(index) {
-      this.state.messages[index].setSuccess();
-    }
-
-
     render() {
         this.state.messages.push({
           text: this.props.msg.text,
           time: this.props.msg.time,
-          status: this.props.msg.status,
+          spanText: this.props.msg.spanText,
           file: this.props.msg.file
         });
         return (
             <div className="MessageList">
               {
-                  this.state.messages.map(((value, key) => <Message key={key} text={value.text} time={value.time} status={value.status} file={value.file} />))
+                  this.state.messages.map(((value, key) => <Message key={key} text={value.text} time={value.time} spanText={value.spanText} file={value.file} />))
               }
             </div>
         );
