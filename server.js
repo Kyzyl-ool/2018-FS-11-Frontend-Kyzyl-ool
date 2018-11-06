@@ -14,7 +14,7 @@ app.post('/message', function(req, res) {
     if (Object.keys(req.files).length == 0) {
       return res.status(400).send('No files were uploaded.');
     }
-    let sampleFile = req.files.attach;
+    let sampleFile = req.files.file;
     console.log(sampleFile.mimetype, sampleFile.md5());
     result = new Promise((resolve, reject) => {
       sampleFile.mv('/dev/null', function (err) {

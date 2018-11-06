@@ -3,6 +3,7 @@ import shadowStyles from './shadow.css';
 import getReadableSize from '../../../../utils/file';
 
 const slotName = 'message-input';
+const USERNAME = 'Cat';
 
 const template = `
 	<style>${shadowStyles.toString()}</style>
@@ -68,23 +69,23 @@ class MessageForm extends HTMLElement {
             this._newFileMessage(files[i]);
         }
 
-
         return false;
 
       }
         const file = this._elements.sendFile.files[0];
 
-        if (file.type.startsWith('image')) {
-          this._newImageMessage(file);
+        if (file != undefined) {
+          if (file.type.startsWith('image')) {
+            this._newImageMessage(file);
 
-          event.preventDefault();
-          return false;
+            event.preventDefault();
+            return false;
+          }
+
+          this._newNonImageFileMessage(file);
+
+          // this._newMessage(file.name + '\n' + file.type + '\n' + getReadableSize(file.size));
         }
-
-        this._newNonImageFileMessage(file);
-
-        // this._newMessage(file.name + '\n' + file.type + '\n' + getReadableSize(file.size));
-
         event.preventDefault();
         return false;
     }
@@ -117,6 +118,12 @@ class MessageForm extends HTMLElement {
 
       newMessage.appendChild(size);
 
+      this._addTimeElem(newMessage);
+      this._setLittleText(newMessage, 'Отправка...');
+      const messageFormData = this._getFormDataOfMessage(newMessage);
+      messageFormData.append('file', file);
+
+      this._sendMessageData(newMessage, messageFormData);
 
       messageList.appendChild(newMessage);
       return 0;
@@ -140,6 +147,12 @@ class MessageForm extends HTMLElement {
       newMessage.appendChild(document.createElement('br'));
       newMessage.appendChild(size);
 
+      this._addTimeElem(newMessage);
+      this._setLittleText(newMessage, 'Отправка...');
+      const messageFormData = this._getFormDataOfMessage(newMessage);
+      messageFormData.append('file', image);
+
+      this._sendMessageData(newMessage, messageFormData);
 
       messageList.appendChild(newMessage);
       return 0;
@@ -176,7 +189,11 @@ class MessageForm extends HTMLElement {
 
       const newMessage = document.createElement('div');
       newMessage.className = 'message-test';
-      newMessage.innerText = text;
+      const messageText = document.createElement('span');
+      messageText.id = 'message-text';
+      messageText.innerText = text;
+      newMessage.appendChild(messageText);
+
 
       if (newMessage.innerText == '') {
         event.preventDefault();
@@ -184,23 +201,68 @@ class MessageForm extends HTMLElement {
       }
       messageList.appendChild(newMessage);
 
-      fetch('http://meowbook.org:8081/message', {method: 'POST'}).then(
-        function (response) {
-          if (response.status == 200) {
-            const readLabel = document.createElement('span');
-            readLabel.style.fontSize = '50%';
-            readLabel.innerText = 'Доставлено';
-
-            newMessage.appendChild(document.createElement('br'));
-            newMessage.appendChild(readLabel);
-          }
-          else {
-            alert('ERROR');
-          }
-        }
-      );
+      this._addTimeElem(newMessage);
+      this._setLittleText(newMessage, 'Отправка...');
+      const messageFormData = this._getFormDataOfMessage(newMessage);
+      this._sendMessageData(newMessage, messageFormData);
 
       return 0;
+    }
+
+    _sendMessageData(messageElem, messageFormData) {
+      // var request = new XMLHttpRequest();
+      // request.open("POST", 'http://meowbook.org:8081/message');
+      // request.send(messageFormData);
+      // request.addEventListener('loadend', this._setLittleText.bind(this, messageElem, 'Доставлено'));
+
+
+      var msg = messageElem;
+      var foo = this._setLittleText;
+      fetch('http://meowbook.org:8081/message', {method: 'POST', body: messageFormData}).then(
+        function (event) {
+          if (event.status == 200) {
+            foo(msg, 'Доставлено');
+          }
+          else {
+            foo(msg, 'ОШИБКА ДОСТАВКИ');
+          }
+        },
+        function () {
+          foo(msg, 'ОШИБКА ДОСТАВКИ');
+        }
+      )
+    }
+
+    _setLittleText(messageElem, text) {
+      if (messageElem.querySelector('#little_label')) {
+        const LL = messageElem.querySelector('#little_label');
+        LL.innerText = text;
+      }
+      else {
+        const littleLabel = document.createElement('span');
+        littleLabel.style.fontSize = '40%';
+        littleLabel.id = 'little_label';
+        littleLabel.innerText = text;
+        messageElem.appendChild(littleLabel);
+      }
+    }
+
+    _getFormDataOfMessage(messageElem) {
+      const messageFormData = new FormData();
+      messageFormData.append('author', messageElem.author);
+      messageFormData.append('time', messageElem.querySelector('time').innerText);
+      messageFormData.append('text', (messageElem.querySelector('#message-text')) ? messageElem.querySelector('#message-text').innerText : undefined);
+
+      return messageFormData;
+    }
+
+    _addTimeElem(messageElem) {
+      messageElem.appendChild(document.createElement('br'));
+      const this_time = new Date();
+      const timeElem = document.createElement('time');
+      timeElem.innerText = ((this_time.getHours() < 10) ? ('0'+this_time.getHours()) : (this_time.getHours())) + ':' + ((this_time.getMinutes() < 10) ? ('0' + this_time.getMinutes()) : (this_time.getMinutes()));
+      timeElem.style.fontSize = '60%';
+      messageElem.appendChild(timeElem);
     }
 
     _newMessageFromFriend(text) {
@@ -208,7 +270,11 @@ class MessageForm extends HTMLElement {
       messageList.scrollTop = messageList.scrollHeight;
 
       const newMessage = document.createElement('div');
-      newMessage.innerText = text;
+      newMessage.className = 'message-test';
+      const messageText = document.createElement('span');
+      messageText.id = 'message-text';
+      messageText.innerText = text;
+      newMessage.appendChild(messageText);
 
       if (newMessage.innerText == '') {
         event.preventDefault();
