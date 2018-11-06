@@ -22,11 +22,20 @@ class App extends Component {
       status: false,
       file: value.file
     };
+
+    this.sendDataToServer(newMessage);
+
+
     this.setState({msg: newMessage});
   }
 
-
-
+  sendDataToServer(message) {
+    return fetch('http://meowbook.org:8081/message',
+      {
+        method: 'POST',
+        body: message
+      });
+  }
 
 
   render() {

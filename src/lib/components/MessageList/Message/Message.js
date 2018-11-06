@@ -32,6 +32,10 @@ class Message extends Component {
     }
   }
 
+  setSuccess() {
+    this.status = true;
+  }
+
 
   render() {
         return (
