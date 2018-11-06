@@ -6,24 +6,18 @@ import  './MessageForm.css';
 class MessageForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            currentText: ''
-        };
+        this.dispatchNewMessageEvent = props.dispatcher;
     }
 
     updateData = (value) => {
-        this.setState({currentText: value});
-    };
-
-    sendData() {
-        this.props.dispatcher(this.state.currentText);
+        this.dispatchNewMessageEvent(value);
     };
 
     render() {
         return (
             <div className="MessageForm">
-                <InputForm updateData={this.updateData} onPress={this.sendData.bind(this)}/>
-                <SendButton onPress={this.sendData.bind(this)} />
+                <InputForm updateData={this.updateData} />
+                <SendButton />
             </div>
         );
     }
