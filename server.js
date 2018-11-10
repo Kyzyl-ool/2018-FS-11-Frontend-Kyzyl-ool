@@ -23,6 +23,7 @@ app.post('/message', function(req, res) {
 	  });
     });
   }
+
   result
     .then(() => res.send('{"status":"ok"}'))
     .catch((err) => res.status(500).send(err));

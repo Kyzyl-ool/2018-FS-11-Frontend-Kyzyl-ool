@@ -2,12 +2,53 @@ import React, { Component } from 'react';
 import './MessageList.css';
 import Message from './Message/Message';
 
+const mockMessages = [
+  [
+    {
+      text: 'Hello',
+      time: new Date().toLocaleTimeString(),
+      spanText: 'Delivered',
+    },
+    {
+      text: '#Hello =)',
+      time: new Date().toLocaleTimeString(),
+      spanText: 'Delivered',
+    }
+  ],
+  [
+    {
+      text: 'Hi',
+      time: new Date().toLocaleTimeString(),
+      spanText: 'Delivered',
+    },
+    {
+      text: '#Who are you?',
+      time: new Date().toLocaleTimeString(),
+      spanText: 'Delivered',
+    }
+  ],
+  [
+    {
+      text: 'Привет',
+      time: new Date().toLocaleTimeString(),
+      spanText: 'Delivered',
+    },
+    {
+      text: '#Здарова)',
+      time: new Date().toLocaleTimeString(),
+      spanText: 'Delivered',
+    }
+  ],
+];
+
 class MessageList extends Component {
     constructor(props) {
       super(props);
+
+      // alert(props.id);
       this.state = {
-          messages: []
-      }
+        messages: mockMessages[props.id]
+      };
     }
 
     render() {
@@ -20,7 +61,14 @@ class MessageList extends Component {
         return (
             <div className="MessageList">
               {
-                  this.state.messages.map(((value, key) => <Message key={key} text={value.text} time={value.time} spanText={value.spanText} file={value.file} />))
+                  this.state.messages.map(
+                    (value, index) =>
+                      <Message
+                        key={index}
+                        text={value.text}
+                        time={value.time}
+                        spanText={value.spanText}
+                        file={value.file} />)
               }
             </div>
         );

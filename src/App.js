@@ -35,7 +35,7 @@ class App extends Component {
               <Route
                 key={index}
                 path={`/chats/${index}`}
-                component={(index) => <MessageWindow id={index} />}
+                component={() => <MessageWindow id={index} />}
               />
               )
             )

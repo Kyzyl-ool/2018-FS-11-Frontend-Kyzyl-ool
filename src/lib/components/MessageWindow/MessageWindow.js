@@ -10,7 +10,7 @@ class MessageWindow extends Component {
     this.handleNewMessage = this.handleNewMessage.bind(this);
     this.state = {
       msg: {}
-    }
+    };
   }
 
   handleNewMessage(value) {
@@ -47,7 +47,7 @@ class MessageWindow extends Component {
   render() {
     return (
         <Aux>
-          <MessageList msg={this.state.msg} />
+          <MessageList id={this.props.id} msg={this.state.msg} />
           <MessageForm dispatcher={this.handleNewMessage.bind(this)} />
         </Aux>
     );
