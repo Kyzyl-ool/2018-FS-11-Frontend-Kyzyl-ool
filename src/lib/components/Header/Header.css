@@ -1,0 +1,8 @@
+.Header {
+    border: 3px solid lavender;
+    height: 10vh;
+    margin-bottom: 1vh;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+}

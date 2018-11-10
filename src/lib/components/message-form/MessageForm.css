@@ -28,6 +28,11 @@
     margin-left: 2%;
 }
 
+
+.SendButton:hover {
+    background: gray;
+}
+
 .PinFileIcon {
     padding: 3px;
     max-height: 3vh;
