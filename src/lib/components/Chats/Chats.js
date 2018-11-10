@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux/Aux';
+import './Chats.css';
+import DialogueElem from './DialogueElem/DialogueElem';
 
 
 class Chats extends Component {
   constructor(props) {
     super(props);
+
+    this.chats = props.chats;
+
+
   }
 
   render() {
     return (
       <Aux>
-        <div></div>
+        {
+          this.chats.map(((value, index) =>
+          <DialogueElem
+            key={index}
+            name={value.chatName}
+            id={index}
+          />))
+        }
       </Aux>
     );
   }

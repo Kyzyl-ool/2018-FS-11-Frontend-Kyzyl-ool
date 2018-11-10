@@ -8,14 +8,39 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      chats: [
+        {
+          chatName: 'Chat1',
+        },
+        {
+          chatName: 'Chat2',
+        },
+        {
+          chatName: 'Chat3',
+        }
+      ]
+    }
+
   }
 
   render() {
     return (
       <Router>
         <Aux>
-          <Route path='/' component={() => <Chats/>}/>
-          <Route path='/chat' component={() => <MessageWindow/>}/>
+          <Route exact path='/chats' component={() => <Chats chats={this.state.chats}/>}/>
+          {
+            this.state.chats.map(
+              ((value, index) =>
+              <Route
+                key={index}
+                path={`/chats/${index}`}
+                component={(index) => <MessageWindow id={index} />}
+              />
+              )
+            )
+
+          }
         </Aux>
       </Router>
     );
