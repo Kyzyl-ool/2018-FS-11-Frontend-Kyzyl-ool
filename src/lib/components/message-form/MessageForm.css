@@ -29,10 +29,11 @@
 }
 
 .PinFileIcon {
-    padding: 2%;
+    padding: 3px;
     max-height: 3vh;
     position: absolute;
-    right: 0;
+    top: 0;
+    right: 2%;
 }
 .PinFileIcon:hover {
     max-height: 8vh;

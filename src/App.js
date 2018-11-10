@@ -32,11 +32,12 @@ class App extends Component {
         if (event.status === 200) {
           newMessage.spanText = 'Delivered';
         }
-
+      },
+      (event) => {
+        newMessage.spanText = 'ERROR';
         this.setState({msg: newMessage});
       }
     );
-
 
 
   }
