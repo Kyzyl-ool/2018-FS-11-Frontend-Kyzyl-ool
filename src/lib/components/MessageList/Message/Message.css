@@ -1,11 +1,11 @@
 .Message {
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.3);
     font-family: "American Typewriter", serif;
     height: fit-content;
-    min-width: 30vw;
+    min-width: 20vw;
     max-width: 60vw;
     background: white;
-    font-size: 2vh;
+    font-size: 3vh;
     border-radius: 5px;
     padding: 5px;
     margin-right: 2%;
@@ -20,18 +20,20 @@
 
 .TimeLabel {
     position: absolute;
-    left: 1vw;
+    right: 1px;
+    bottom: 1px;
     text-align: left;
-    font-size: 1.5vh;
+    font-size: 1.6vh;
     font-style: italic;
     margin: 2%;
     font-weight: 400;
 }
 
 .StatusLabel {
-    text-align: right;
+    position: absolute;
+    left: 4px;
+    bottom: 3px;
     font-size: 1vh;
-    font-palette: dark;
     font-weight: 200;
 }
 

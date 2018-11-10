@@ -23,7 +23,7 @@ class App extends Component {
       file: value.file
     };
 
-    fetch('http://meowbook.org:8081/message',
+    fetch('http://localhost:8081/message',
       {
         method: 'POST',
         body: newMessage
@@ -45,7 +45,7 @@ class App extends Component {
   render() {
     return (
         <div>
-          <MessageList msg={this.state.msg}/>
+          <MessageList msg={this.state.msg} />
           <MessageForm dispatcher={this.handleNewMessage.bind(this)} />
         </div>
     );
