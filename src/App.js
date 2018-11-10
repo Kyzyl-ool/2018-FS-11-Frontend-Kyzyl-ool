@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import MessageForm from './lib/components/message-form/MessageForm';
 import MessageList from './lib/components/MessageList/MessageList';
-import Header from './lib/components/Header/Header';
-import Aux from './hoc/Aux/Aux';
 
 
 class App extends Component {
@@ -48,11 +46,10 @@ class App extends Component {
 
   render() {
     return (
-      <Aux>
-        <Header />
+        <div>
           <MessageList msg={this.state.msg} />
           <MessageForm dispatcher={this.handleNewMessage.bind(this)} />
-      </Aux>
+        </div>
     );
   }
 }

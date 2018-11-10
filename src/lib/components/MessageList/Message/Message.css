@@ -12,13 +12,14 @@
     margin-left: 2%;
     margin-bottom: 2%;
     text-align: right;
+    text-overflow: clip;
     word-break: break-all;
     position: relative;
     font-weight: 600;
-    align-self: flex-end;
 }
 
 .LeftMessageAttributes {
+    display: flex;
     align-self: flex-start;
     text-align: left;
 }
