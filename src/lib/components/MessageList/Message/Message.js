@@ -15,6 +15,7 @@ class Message extends Component {
         this.file = props.file;
 
         if (this.text.startsWith('#')) {
+          this.text = this.text.slice(1);
           this.notYour = true;
         }
       }
@@ -42,7 +43,7 @@ class Message extends Component {
     }
     else {
       return (
-        <div className={this.notYour ? "notYourMessage Message" : "Message"} hidden={this.hidden}>
+        <div className={this.notYour ? "LeftMessageAttributes Message" : "Message"} hidden={this.hidden}>
           {this.attachment(this.file)}
           <p>{this.text}</p>
           <time className="TimeLabel">{this.time}</time>

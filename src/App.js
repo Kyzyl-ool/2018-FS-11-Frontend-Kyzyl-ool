@@ -31,6 +31,7 @@ class App extends Component {
       (event) => {
         if (event.status === 200) {
           newMessage.spanText = 'Delivered';
+          this.setState({msg: newMessage});
         }
       },
       (event) => {
