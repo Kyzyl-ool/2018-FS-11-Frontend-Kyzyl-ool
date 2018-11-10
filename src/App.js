@@ -1,57 +1,27 @@
 import React, { Component } from 'react';
-import './App.css';
-import MessageForm from './lib/components/message-form/MessageForm';
-import MessageList from './lib/components/MessageList/MessageList';
-
+import MessageWindow from './lib/components/MessageWindow/MessageWindow';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Aux from './hoc/Aux/Aux';
+import Chats from './lib/components/Chats/Chats';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleNewMessage = this.handleNewMessage.bind(this);
-    this.state = {
-      msg: {}
-    }
-  }
-
-  handleNewMessage(value) {
-    // alert(value);
-    // let tmp = this.state.messages;
-    var newMessage = {
-      text: value.text,
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Sending...',
-      file: value.file
-    };
-
-    fetch('http://localhost:8081/message',
-      {
-        method: 'POST',
-        body: newMessage
-      }).then(
-      (event) => {
-        if (event.status === 200) {
-          newMessage.spanText = 'Delivered';
-          this.setState({msg: newMessage});
-        }
-      },
-      (event) => {
-        newMessage.spanText = 'ERROR';
-        this.setState({msg: newMessage});
-      }
-    );
-
 
   }
-
 
   render() {
     return (
-        <div>
-          <MessageList msg={this.state.msg} />
-          <MessageForm dispatcher={this.handleNewMessage.bind(this)} />
-        </div>
+      <Router>
+        <Aux>
+          <Route path='/' component={() => <Chats/>}/>
+          <Route path='/chat' component={() => <MessageWindow/>}/>
+        </Aux>
+      </Router>
     );
   }
+
 }
+
 
 export default App;
