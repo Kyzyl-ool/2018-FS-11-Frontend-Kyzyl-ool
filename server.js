@@ -16,11 +16,11 @@ app.post('/message', function(req, res) {
     }
     let sampleFile = req.files.file;
     console.log(sampleFile.mimetype, sampleFile.md5());
-    result = new Promise((resolve, reject) => {
+	result = new Promise((resolve, reject) => {
       sampleFile.mv('/dev/null', function (err) {
         if (err) reject(err);
-        else resolve();
-      });
+		else resolve();
+	  });
     });
   }
   result

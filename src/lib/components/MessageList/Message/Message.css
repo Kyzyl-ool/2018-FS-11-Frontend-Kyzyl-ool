@@ -1,0 +1,43 @@
+.Message {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    font-family: "American Typewriter", serif;
+    height: fit-content;
+    min-width: 20vw;
+    max-width: 60vw;
+    background: white;
+    font-size: 3vh;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    text-align: right;
+    text-overflow: clip;
+    word-break: break-all;
+    position: relative;
+    font-weight: 600;
+}
+
+.TimeLabel {
+    position: absolute;
+    right: 1px;
+    bottom: 1px;
+    text-align: left;
+    font-size: 1.6vh;
+    font-style: italic;
+    margin: 2%;
+    font-weight: 400;
+}
+
+.StatusLabel {
+    position: absolute;
+    left: 4px;
+    bottom: 3px;
+    font-size: 1vh;
+    font-weight: 200;
+}
+
+.AttachedImage {
+    min-width: 30vw;
+    max-width: 60vw;
+}
