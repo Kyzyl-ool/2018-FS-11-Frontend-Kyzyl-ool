@@ -1,0 +1,15 @@
+.DialogueElem {
+    height: 10vh;
+    border: 1px solid black;
+    background: #f0f0f0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4vh;
+    font-family: "American Typewriter", sans-serif;
+    font-weight: 600;
+    text-shadow: 0 0 0px black;
+    box-shadow: 0 0 1px 0px black;
+}

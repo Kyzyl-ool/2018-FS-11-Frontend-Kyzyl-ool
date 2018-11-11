@@ -1,0 +1,7 @@
+.Chats {
+    display: flex;
+    height: 90vh;
+    background: gray;
+    border: 1px solid black;
+
+}

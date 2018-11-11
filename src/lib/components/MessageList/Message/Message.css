@@ -18,6 +18,12 @@
     font-weight: 600;
 }
 
+.LeftMessageAttributes {
+    display: flex;
+    align-self: flex-start;
+    text-align: left;
+}
+
 .TimeLabel {
     position: absolute;
     right: 1px;
