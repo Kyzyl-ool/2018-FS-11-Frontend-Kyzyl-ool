@@ -14,11 +14,11 @@ class DialogueElem extends Component {
 
   render() {
     return (
-      <Link to={`/chats/${this.id}`} >
-        <div className="DialogueElem">
-          {this.name}
-        </div>
-      </Link>
+      <div>
+        <Link className="DialogueElem" to={`/chats/${this.id}`} >
+            {this.name}
+        </Link>
+      </div>
     );
   }
 }
