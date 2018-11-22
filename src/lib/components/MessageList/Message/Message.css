@@ -19,7 +19,6 @@
 }
 
 .LeftMessageAttributes {
-    display: flex;
     align-self: flex-start;
     text-align: left;
 }
