@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import  './MessageForm.css';
 
 class MessageForm extends Component {
@@ -24,6 +25,7 @@ class MessageForm extends Component {
 
 
     updateData(event) {
+
         this.setState({text: event.target.value});
     }
 
@@ -53,4 +55,17 @@ class MessageForm extends Component {
     }
 }
 
-export default MessageForm;
+const mapStateToProps = state => {
+  return {
+    text: state.msgfrom.text,
+    file: state.msgfrom.file,
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdateData: (value) => dispatch({type: 'MESSAGE_FORM_UPDATE_DATA', value: value}),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageForm);
