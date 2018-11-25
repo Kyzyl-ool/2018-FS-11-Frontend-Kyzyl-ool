@@ -21,7 +21,7 @@ class MessageForm extends Component {
 
           <div className="FormAndPinButton">
             <input className="InputForm"
-
+                   value={this.props.text}
                    onChange={(event) => this.props.onUpdateData(event.target.value)}
                    type="text"
                    placeholder="Enter your message..."/>

@@ -15,7 +15,7 @@ const reducer = (state = initalStore, action) => {
       return updateObject(state, {file: action.payload.file});
 
     case actionTypes.MESSAGE_FORM_SUBMIT:
-      return updateObject(state, {});
+      return updateObject(state, {text: '', file: undefined});
 
     default:
       return state;
