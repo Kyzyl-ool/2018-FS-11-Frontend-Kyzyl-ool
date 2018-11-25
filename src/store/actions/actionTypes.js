@@ -1,0 +1,3 @@
+export const UPDATE_MESSAGE_FORM = 'MESSAGE_FORM_UPDATE_DATA';
+
+

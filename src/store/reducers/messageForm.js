@@ -8,10 +8,10 @@ const initalStore = {
 const reducer = (state = initalStore, action) => {
   switch (action.type) {
     case "MESSAGE_FORM_UPDATE_DATA":
-      console.log(123);
-      return updateObject(state, {value: state.value});
+      return updateObject(state, {text: action.value});
+    default:
+      return state;
   }
-  return state;
 };
 
 export default reducer;

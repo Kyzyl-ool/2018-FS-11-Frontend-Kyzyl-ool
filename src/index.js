@@ -6,7 +6,7 @@ import {createStore, combineReducers} from 'redux';
 import messageFormReducer from './store/reducers/messageForm';
 
 const rootReducer = combineReducers({
-    msgfrom: messageFormReducer,
+  msgfrom: messageFormReducer,
 });
 
 const store = createStore(rootReducer);
