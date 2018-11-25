@@ -1,3 +1,4 @@
 export {
-  updateMessageForm,
+  messageFormUpdateValue,
+  messageFormSendFile
 } from './messageForm';

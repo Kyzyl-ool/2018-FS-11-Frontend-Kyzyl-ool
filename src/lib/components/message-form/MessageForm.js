@@ -24,7 +24,7 @@ class MessageForm extends Component {
                 <img alt="attach" className="PinFileIcon" src="http://meowbook.org/attach.png"/>
               </label>
               <input
-                // onChange={{}}
+                onChange={(event) => this.props.onSendFile(event.target.files[0])}
                 hidden={true}
                 id="attach_file"
                 type="file"/>
@@ -48,7 +48,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateData: (value) => dispatch(actionCreators.updateMessageForm(value)),
+    onUpdateData: (value) => dispatch(actionCreators.messageFormUpdateValue(value)),
+    onSendFile: (value) => dispatch(actionCreators.messageFormSendFile(value)),
+
   }
 };
 

@@ -1,11 +1,20 @@
 import * as actionTypes from './actionTypes';
-// import {updateObject} from '../utility';
 
-export const updateMessageForm = (value) => {
+export const messageFormUpdateValue = (value) => {
   return {
-    type: actionTypes.UPDATE_MESSAGE_FORM,
+    type: actionTypes.MESSAGE_FORM_UPDATE_VALUE,
     payload: {
       text: value
+    }
+  }
+};
+
+export const messageFormSendFile = (file) => {
+  return {
+    type : actionTypes.MESSAGE_FORM_SEND_FILE,
+    payload: {
+      text: file.name,
+      file: file
     }
   }
 };
