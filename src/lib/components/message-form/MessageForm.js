@@ -47,7 +47,7 @@ class MessageForm extends Component {
 
           </div>
           <input
-            // onClick={this.props.onSubmit}
+            onClick={(event) => this.onHandleSubmit(event)}
             className="SendButton" type="submit" value="Send"/>
         </form>
       )
