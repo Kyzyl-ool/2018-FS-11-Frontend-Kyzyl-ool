@@ -18,12 +18,14 @@ export const messageFormSendFile = (file) => {
   }
 };
 
-export const messageFormSubmit = (text, file) => {
+export const messageFormSubmit = (text, time, spanText, file) => {
   return {
     type: actionTypes.MESSAGE_FORM_SUBMIT,
     payload: {
       text: text,
-      file: file
+      time: time,
+      spanText: spanText,
+      file: file,
     }
   }
 };

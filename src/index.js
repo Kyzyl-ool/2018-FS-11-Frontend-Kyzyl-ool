@@ -7,7 +7,7 @@ import messageFormReducer from './store/reducers/messageForm';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-  msgfrom: messageFormReducer,
+  msgform: messageFormReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
