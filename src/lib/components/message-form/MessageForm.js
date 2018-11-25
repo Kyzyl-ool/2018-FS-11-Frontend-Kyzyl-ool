@@ -7,7 +7,8 @@ import * as actionCreators from '../../../store/actions/index';
 class MessageForm extends Component {
   onHandleSubmit (event) {
     event.preventDefault();
-    this.props.onSubmit( this.props.text,
+    this.props.onSubmit(
+      this.props.text,
       new Date().toLocaleTimeString(),
       'Sending...',
       this.props.file);

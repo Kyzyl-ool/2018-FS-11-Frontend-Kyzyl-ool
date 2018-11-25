@@ -8,7 +8,6 @@ const initalStore = {
 };
 
 const reducer = (state = initalStore, action) => {
-  console.log(action.type);
   switch (action.type) {
     case actionTypes.MESSAGE_FORM_UPDATE_VALUE:
       return updateObject(state, {text: action.payload.text});
