@@ -4,6 +4,12 @@ export const chatNames = [
   'Chat3'
 ];
 
+export const amountOfUnreadMessages = [
+  1,
+  1,
+  1,
+];
+
 export const mockMessages = [
   [
     {
@@ -45,15 +51,16 @@ export const mockMessages = [
 
 export const formData = [
   {
-    text: '1',
+    text: 'Let\'s play',
     file: undefined,
   },
   {
-    text: '2',
+    text: 'I\'m your Daddy.',
     file: undefined,
   },
   {
-    text: '3',
+    text: '',
     file: undefined,
   }
-]
+];
+
