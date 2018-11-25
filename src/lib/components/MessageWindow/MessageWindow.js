@@ -48,7 +48,7 @@ class MessageWindow extends Component {
     return (
         <Aux>
           <MessageList id={this.props.id} msg={this.state.msg} />
-          <MessageForm dispatcher={this.handleNewMessage.bind(this)} />
+          <MessageForm id={this.props.id} dispatcher={this.handleNewMessage.bind(this)} />
         </Aux>
     );
   }

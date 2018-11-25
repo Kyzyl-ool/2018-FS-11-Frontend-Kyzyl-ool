@@ -1,67 +1,15 @@
 import React, { Component } from 'react';
 import './MessageList.css';
 import Message from './Message/Message';
+import {connect} from 'react-redux';
 
-const mockMessages = [
-  [
-    {
-      text: 'Hello',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    },
-    {
-      text: '#Hello =)',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    }
-  ],
-  [
-    {
-      text: 'Hi',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    },
-    {
-      text: '#Who are you?',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    }
-  ],
-  [
-    {
-      text: 'Привет',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    },
-    {
-      text: '#Здарова)',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    }
-  ],
-];
 
 class MessageList extends Component {
-    constructor(props) {
-      super(props);
-
-      // alert(props.id);
-      this.state = {
-        messages: mockMessages[props.id]
-      };
-    }
-
     render() {
-        this.state.messages.push({
-          text: this.props.msg.text,
-          time: this.props.msg.time,
-          spanText: this.props.msg.spanText,
-          file: this.props.msg.file
-        });
-        return (
+      return (
             <div className="MessageList">
               {
-                  this.state.messages.map(
+                  this.props.messages[this.props.id].map(
                     (value, index) =>
                       <Message
                         key={index}
@@ -75,4 +23,10 @@ class MessageList extends Component {
     }
 }
 
-export default MessageList;
+const mapStateToProps = state => {
+  return {
+    messages: state.msglist.messages,
+  }
+};
+
+export default connect(mapStateToProps)(MessageList);

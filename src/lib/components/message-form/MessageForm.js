@@ -1,40 +1,36 @@
 import React, { Component } from 'react';
 import  './MessageForm.css';
+import {connect} from 'react-redux';
+import * as actionCreators from '../../../store/actions/index';
+
 
 class MessageForm extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            text: '',
-            file: undefined
-        };
-    }
-
-    disp(event) {
-      event.preventDefault();
-      this.props.dispatcher({text: this.state.text, file: undefined});
-      this.setState({text: ''});
-    }
-
-    fileMessage(event) {
-        event.preventDefault();
-        this.props.dispatcher({text: event.target.files[0].name, file: event.target.files[0]});
-    }
+  onHandleSubmit (event) {
+    event.preventDefault();
 
 
-    updateData(event) {
-        this.setState({text: event.target.value});
-    }
+    this.props.onSubmit(
+      this.props.id,
+      this.props.formData[this.props.id].text,
+      new Date().toLocaleTimeString(),
+      'Sending...',
+      this.props.formData[this.props.id].file);
+  }
+
+
+
 
     render() {
+      return (
+        <form className="MessageForm"
+              onSubmit={(event) => this.onHandleSubmit(event)}
+        >
 
-      let form = (
-        <form className="MessageForm" onSubmit={this.disp.bind(this)}>
           <div className="FormAndPinButton">
-            <input className="InputForm" value={this.state.text}
-
-                   onChange={this.updateData.bind(this)} type="text"
+            <input className="InputForm"
+                   value={this.props.formData[this.props.id].text}
+                   onChange={(event) => this.props.onUpdateData(this.props.id, event.target.value)}
+                   type="text"
                    placeholder="Enter your message..."/>
 
 
@@ -42,15 +38,35 @@ class MessageForm extends Component {
               <label htmlFor="attach_file">
                 <img alt="attach" className="PinFileIcon" src="http://meowbook.org/attach.png"/>
               </label>
-              <input onChange={this.fileMessage.bind(this)} hidden={true} id="attach_file" type="file"/>
+              <input
+                onChange={(event) => this.props.onSendFile(this.props.id, event.target.files[0])}
+                hidden={true}
+                id="attach_file"
+                type="file"/>
             </div>
 
           </div>
-          <input onClick={this.disp.bind(this)} className="SendButton" type="submit" value="Send"/>
+          <input
+            onClick={(event) => this.onHandleSubmit(event)}
+            className="SendButton" type="submit" value="Send"/>
         </form>
-      );
-      return form;
+      )
     }
 }
 
-export default MessageForm;
+const mapStateToProps = (state) => {
+  return {
+    formData: state.msgform.formData,
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdateData: (id, value) => dispatch(actionCreators.messageFormUpdateValue(id, value)),
+    onSendFile: (id, value) => dispatch(actionCreators.messageFormSendFile(id, value)),
+    onSubmit: (id, text, time, spanText, file) => dispatch(actionCreators.messageFormSubmit(id, text, time, spanText, file)),
+
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageForm);
