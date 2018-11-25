@@ -7,11 +7,14 @@ import * as actionCreators from '../../../store/actions/index';
 class MessageForm extends Component {
   onHandleSubmit (event) {
     event.preventDefault();
+
+
     this.props.onSubmit(
-      this.props.text,
+      this.props.id,
+      this.props.formData[this.props.id].text,
       new Date().toLocaleTimeString(),
       'Sending...',
-      this.props.file);
+      this.props.formData[this.props.id].file);
   }
 
 
@@ -25,8 +28,8 @@ class MessageForm extends Component {
 
           <div className="FormAndPinButton">
             <input className="InputForm"
-                   value={this.props.text}
-                   onChange={(event) => this.props.onUpdateData(event.target.value)}
+                   value={this.props.formData[this.props.id].text}
+                   onChange={(event) => this.props.onUpdateData(this.props.id, event.target.value)}
                    type="text"
                    placeholder="Enter your message..."/>
 
@@ -36,7 +39,7 @@ class MessageForm extends Component {
                 <img alt="attach" className="PinFileIcon" src="http://meowbook.org/attach.png"/>
               </label>
               <input
-                onChange={(event) => this.props.onSendFile(event.target.files[0])}
+                onChange={(event) => this.props.onSendFile(this.props.id, event.target.files[0])}
                 hidden={true}
                 id="attach_file"
                 type="file"/>
@@ -51,18 +54,17 @@ class MessageForm extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    text: state.msgform.text,
-    file: state.msgform.file,
+    formData: state.msgform.formData,
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUpdateData: (value) => dispatch(actionCreators.messageFormUpdateValue(value)),
-    onSendFile: (value) => dispatch(actionCreators.messageFormSendFile(value)),
-    onSubmit: (text, time, spanText, file) => dispatch(actionCreators.messageFormSubmit(text, time, spanText, file)),
+    onUpdateData: (id, value) => dispatch(actionCreators.messageFormUpdateValue(id, value)),
+    onSendFile: (id, value) => dispatch(actionCreators.messageFormSendFile(id, value)),
+    onSubmit: (id, text, time, spanText, file) => dispatch(actionCreators.messageFormSubmit(id, text, time, spanText, file)),
 
   }
 };
