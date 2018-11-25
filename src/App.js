@@ -3,35 +3,17 @@ import MessageWindow from './lib/components/MessageWindow/MessageWindow';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Aux from './hoc/Aux/Aux';
 import Chats from './lib/components/Chats/Chats';
+import {connect} from 'react-redux';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      chats: [
-        {
-          chatName: 'Chat1',
-        },
-        {
-          chatName: 'Chat2',
-        },
-        {
-          chatName: 'Chat3',
-        }
-      ]
-    }
-
-  }
-
   render() {
     return (
       <Router>
         <Aux>
-          <Route exact path='/chats' component={() => <Chats chats={this.state.chats}/>}/>
+          <Route exact path='/chats' component={() => <Chats chats={this.props.chatNames}/>}/>
           {
-            this.state.chats.map(
+            this.props.chatNames.map(
               ((value, index) =>
               <Route
                 key={index}
@@ -49,5 +31,11 @@ class App extends Component {
 
 }
 
+const mapStateToProps = state => {
+  return {
+    chatNames: state.chatslist.chatNames,
+    amountOfUnreadMessages: state.chatslist.amountOfUnreadMessages
+  }
+};
 
-export default App;
+export default connect(mapStateToProps)(App);

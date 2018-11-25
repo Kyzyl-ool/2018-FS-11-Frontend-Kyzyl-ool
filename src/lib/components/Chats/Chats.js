@@ -20,7 +20,7 @@ class Chats extends Component {
           this.chats.map(((value, index) =>
           <DialogueElem
             key={index}
-            name={value.chatName}
+            name={value}
             id={index}
           />))
         }
