@@ -7,7 +7,6 @@ import * as actionCreators from '../../../store/actions/index';
 class AuthPage extends Component {
   onHandleSubmit = event => {
     event.preventDefault();
-
     this.props.onLoginTry();
   };
 

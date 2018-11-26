@@ -1,19 +1,19 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-axios.interceptors.response.use((response) => {
-  return response;
-}, (error) => {
-  return Promise.resolve({
-    data: {
-      token: 'adsadasdsa2764782rwfa2trfkdhsjc',
-    },
-    status: 200,
-    statusText: 'OK',
-    header: {},
-    config: error.config,
-  })
-} );
+// axios.interceptors.response.use((response) => {
+//   return response;
+// }, (error) => {
+//   return Promise.resolve({
+//     data: {
+//       token: 'adsadasdsa2764782rwfa2trfkdhsjc',
+//     },
+//     status: 200,
+//     statusText: 'OK',
+//     header: {},
+//     config: error.config,
+//   })
+// } );
 
 export const userLoginSuccess = (token) => {
   return {
@@ -42,15 +42,25 @@ export const userLoginTry = () => {
 export const auth = (login, password) => {
   return dispatch => {
     dispatch(userLoginTry());
-    axios.post('/auth', {login, password})
-      .then(response => {
-        console.log(response);
-        localStorage.setItem('token', response.data.token);
-        dispatch(userLoginSuccess(response.data.token));
+    // window.open('http://127.0.0.1:5000/auth');
+    fetch('http://127.0.0.1:5000/api', {
+      method: 'POST',
+      body: JSON.stringify({
+        'jsonrpc': '2.0',
+        'method': 'auth',
+        'id': 0
       })
-      .catch(error => {
-        dispatch(userLoginFail(error));
-      })
+    });
+
+    // axios.post('http://127.0.0.1:5000/', {login, password})
+    //   .then(response => {
+    //     console.log(response);
+    //     localStorage.setItem('token', response.data.token);
+    //     dispatch(userLoginSuccess(response.data.token));
+    //   })
+    //   .catch(error => {
+    //     dispatch(userLoginFail(error));
+    //   })
   }
 };
 

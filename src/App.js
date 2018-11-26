@@ -16,10 +16,10 @@ class App extends Component {
     let route = (
       <Switch>
         <Route
-          path='/auth'
+          path='/authpage'
           component={() => <AuthPage/>}
         />
-        <Redirect to='/auth'/>
+        <Redirect to='/authpage'/>
       </Switch>
     );
 
