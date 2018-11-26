@@ -18,8 +18,6 @@ class AuthPage extends Component {
     // console.log(this.login);
     // console.log(this.password);
     this.props.onLoginTry(this.login, this.password);
-
-
   };
 
 

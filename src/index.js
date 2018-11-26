@@ -7,6 +7,7 @@ import messageFormReducer from './store/reducers/messageForm';
 import messageListReducer from './store/reducers/messageList';
 import chatsListReducer from './store/reducers/chatsList';
 import userReducer from './store/reducers/user';
+import authReducer from './store/reducers/auth';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   msglist: messageListReducer,
   chatslist: chatsListReducer,
   user: userReducer,
+  auth: authReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

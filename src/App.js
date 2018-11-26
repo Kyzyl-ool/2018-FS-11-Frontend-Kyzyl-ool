@@ -5,9 +5,14 @@ import Aux from './hoc/Aux/Aux';
 import Chats from './lib/components/Chats/Chats';
 import AuthPage from './lib/components/AuthPage/AuthPage';
 import {connect} from 'react-redux';
+import * as actionCreators from './store/actions/index';
 
 
 class App extends Component {
+  componentDidMount() {
+    this.props.checkLogin();
+  }
+
   render() {
     return (
       <Router>
@@ -38,8 +43,15 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     chatNames: state.chatslist.chatNames,
-    amountOfUnreadMessages: state.chatslist.amountOfUnreadMessages
+    amountOfUnreadMessages: state.chatslist.amountOfUnreadMessages,
+    token: state.auth.token,
   }
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchTpProps = dispatch => {
+  return {
+    checkLogin: () => dispatch(actionCreators.authCheck())
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchTpProps)(App);

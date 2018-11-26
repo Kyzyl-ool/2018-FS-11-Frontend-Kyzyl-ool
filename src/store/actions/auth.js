@@ -19,7 +19,7 @@ export const userLoginSuccess = (token) => {
   return {
     type: actionTypes.LOGIN_SUCCESS,
     payload: {
-      token
+      token: token
     }
   }
 };
@@ -59,6 +59,11 @@ export const authCheck = () => {
     const token = localStorage.getItem('token');
     if (token) {
       dispatch(userLoginSuccess(token));
+      console.log('Logged id');
     }
+    else {
+      console.log('Not logged in');
+    }
+
   }
 };
