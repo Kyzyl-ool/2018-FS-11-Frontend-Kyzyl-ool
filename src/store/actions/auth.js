@@ -59,7 +59,7 @@ export const authCheck = () => {
     const token = localStorage.getItem('token');
     if (token) {
       dispatch(userLoginSuccess(token));
-      console.log('Logged id');
+      console.log('Logged in');
     }
     else {
       console.log('Not logged in');
