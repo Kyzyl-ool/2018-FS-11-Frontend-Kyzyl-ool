@@ -5,19 +5,10 @@ import * as actionCreators from '../../../store/actions/index';
 
 
 class AuthPage extends Component {
-  onHandleLogin = event => {
-    this.login = event.target.value;
-  };
-  onHandlePassword = event => {
-    this.password = event.target.value;
-  };
-
   onHandleSubmit = event => {
     event.preventDefault();
 
-    // console.log(this.login);
-    // console.log(this.password);
-    this.props.onLoginTry(this.login, this.password);
+    this.props.onLoginTry();
   };
 
 
@@ -26,29 +17,11 @@ class AuthPage extends Component {
 
   render() {
     return (
-      <form className='AuthPage' onSubmit={this.onHandleSubmit}>
-
-        <div className='LoginForm'>
-          <input
-            type='input'
-            placeholder='Enter your login...'
-            onChange={this.onHandleLogin}
-          />
-        </div>
-
-        <div className='PasswordForm'>
-          <input
-            type='password'
-            placeholder='Enter your password...'
-            onChange={this.onHandlePassword}
-          />
-        </div>
-
+      <div className='AuthPage'>
         <button className='AuthButton' onClick={this.onHandleSubmit}>
-          Login
+          Login by VK
         </button>
-
-      </form>
+      </div>
     );
   }
 }
@@ -62,7 +35,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoginTry: (login, password) => dispatch(actionCreators.auth(login, password))
+    onLoginTry: () => dispatch(actionCreators.auth())
   }
 };
 
