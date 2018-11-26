@@ -1,5 +1,11 @@
 export {
   messageFormUpdateValue,
   messageFormSendFile,
-  messageFormSubmit
+  messageFormSubmit,
 } from './messageForm';
+
+export {
+  userLoginTry,
+  auth,
+  authCheck
+} from './auth';
