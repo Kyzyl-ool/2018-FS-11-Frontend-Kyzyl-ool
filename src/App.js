@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MessageWindow from './lib/components/MessageWindow/MessageWindow';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-import Aux from './hoc/Aux/Aux';
 import Chats from './lib/components/Chats/Chats';
 import AuthPage from './lib/components/AuthPage/AuthPage';
 import {connect} from 'react-redux';
