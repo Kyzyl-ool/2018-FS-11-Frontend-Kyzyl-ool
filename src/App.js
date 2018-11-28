@@ -23,7 +23,7 @@ class App extends Component {
       </Switch>
     );
 
-    if (this.props.token) {
+    if (this.props.isAuthorized) {
       route = (
         <Switch>
           <Route exact path='/chats' component={() => <Chats chats={this.props.chatNames}/>}/>
@@ -55,7 +55,8 @@ const mapStateToProps = state => {
   return {
     chatNames: state.chatslist.chatNames,
     amountOfUnreadMessages: state.chatslist.amountOfUnreadMessages,
-    token: state.auth.token,
+    token: state.auth.access_token,
+    isAuthorized: state.user.isAuthorized,
   }
 };
 

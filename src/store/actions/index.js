@@ -7,5 +7,6 @@ export {
 export {
   userLoginTry,
   auth,
-  authCheck
+  authCheck,
+  authSuccess
 } from './auth';

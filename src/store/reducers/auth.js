@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 
 const initalStore = {
-  token: null,
+  access_token: null,
   loading: false,
   error: null
 };
@@ -17,7 +17,7 @@ const reducer = (state = initalStore, action) => {
     }
     case actionTypes.LOGIN_SUCCESS: {
       return updateObject(state, {
-        token: action.payload.token,
+        access_token: action.payload.access_token,
         loading: false
       })
     }

@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from 'axios';
 
 // axios.interceptors.response.use((response) => {
 //   return response;
@@ -14,15 +13,6 @@ import axios from 'axios';
 //     config: error.config,
 //   })
 // } );
-
-export const userLoginSuccess = (token) => {
-  return {
-    type: actionTypes.LOGIN_SUCCESS,
-    payload: {
-      token: token
-    }
-  }
-};
 
 export const userLoginFail = (error) => {
   return {
@@ -39,18 +29,24 @@ export const userLoginTry = () => {
   }
 };
 
-export const auth = (login, password) => {
+export const authSuccess = (access_token) => {
+  localStorage.setItem('access_token', access_token);
+  // window.close();
+  return {
+    type: actionTypes.LOGIN_SUCCESS,
+    payload: {
+      access_token
+    }
+  }
+};
+
+export const auth = () => {
   return dispatch => {
     dispatch(userLoginTry());
-    // window.open('http://127.0.0.1:5000/auth');
-    fetch('http://127.0.0.1:5000/api', {
-      method: 'POST',
-      body: JSON.stringify({
-        'jsonrpc': '2.0',
-        'method': 'auth',
-        'id': 0
-      })
-    });
+    window.open('http://127.0.0.1:5000/get_first_token');
+
+
+
 
     // axios.post('http://127.0.0.1:5000/', {login, password})
     //   .then(response => {
@@ -66,9 +62,9 @@ export const auth = (login, password) => {
 
 export const authCheck = () => {
   return dispatch => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      dispatch(userLoginSuccess(token));
+    const access_token = localStorage.getItem('access_token');
+    if (access_token) {
+      dispatch(authSuccess(access_token));
       console.log('Logged in');
     }
     else {
