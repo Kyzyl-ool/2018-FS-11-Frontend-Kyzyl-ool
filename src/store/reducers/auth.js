@@ -18,7 +18,9 @@ const reducer = (state = initalStore, action) => {
     case actionTypes.LOGIN_SUCCESS: {
       return updateObject(state, {
         access_token: action.payload.access_token,
-        loading: false
+        userId: action.payload.userId,
+        loading: false,
+        isAuthorized: true
       })
     }
     case actionTypes.LOGIN_FAIL: {

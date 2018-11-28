@@ -24,6 +24,9 @@ class Chats extends Component {
             id={index}
           />))
         }
+        <div className='ProfileDiv'>
+          Вы вошли как {localStorage.getItem('userName')} {localStorage.getItem('userName2')}
+        </div>
       </Aux>
     );
   }

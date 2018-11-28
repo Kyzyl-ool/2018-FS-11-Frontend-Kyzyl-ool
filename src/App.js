@@ -8,7 +8,7 @@ import * as actionCreators from './store/actions/index';
 
 
 class App extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.checkLogin();
   }
 
@@ -23,6 +23,7 @@ class App extends Component {
       </Switch>
     );
 
+    // console.log('Authorized:', this.props.isAuthorized);
     if (this.props.isAuthorized) {
       route = (
         <Switch>
