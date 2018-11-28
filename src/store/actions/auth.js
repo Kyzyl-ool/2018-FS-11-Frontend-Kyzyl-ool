@@ -56,7 +56,7 @@ export const authSuccess = (access_token, userId) => {
     });
 
 
-  console.log('Getting chats list...');
+  console.log('Getting chatNames list...');
   //ПОЛУЧЕНИЕ СПИСКА ЧАТОВ
   fetch('http://127.0.0.1:5000', {
     method: 'POST',
@@ -71,7 +71,7 @@ export const authSuccess = (access_token, userId) => {
       console.log(response);
     }))
     .catch((error) => {
-      console.log('error while getting chats list.', error);
+      console.log('error while getting chatNames list.', error);
     });
 
   // window.close();

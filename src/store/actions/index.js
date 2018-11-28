@@ -10,3 +10,7 @@ export {
   authCheck,
   authSuccess
 } from './auth';
+
+export {
+  onGetChatsList,
+} from './chatsList';
