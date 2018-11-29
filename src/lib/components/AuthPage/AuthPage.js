@@ -26,12 +26,13 @@ class AuthPage extends Component {
               let json_value = JSON.parse(value.result);
               if (!json_value.error) {
                 this.props.onSuccessLogin(json_value.access_token, json_value.user_id);
+                window.close();
               }
             })
         })
         .catch((error) => {
           console.log(error);
-        })
+        });
     }
   }
 
