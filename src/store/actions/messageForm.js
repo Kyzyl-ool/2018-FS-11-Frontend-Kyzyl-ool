@@ -27,12 +27,13 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
       'jsonrpc': '2.0',
       'id': 0,
       'method': 'new_message',
-      'params': [id, +localStorage.getItem('userId'), text],
+      'params': [+id, +localStorage.getItem('userId'), text],
     })
   })
     .then((response) => {
       return response.json()
         .then((value) => {
+          console.log(value);
           return value.result.code === 200 ? 'Delivered' : 'ERROR';
         });
     });
