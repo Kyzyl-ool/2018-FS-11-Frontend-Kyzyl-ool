@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 import * as initialValues from './initialValues';
 
 const initalStore = {
-  formData: [...initialValues.formData]
+  formData: initialValues.formData,
+  isFormDataUpdated: false
 };
 
 const reducer = (state = initalStore, action) => {
@@ -25,6 +26,21 @@ const reducer = (state = initalStore, action) => {
       tmp[action.payload.id].text = '';
       tmp[action.payload.id].file = undefined;
       return updateObject(state, { formData: tmp });
+    }
+
+    case actionTypes.CHATS_LIST_LOADED: {
+      let formData = {};
+      let arr = Object.keys(action.payload.chatNames);
+      for (var i = 0; i < arr.length; i++) {
+        formData[arr[i]] = {
+          text: '',
+          file: undefined
+        }
+      }
+
+      return updateObject(state, {
+        formData
+      })
     }
 
     default:

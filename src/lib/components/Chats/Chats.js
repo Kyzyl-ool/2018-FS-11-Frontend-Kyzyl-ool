@@ -6,10 +6,10 @@ import {connect}  from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
 
 class Chats extends Component {
-  componentWillMount() {
-    if (this.props.needToUpdate) {
-      this.props.onGetChatsList(localStorage.getItem('access_token'), localStorage.getItem('userId'));
-    }
+  componentWillMount () {
+    if (this.props.needToUpdate)
+      this.props.onLoadChatNames();
+
   }
 
   static onExit() {
@@ -21,11 +21,11 @@ class Chats extends Component {
     return (
       <Aux>
         {
-          this.props.chatNames.map(((value, index) =>
+          Object.keys(this.props.chatNames).map(((value) =>
           <DialogueElem
-            key={index}
-            name={value}
-            id={index}
+            key={value}
+            name={this.props.chatNames[value]}
+            id={value}
           />))
         }
         <div className='ProfileDiv'>
@@ -49,7 +49,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onGetChatsList: (access_token, userId) => dispatch(actionCreators.onGetChatsList(access_token, userId)),
+    onLoadChatNames: () => dispatch(actionCreators.onLoadChatNames()),
+
   }
 };
 

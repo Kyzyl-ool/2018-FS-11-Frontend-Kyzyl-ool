@@ -11,7 +11,7 @@ export {
   authSuccess
 } from './auth';
 
-export {
-  onGetChatsList,
-} from './chatsList';
 
+export {
+  onLoadChatNames,
+} from './chatsList'

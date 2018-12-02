@@ -1,83 +1,9 @@
-export const chatNames = [
-  'Chat1',
-  'Chat2',
-  'Chat3'
-];
-
-export const amountOfUnreadMessages = [
-  1,
-  1,
-  1,
-];
-
-export const mockMessages = [
-  [
-    {
-      text: 'Hello',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    },
-    {
-      text: '#Hello =)',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    }
-  ],
-  [
-    {
-      text: 'Hi',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    },
-    {
-      text: '#Who are you?',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    }
-  ],
-  [
-    {
-      text: 'Привет',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    },
-    {
-      text: '#Здарова)',
-      time: new Date().toLocaleTimeString(),
-      spanText: 'Delivered',
-    }
-  ],
-];
-
-fetch('http://127.0.0.1:5000', {
-  method: 'POST',
-  body: JSON.stringify({
-    'jsonrpc': '2.0',
-    'id': 0,
-    'method': 'get_messages',
-    'params': [2],
-  })
-})
-  .then((response) => {
-    response.json()
-      .then(value => {
-        console.log(value);
-        let i = 0;
-        while(value.result[i]) {
-          mockMessages[2].push({
-            text: value.result[i].content,
-            time: new Date(value.result[i].sent).toLocaleTimeString(),
-            spanText: 'Delivered',
-            user_id: value.result[i].user_id
-          });
-          i++;
-        }
-      })
-  });
+export const mockMessages = {};
+export const chatNames = {};
+export const formData = {};
 
 
-
-
+if (localStorage.getItem('userId'))
 fetch('http://127.0.0.1:5000', {
   method: 'POST',
   body: JSON.stringify({
@@ -90,18 +16,54 @@ fetch('http://127.0.0.1:5000', {
   .then((response) => {
     response.json()
       .then(value => {
-        let i = 0;
+        var i = 0;
+        var chat_ids = [];
         while(value.result[i]) {
+          chat_ids.push(value.result[i].chat_id);
           i++;
         }
-        localStorage.setItem('amountOfChats', i);
+
+
+        fetch('http://127.0.0.1:5000', {
+          method: 'POST',
+          body: JSON.stringify(
+            chat_ids.map(((value1) => {
+              return {
+                'jsonrpc': '2.0',
+                'id': value1,
+                'method': 'get_messages',
+                'params': [+value1]
+              }
+            }))
+          )
+        })
+          .then((response) => {
+            response.json()
+              .then((value1 => {
+                // console.log(value1);
+                value1.forEach((resp) => {
+                  mockMessages[resp.id] = [];
+                  let  j = 0;
+                  while (resp.result[j]) {
+                    mockMessages[resp.id].push(
+                      {
+                        text: resp.result[j].content,
+                        time: new Date(resp.result[j].sent).toLocaleTimeString(),
+                        user_id: resp.result[j].user_id,
+                        spanText: 'Delivered'
+                      }
+                    );
+                    j++;
+                  }
+                })
+
+
+              }))
+          })
+
+
+
+
       })
   });
 
-export const formData = new Array(+localStorage.getItem('amountOfChats'));
-for (var i = 0; i < formData.length; i++) {
-  formData[i] = {
-    text: '',
-    file: undefined
-  };
-}

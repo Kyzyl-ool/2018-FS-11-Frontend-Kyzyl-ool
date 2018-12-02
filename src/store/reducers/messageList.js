@@ -4,7 +4,7 @@ import * as initialValues from './initialValues';
 
 
 const initalStore = {
-  messages: [...initialValues.mockMessages],
+  messages: initialValues.mockMessages,
 };
 
 const reducer = (state = initalStore, action) => {

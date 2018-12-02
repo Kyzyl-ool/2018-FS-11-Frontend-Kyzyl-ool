@@ -27,14 +27,14 @@ class App extends Component {
     if (this.props.isAuthorized) {
       route = (
         <Switch>
-          <Route exact path='/chats' component={() => <Chats chats={this.props.chatNames}/>}/>
+          <Route exact path='/chats' component={() => <Chats/>}/>
           {
-            this.props.chatNames.map(
-              ((value, index) =>
+            Object.keys(this.props.chatNames).map(
+              ((value) =>
                   <Route
-                    key={index}
-                    path={`/chats/${index}`}
-                    component={() => <MessageWindow id={index} />}
+                    key={value}
+                    path={`/chats/${value}`}
+                    component={() => <MessageWindow id={value} />}
                   />
               )
             )

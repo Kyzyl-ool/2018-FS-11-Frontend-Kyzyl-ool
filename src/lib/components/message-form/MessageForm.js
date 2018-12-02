@@ -55,6 +55,7 @@ class MessageForm extends Component {
 const mapStateToProps = (state) => {
   return {
     formData: state.msgform.formData,
+    isFormDataUpdated: state.msgform.isFormDataUpdated
   }
 };
 
