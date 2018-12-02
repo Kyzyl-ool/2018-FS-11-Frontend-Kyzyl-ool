@@ -12,6 +12,11 @@ class Chats extends Component {
     }
   }
 
+  onExit() {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   render() {
     return (
       <Aux>
@@ -24,7 +29,10 @@ class Chats extends Component {
           />))
         }
         <div className='ProfileDiv'>
-          Вы вошли как {localStorage.getItem('userName')} {localStorage.getItem('userName2')}
+          You entered as {localStorage.getItem('userName')} {localStorage.getItem('userName2')}
+        </div>
+        <div className='ExitButton' onClick={this.onExit}>
+          Exit
         </div>
       </Aux>
     );

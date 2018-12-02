@@ -13,3 +13,13 @@
     font-size: 8pt;
     padding: 0.5%;
 }
+
+.ExitButton {
+    position: absolute;
+    bottom: 1vh;
+    right: 1vw;
+    border: 1px solid black;
+    font-family: "American Typewriter", sans-serif;
+    font-size: 8pt;
+    padding: 0.5%;
+}

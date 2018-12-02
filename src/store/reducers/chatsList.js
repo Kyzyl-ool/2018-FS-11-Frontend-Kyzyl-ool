@@ -34,7 +34,7 @@ const reducer = (state = initalStore, action) => {
           });
 
       return updateObject(state, {
-        chatNames: [...Array.from(localStorage.getItem('chatNames').split(','))],
+        chatNames: localStorage.getItem('chatNames') ? Array.from(localStorage.getItem('chatNames').split(',')) : [],
         // amountOfUnreadMessages: [...Array.from(localStorage.getItem('amountOfUnreadMessages').split(','))],
         needToUpdate: false,
       });

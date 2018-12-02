@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import * as actionCreators from './index';
 
 export const userLoginFail = (error) => {
   return {
@@ -43,26 +44,6 @@ export const authSuccess = (access_token, userId) => {
       console.log('Error while getting user data.', error);
     });
 
-
-  console.log('Getting chatNames list...');
-  //ПОЛУЧЕНИЕ СПИСКА ЧАТОВ
-  fetch('http://127.0.0.1:5000', {
-    method: 'POST',
-    body: JSON.stringify({
-      'jsonrpc': '2.0',
-      'id': 0,
-      'method': 'get_chats',
-      'params': [localStorage.getItem('access_token'), localStorage.getItem('userId')]
-    })
-  })
-    .then((response => {
-      console.log(response);
-    }))
-    .catch((error) => {
-      console.log('error while getting chatNames list.', error);
-    });
-
-
   return {
     type: actionTypes.LOGIN_SUCCESS,
     payload: {
@@ -76,7 +57,6 @@ export const auth = () => {
   return dispatch => {
     dispatch(userLoginTry());
     const W = window.open('http://127.0.0.1:5000/get_first_token');
-
   }
 };
 
