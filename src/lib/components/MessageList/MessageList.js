@@ -16,8 +16,10 @@ class MessageList extends Component {
                         text={value.text}
                         time={value.time}
                         spanText={value.spanText}
-                        file={value.file}
                         user_id={value.user_id}
+                        filename={value.filename}
+                        filetype={value.filetype}
+                        filesize={value.filesize}
                       />)
               }
             </div>

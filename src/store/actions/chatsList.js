@@ -152,7 +152,10 @@ export const onLoadMessages = () => {
                             time: new Date(resp.result[j].sent).toLocaleTimeString(),
                             user_id: resp.result[j].user_id,
                             spanText: 'Delivered',
-                            message_id: resp.result[j].message_id
+                            message_id: resp.result[j].message_id,
+                            filename: resp.result[j].filename,
+                            filetype: resp.result[j].type,
+                            filesize: resp.result[j].size,
                           }
                         );
                         j++;

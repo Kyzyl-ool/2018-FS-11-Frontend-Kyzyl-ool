@@ -12,16 +12,23 @@ class Message extends Component {
         this.text = props.text;
         this.time = props.time;
         this.spanText = props.spanText;
+        this.filename = props.filename;
+        this.filetype = props.filetype;
+        this.filesize = props.filesize;
         this.file = props.file;
         this.user_id = props.user_id;
-
         this.notYour = this.user_id !== +localStorage.getItem('userId');
       }
+
+    if (this.filename) {
+        console.log(this.filename);
+      }
+
   }
 
   attachment(value) {
     if (value === undefined) {
-      return <span></span>;
+      return null;
     }
     if (value.type.startsWith('image')) {
       let url = URL.createObjectURL(value);
@@ -40,14 +47,31 @@ class Message extends Component {
       return null;
     }
     else {
+      if (!this.filename)
       return (
         <div className={this.notYour ? "LeftMessageAttributes Message" : "Message"} hidden={this.hidden}>
           {this.attachment(this.file)}
           <p>{this.text}</p>
           <time className="TimeLabel">{this.time}</time>
           <span className="StatusLabel"> {this.spanText} </span>
+          <span className='Who'>
+            From {this.user_id}
+          </span>
         </div>
       );
+      else
+        return (
+          <div className={this.notYour ? "LeftMessageAttributes Message" : "Message"} hidden={this.hidden}>
+            {this.attachment(this.file)}
+            <p>{this.text}</p>
+            <time className="TimeLabel">{this.time}</time>
+            <span className="StatusLabel"> {this.spanText} </span>
+            <span className='Who'>
+            From {this.user_id}
+            Size: {this.filesize}
+          </span>
+          </div>
+        );
     }
     }
 }

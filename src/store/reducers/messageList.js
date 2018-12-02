@@ -17,7 +17,10 @@ const reducer = (state = initalStore, action) => {
         time: action.payload.time,
         spanText: action.payload.spanText,
         file: action.payload.file,
-        user_id: +action.payload.user_id
+        user_id: +action.payload.user_id,
+        filename: action.payload.filename,
+        filetype: action.payload.filetype,
+        filesize: action.payload.filesize,
       });
 
       return updateObject(state, {messages: tmp});

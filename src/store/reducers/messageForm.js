@@ -18,6 +18,7 @@ const reducer = (state = initalStore, action) => {
     case actionTypes.MESSAGE_FORM_SEND_FILE: {
       const tmp = Object.assign({}, state.formData);
       tmp[action.payload.id].file = action.payload.file;
+      tmp[action.payload.id].text = action.payload.file.name;
       return updateObject(state, { formData: tmp });
     }
 
