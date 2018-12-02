@@ -146,6 +146,45 @@ export const onLoadMessages = () => {
                       mockMessages[resp.id] = [];
                       let j = 0;
                       while (resp.result[j]) {
+                        if (resp.result[j].url)
+                        {
+                          fetch('http://127.0.0.1:5000', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                              'jsonrpc': '2.0',
+                              'id': 0,
+                              'method': 'download_file',
+                              'params': [resp.result[j].url, resp.result[j].type],
+                            })
+                          })
+                            .then((response) => {
+                              response.json()
+                                .then((value2 => {
+                                  console.log(value2);
+                                  var binaryFile = atob(value2.result.file);
+                                  var filetype = value2.result.type;
+                                  var name = value2.result.name;
+                                  var lastmodified = new Date(value2.result.lastmodified);
+
+                                  var blob = new Blob([binaryFile], {
+                                    type: filetype,
+                                  });
+                                  blob.lastModifiedDate = lastmodified;
+                                  blob.name = name;
+
+                                  dispatch({
+                                    type: actionTypes.FILE_LOADED,
+                                    payload: {
+                                      file: blob,
+                                      name
+                                    }
+                                  })
+
+                                }))
+                            })
+                        }
+
+
                         mockMessages[resp.id].push(
                           {
                             text: resp.result[j].content,
@@ -153,7 +192,7 @@ export const onLoadMessages = () => {
                             user_id: resp.result[j].user_id,
                             spanText: 'Delivered',
                             message_id: resp.result[j].message_id,
-                            filename: resp.result[j].filename,
+                            filename: resp.result[j].url,
                             filetype: resp.result[j].type,
                             filesize: resp.result[j].size,
                           }
@@ -161,12 +200,13 @@ export const onLoadMessages = () => {
                         j++;
                       }
                     });
+
                     dispatch({
                       type: actionTypes.GET_MESSAGES_OK,
                       payload: {
                         messages: mockMessages
                       }
-                    })
+                    });
                   }))
               })
 

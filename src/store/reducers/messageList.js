@@ -31,6 +31,30 @@ const reducer = (state = initalStore, action) => {
       })
     }
 
+    case actionTypes.FILE_LOADED: {
+      const tmp = Object.assign({}, state.messages);
+
+      // console.log(tmp);
+
+
+      Object.keys(state.messages).forEach(
+        (value => {
+          tmp[value].forEach((value) => {
+            if (value.filename === action.payload.name) {
+              value.file = action.payload.file
+            }
+          });
+        })
+      );
+
+
+
+      return updateObject(state, {
+        messages: tmp
+      });
+
+    }
+
     default:
       return state;
   }

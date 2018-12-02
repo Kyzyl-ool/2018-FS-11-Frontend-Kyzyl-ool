@@ -20,6 +20,7 @@ class MessageList extends Component {
                         filename={value.filename}
                         filetype={value.filetype}
                         filesize={value.filesize}
+                        file={value.file}
                       />)
               }
             </div>

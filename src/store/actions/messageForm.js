@@ -61,6 +61,8 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           response.json()
             .then((value => {
               console.log(value);
+
+
               dispatch({
                 type: actionTypes.MESSAGE_FORM_SUBMIT,
                 payload: {
@@ -74,6 +76,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
                   file: file,
                   user_id: +localStorage.getItem('userId')
                 }
+
               });
               // return value.result.code === 200 ? 'Delivered' : 'ERROR';
 
@@ -84,7 +87,6 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
 
     }
     else {
-
       fetch('http://127.0.0.1:5000/', {
         method: 'POST',
         body: JSON.stringify({
@@ -97,6 +99,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
         .then((response) => {
           return response.json()
             .then((value) => {
+              console.log(value);
               dispatch({
                 type: actionTypes.MESSAGE_FORM_SUBMIT,
                 payload: {
