@@ -21,6 +21,24 @@ export const messageFormSendFile = (id, file) => {
 };
 
 export const messageFormSubmit = (id, text, time, spanText, file) => {
+  fetch('http://127.0.0.1:5000/', {
+    method: 'POST',
+    body: JSON.stringify({
+      'jsonrpc': '2.0',
+      'id': 0,
+      'method': 'new_message',
+      'params': [id, +localStorage.getItem('userId'), text],
+    })
+  })
+    .then((response) => {
+      return response.json()
+        .then((value) => {
+          return value.result.code === 200 ? 'Delivered' : 'ERROR';
+        });
+    });
+
+
+
   return {
     type: actionTypes.MESSAGE_FORM_SUBMIT,
     payload: {
