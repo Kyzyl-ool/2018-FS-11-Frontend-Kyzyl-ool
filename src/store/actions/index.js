@@ -15,7 +15,3 @@ export {
   onGetChatsList,
 } from './chatsList';
 
-export {
-  onGetUserData,
-
-} from './user';

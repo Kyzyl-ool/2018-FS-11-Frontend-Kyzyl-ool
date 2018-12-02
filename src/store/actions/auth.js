@@ -45,7 +45,6 @@ export const authCheck = () => {
     const access_token = localStorage.getItem('access_token');
     if (access_token) {
       console.log('Logged in');
-      dispatch(actionCreators.onGetUserData());
       dispatch({type: actionTypes.LOGIN_OK});
     }
     else {
