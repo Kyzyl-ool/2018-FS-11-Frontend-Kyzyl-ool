@@ -34,9 +34,6 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
       .then((response) => {
         return response.json()
           .then((value) => {
-            console.log(value);
-
-
             dispatch({
               type: actionTypes.MESSAGE_FORM_SUBMIT,
               payload: {
