@@ -17,7 +17,9 @@ const reducer = (state = initalStore, action) => {
         time: action.payload.time,
         spanText: action.payload.spanText,
         file: action.payload.file,
+        user_id: +action.payload.user_id
       });
+
       return updateObject(state, {messages: tmp});
 
     case actionTypes.GET_MESSAGES_OK: {

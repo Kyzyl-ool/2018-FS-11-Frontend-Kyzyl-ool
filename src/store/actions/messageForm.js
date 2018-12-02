@@ -37,8 +37,6 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
         });
     });
 
-
-
   return {
     type: actionTypes.MESSAGE_FORM_SUBMIT,
     payload: {
@@ -47,6 +45,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
       time: time,
       spanText: spanText,
       file: file,
+      user_id: localStorage.getItem('userId')
     }
   }
 };
