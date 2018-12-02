@@ -7,8 +7,10 @@ import * as actionCreators from '../../../store/actions/index';
 
 class Chats extends Component {
   componentWillMount () {
-    if (this.props.needToUpdate)
+    if (this.props.needToUpdate) {
       this.props.onLoadChatNames();
+      this.props.onGetUserData();
+    }
 
   }
 
@@ -29,7 +31,7 @@ class Chats extends Component {
           />))
         }
         <div className='ProfileDiv'>
-          You entered as {localStorage.getItem('user_first_name')} {localStorage.getItem('user_last_name')}
+          You entered as {this.props.user_first_name} {this.props.user_last_name}
         </div>
         <div className='ExitButton' onClick={Chats.onExit}>
           Exit
@@ -44,12 +46,15 @@ const mapStateToProps = state => {
     chatNames: state.chatslist.chatNames,
     amountOfUnreadMessages: state.chatslist.amountOfUnreadMessages,
     needToUpdate: state.chatslist.needToUpdate,
+    user_first_name: state.user.user_first_name,
+    user_last_name: state.user.user_last_name
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onLoadChatNames: () => dispatch(actionCreators.onLoadChatNames()),
+    onGetUserData: () => dispatch(actionCreators.onGetUserData()),
 
   }
 };

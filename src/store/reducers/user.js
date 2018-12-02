@@ -10,7 +10,7 @@ const initalStore = {
 
 const reducer = (state = initalStore, action) => {
   switch (action.type) {
-    case actionTypes.GET_USER_DATA: {
+    case actionTypes.USER_DATA_LOADED: {
       return updateObject(state, {
         user_last_name: action.payload.user_last_name,
         user_first_name: action.payload.user_first_name,

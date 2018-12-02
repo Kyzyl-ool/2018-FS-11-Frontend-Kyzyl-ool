@@ -15,3 +15,7 @@ export {
 export {
   onLoadChatNames,
 } from './chatsList'
+
+export {
+  onGetUserData
+} from './user'
