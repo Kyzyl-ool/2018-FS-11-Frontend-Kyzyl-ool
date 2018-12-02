@@ -26,7 +26,8 @@ class AuthPage extends Component {
               let json_value = JSON.parse(value.result);
               if (!json_value.error) {
                 this.props.onSuccessLogin(json_value.access_token, json_value.user_id);
-                window.location.reload();
+                // this.props.onCheckExistance(+localStorage.getItem('userId'), this.props.user_first_name+' '+this.props.user_last_name, this.props.user_first_name);
+                // window.location.reload();
               }
             })
         })
@@ -65,6 +66,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onLoginTry: () => dispatch(actionCreators.auth()),
     onSuccessLogin: (access_token, userId) => dispatch(actionCreators.authSuccess(access_token, userId)),
+    onCheckExistance: (user_id, first_name, last_name) => dispatch(actionCreators.onCheckUserExistance(user_id, first_name, last_name)),
   }
 };
 

@@ -5,6 +5,9 @@ import DialogueElem from './DialogueElem/DialogueElem';
 import {connect}  from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
 
+const newChatName = 'Chat';
+const newChatType = 'f';
+
 class Chats extends Component {
   componentWillMount () {
     if (this.props.needToUpdate) {
@@ -12,12 +15,17 @@ class Chats extends Component {
       this.props.onGetUserData();
       this.props.onGetMessages();
     }
-
   }
+
+
 
   static onExit() {
     localStorage.clear();
     window.location.reload();
+  }
+
+  onCreateNewChat() {
+    this.props.onNewChat(newChatName, newChatType);
   }
 
   render() {
@@ -31,6 +39,9 @@ class Chats extends Component {
             id={value}
           />))
         }
+        <div className='CreateNewChatButton' onClick={() => this.onCreateNewChat()}>
+          Create new chat...
+        </div>
         <div className='ProfileDiv'>
           You entered as {this.props.user_first_name} {this.props.user_last_name}
         </div>
@@ -57,7 +68,7 @@ const mapDispatchToProps = dispatch => {
     onLoadChatNames: () => dispatch(actionCreators.onLoadChatNames()),
     onGetUserData: () => dispatch(actionCreators.onGetUserData()),
     onGetMessages: () => dispatch(actionCreators.onLoadMessages()),
-
+    onNewChat: (chatName, isGroup) => dispatch(actionCreators.onCreateNewChat(chatName, isGroup)),
   }
 };
 

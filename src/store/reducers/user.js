@@ -22,4 +22,3 @@ const reducer = (state = initalStore, action) => {
 };
 
 export default reducer;
-

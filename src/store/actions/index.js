@@ -14,9 +14,11 @@ export {
 
 export {
   onLoadChatNames,
-  onLoadMessages
+  onLoadMessages,
+  onCreateNewChat
 } from './chatsList'
 
 export {
-  onGetUserData
+  onGetUserData,
+  onCheckUserExistance
 } from './user'

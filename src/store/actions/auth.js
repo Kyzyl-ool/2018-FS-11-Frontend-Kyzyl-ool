@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
-// import * as actionCreators from './index';
+import * as actionCreators from './index';
+import { checkUserExistance } from './index';
 
 export const userLoginFail = (error) => {
   return {
@@ -20,16 +21,19 @@ export const userLoginTry = () => {
 };
 
 export const authSuccess = (access_token, userId) => {
-  localStorage.setItem('access_token', access_token);
-  localStorage.setItem('userId', userId);
+  return dispatch => {
+    localStorage.setItem('access_token', access_token);
+    localStorage.setItem('userId', userId);
 
-  return {
-    type: actionTypes.LOGIN_SUCCESS,
-    payload: {
-      access_token,
-      userId,
-      loading: false,
-    }
+
+    dispatch({
+      type: actionTypes.LOGIN_SUCCESS,
+      payload: {
+        access_token,
+        userId,
+        loading: false,
+      }
+    })
   }
 };
 

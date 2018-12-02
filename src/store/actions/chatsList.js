@@ -1,5 +1,53 @@
 import * as actionTypes from './actionTypes';
 
+export const onCreateNewChat = (chatName, isGroup) => {
+  return dispatch => {
+    fetch('http://127.0.0.1:5000', {
+      method: 'POST',
+      body: JSON.stringify({
+        'jsonrpc': '2.0',
+        'method': 'new_chat',
+        'params': [chatName, isGroup],
+        'id': 0
+      })
+    })
+      .then((response) => {
+        response.json()
+          .then((value => {
+            console.log(value.result[0].chat_id);
+
+            fetch('http://127.0.0.1:5000', {
+              method: 'POST',
+              body: JSON.stringify({
+                'jsonrpc': '2.0',
+                'method': 'add_new_member_to_chat',
+                'params': [+localStorage.getItem('userId'), value.result[0].chat_id],
+                'id': 0
+              })
+            })
+              .then((response) => {
+                response.json()
+                  .then((value1 =>
+                  {
+                    console.log(value1);
+                  }))
+              });
+
+            window.location.reload();
+
+
+            dispatch({
+              type: actionTypes.CHATS_LIST_NEW_CHAT_OK,
+              payload: {
+                chatName,
+                isGroup,
+              }
+            });
+          }))
+      })
+  }
+};
+
 export const onLoadChatNames = () => {
   return dispatch => {
     fetch('http://127.0.0.1:5000', {
@@ -103,7 +151,8 @@ export const onLoadMessages = () => {
                             text: resp.result[j].content,
                             time: new Date(resp.result[j].sent).toLocaleTimeString(),
                             user_id: resp.result[j].user_id,
-                            spanText: 'Delivered'
+                            spanText: 'Delivered',
+                            message_id: resp.result[j].message_id
                           }
                         );
                         j++;
@@ -123,4 +172,4 @@ export const onLoadMessages = () => {
       });
 
   }
-}
+};
