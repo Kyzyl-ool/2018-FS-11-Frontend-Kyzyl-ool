@@ -10,22 +10,6 @@ export const amountOfUnreadMessages = [
   1,
 ];
 
-fetch('http://127.0.0.1:5000', {
-  method: 'POST',
-  body: JSON.stringify({
-    'jsonrpc': '2.0',
-    'id': 0,
-    'method': 'get_messages',
-    'params': [0, +localStorage.getItem('userId')],
-  })
-})
-  .then((response) => {
-    response.json()
-      .then(value => {
-        console.log(value);
-      })
-  });
-
 export const mockMessages = [
   [
     {
@@ -64,6 +48,33 @@ export const mockMessages = [
     }
   ],
 ];
+
+fetch('http://127.0.0.1:5000', {
+  method: 'POST',
+  body: JSON.stringify({
+    'jsonrpc': '2.0',
+    'id': 0,
+    'method': 'get_messages',
+    'params': [2, +localStorage.getItem('userId')],
+  })
+})
+  .then((response) => {
+    response.json()
+      .then(value => {
+        console.log(value);
+        let i = 0;
+        while(value.result[i]) {
+          mockMessages[2].push({
+            text: value.result[i].content,
+            time: new Date(value.result[i].sent).toLocaleTimeString(),
+            spanText: 'Delivered',
+          });
+          i++;
+        }
+      })
+  });
+
+
 
 
 fetch('http://127.0.0.1:5000', {
