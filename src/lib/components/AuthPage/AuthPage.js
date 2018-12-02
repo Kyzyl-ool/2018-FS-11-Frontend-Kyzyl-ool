@@ -26,7 +26,7 @@ class AuthPage extends Component {
               let json_value = JSON.parse(value.result);
               if (!json_value.error) {
                 this.props.onSuccessLogin(json_value.access_token, json_value.user_id);
-                window.close();
+                window.location.reload();
               }
             })
         })
@@ -54,8 +54,9 @@ class AuthPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.user,
-    isAuthorized: state.user.isAuthorized,
+    user_last_name: state.user.user_last_name,
+    user_first_name: state.user.user_first_name,
+    isAuthorized: state.auth.isAuthorized,
     access_token: state.auth.access_token
   }
 };
@@ -64,7 +65,6 @@ const mapDispatchToProps = dispatch => {
   return {
     onLoginTry: () => dispatch(actionCreators.auth()),
     onSuccessLogin: (access_token, userId) => dispatch(actionCreators.authSuccess(access_token, userId)),
-
   }
 };
 

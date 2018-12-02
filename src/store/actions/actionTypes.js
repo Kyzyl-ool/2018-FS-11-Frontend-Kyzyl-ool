@@ -8,3 +8,4 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGIN_OK = 'LOGIN_OK';
 
 export const GET_CHATS_LIST = 'GET_CHATS_LIST';
+export const GET_USER_DATA = 'GET_USER_DATA';

@@ -57,7 +57,7 @@ const mapStateToProps = state => {
     chatNames: state.chatslist.chatNames,
     amountOfUnreadMessages: state.chatslist.amountOfUnreadMessages,
     token: state.auth.access_token,
-    isAuthorized: state.user.isAuthorized,
+    isAuthorized: state.auth.isAuthorized,
   }
 };
 

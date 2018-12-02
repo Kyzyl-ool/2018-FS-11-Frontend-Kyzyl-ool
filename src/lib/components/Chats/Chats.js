@@ -12,7 +12,7 @@ class Chats extends Component {
     }
   }
 
-  onExit() {
+  static onExit() {
     localStorage.clear();
     window.location.reload();
   }
@@ -29,9 +29,9 @@ class Chats extends Component {
           />))
         }
         <div className='ProfileDiv'>
-          You entered as {localStorage.getItem('userName')} {localStorage.getItem('userName2')}
+          You entered as {localStorage.getItem('user_first_name')} {localStorage.getItem('user_last_name')}
         </div>
-        <div className='ExitButton' onClick={this.onExit}>
+        <div className='ExitButton' onClick={Chats.onExit}>
           Exit
         </div>
       </Aux>
@@ -50,7 +50,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onGetChatsList: (access_token, userId) => dispatch(actionCreators.onGetChatsList(access_token, userId)),
-
   }
 };
 
