@@ -3,5 +3,13 @@
     height: 90vh;
     background: gray;
     border: 1px solid black;
+}
 
+.ProfileDiv {
+    position: absolute;
+    bottom: 1vh;
+    border: 1px solid black;
+    font-family: "American Typewriter", sans-serif;
+    font-size: 8pt;
+    padding: 0.5%;
 }

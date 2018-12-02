@@ -1,0 +1,25 @@
+.AuthPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    border: 1px solid black;
+    height: 100vh;
+    width: 100vw;
+}
+
+.LoginForm {
+    border: 1px solid black;
+}
+
+.PasswordForm {
+    border: 1px solid black;
+}
+
+.AuthButton {
+    border: 1px solid black;
+}

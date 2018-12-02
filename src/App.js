@@ -1,53 +1,70 @@
 import React, { Component } from 'react';
 import MessageWindow from './lib/components/MessageWindow/MessageWindow';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Aux from './hoc/Aux/Aux';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import Chats from './lib/components/Chats/Chats';
+import AuthPage from './lib/components/AuthPage/AuthPage';
+import {connect} from 'react-redux';
+import * as actionCreators from './store/actions/index';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      chats: [
-        {
-          chatName: 'Chat1',
-        },
-        {
-          chatName: 'Chat2',
-        },
-        {
-          chatName: 'Chat3',
-        }
-      ]
-    }
-
+  componentWillMount() {
+    this.props.checkLogin();
   }
 
   render() {
-    return (
-      <Router>
-        <Aux>
-          <Route exact path='/chats' component={() => <Chats chats={this.state.chats}/>}/>
+    let route = (
+      <Switch>
+        <Route
+          path='/authpage'
+          component={() => <AuthPage/>}
+        />
+        <Redirect to='/authpage'/>
+      </Switch>
+    );
+
+    // console.log('Authorized:', this.props.isAuthorized);
+    if (this.props.isAuthorized) {
+      route = (
+        <Switch>
+          <Route exact path='/chats' component={() => <Chats chats={this.props.chatNames}/>}/>
           {
-            this.state.chats.map(
+            this.props.chatNames.map(
               ((value, index) =>
-              <Route
-                key={index}
-                path={`/chats/${index}`}
-                component={() => <MessageWindow id={index} />}
-              />
+                  <Route
+                    key={index}
+                    path={`/chats/${index}`}
+                    component={() => <MessageWindow id={index} />}
+                  />
               )
             )
-
           }
-        </Aux>
+          <Redirect to='/chats'/>
+        </Switch>
+      )
+    }
+    return (
+      <Router>
+        {route}
       </Router>
     );
   }
 
 }
 
+const mapStateToProps = state => {
+  return {
+    chatNames: state.chatslist.chatNames,
+    amountOfUnreadMessages: state.chatslist.amountOfUnreadMessages,
+    token: state.auth.access_token,
+    isAuthorized: state.user.isAuthorized,
+  }
+};
 
-export default App;
+const mapDispatchTpProps = dispatch => {
+  return {
+    checkLogin: () => dispatch(actionCreators.authCheck())
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchTpProps)(App);
