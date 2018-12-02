@@ -55,7 +55,7 @@ fetch('http://127.0.0.1:5000', {
     'jsonrpc': '2.0',
     'id': 0,
     'method': 'get_messages',
-    'params': [2, +localStorage.getItem('userId')],
+    'params': [2],
   })
 })
   .then((response) => {
@@ -68,6 +68,7 @@ fetch('http://127.0.0.1:5000', {
             text: value.result[i].content,
             time: new Date(value.result[i].sent).toLocaleTimeString(),
             spanText: 'Delivered',
+            user_id: value.result[i].user_id
           });
           i++;
         }

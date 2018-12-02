@@ -13,11 +13,9 @@ class Message extends Component {
         this.time = props.time;
         this.spanText = props.spanText;
         this.file = props.file;
+        this.user_id = props.user_id;
 
-        if (this.text.startsWith('#')) {
-          this.text = this.text.slice(1);
-          this.notYour = true;
-        }
+        this.notYour = this.user_id !== +localStorage.getItem('userId');
       }
   }
 
