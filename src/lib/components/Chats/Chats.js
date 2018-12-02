@@ -10,6 +10,7 @@ class Chats extends Component {
     if (this.props.needToUpdate) {
       this.props.onLoadChatNames();
       this.props.onGetUserData();
+      this.props.onGetMessages();
     }
 
   }
@@ -55,6 +56,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onLoadChatNames: () => dispatch(actionCreators.onLoadChatNames()),
     onGetUserData: () => dispatch(actionCreators.onGetUserData()),
+    onGetMessages: () => dispatch(actionCreators.onLoadMessages()),
 
   }
 };

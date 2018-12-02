@@ -14,6 +14,7 @@ export {
 
 export {
   onLoadChatNames,
+  onLoadMessages
 } from './chatsList'
 
 export {
