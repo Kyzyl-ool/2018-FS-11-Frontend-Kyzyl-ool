@@ -49,18 +49,31 @@ export const mockMessages = [
   ],
 ];
 
-export const formData = [
-  {
-    text: 'Let\'s play',
-    file: undefined,
-  },
-  {
-    text: 'I\'m your Daddy.',
-    file: undefined,
-  },
-  {
-    text: '',
-    file: undefined,
-  }
-];
 
+fetch('http://127.0.0.1:5000', {
+  method: 'POST',
+  body: JSON.stringify({
+    'jsonrpc': '2.0',
+    'id': 0,
+    'method': 'get_chats',
+    'params': [localStorage.getItem('userId')],
+  })
+})
+  .then((response) => {
+    response.json()
+      .then(value => {
+        let i = 0;
+        while(value.result[i]) {
+          i++;
+        }
+        localStorage.setItem('amountOfChats', i);
+      })
+  });
+
+export const formData = new Array(+localStorage.getItem('amountOfChats'));
+for (var i = 0; i < formData.length; i++) {
+  formData[i] = {
+    text: '',
+    file: undefined
+  };
+}
