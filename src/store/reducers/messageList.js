@@ -1,7 +1,6 @@
 import { updateObject } from '../utility';
 import * as actionTypes from '../actions/actionTypes';
 import * as initialValues from './initialValues';
-import { BACKEND_SERVER } from '../../config';
 
 
 const initalStore = {
@@ -14,7 +13,7 @@ const reducer = (state = initalStore, action) => {
 
 
       const tmp = Object.assign({}, state.messages);
-      const number = tmp[action.payload.data.id].push({
+      tmp[action.payload.data.id].push({
         text: action.payload.data.content,
         time: new Date(action.payload.data.time).toLocaleTimeString(),
         spanText: action.payload.data.spanText,
@@ -63,7 +62,7 @@ const reducer = (state = initalStore, action) => {
 
       // console.log(tmp);
 
-      console.log('payload', action.payload);
+      // console.log('payload', action.payload);
 
       Object.keys(state.messages).forEach(
         (value => {
@@ -75,7 +74,7 @@ const reducer = (state = initalStore, action) => {
         })
       );
 
-      console.log(tmp);
+      // console.log(tmp);
 
       return updateObject(state, {
         messages: tmp
