@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { BACKEND_SERVER } from '../../config';
 
 export const userLoginFail = (error) => {
   return {
@@ -38,7 +39,7 @@ export const authSuccess = (access_token, userId) => {
 export const auth = () => {
   return dispatch => {
     dispatch(userLoginTry());
-    window.open('http://127.0.0.1:5000/get_first_token');
+    window.open(BACKEND_SERVER+'/get_first_token/');
   }
 };
 

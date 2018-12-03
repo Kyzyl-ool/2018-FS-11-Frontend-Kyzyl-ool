@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AuthPage.css';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
+import { BACKEND_SERVER } from '../../../config';
 
 
 class AuthPage extends Component {
@@ -11,7 +12,7 @@ class AuthPage extends Component {
 
     if (!this.props.isAuthorized && token) {
       console.log('Authorization token:', token);
-      fetch('http://127.0.0.1:5000/', {
+      fetch(BACKEND_SERVER, {
         method: 'POST',
         body: JSON.stringify({
           'jsonrpc': '2.0',

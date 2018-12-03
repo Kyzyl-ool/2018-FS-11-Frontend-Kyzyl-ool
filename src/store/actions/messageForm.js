@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { BACKEND_SERVER } from '../../config';
 
 export const onNewMessage = (values) => {
   return{
@@ -32,7 +33,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
     if (file) {
       let reader = new FileReader();
       reader.onload = (value) => {
-        fetch('http://127.0.0.1:5000/', {
+        fetch(BACKEND_SERVER, {
           method: 'POST',
           body: JSON.stringify({
             'jsonrpc': '2.0',
@@ -54,7 +55,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
       reader.readAsBinaryString(file);
 
 
-      fetch('http://127.0.0.1:5000/', {
+      fetch(BACKEND_SERVER, {
         method: 'POST',
         body: JSON.stringify({
           'jsonrpc': '2.0',
@@ -93,7 +94,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
 
     }
     else {
-      fetch('http://127.0.0.1:5000/', {
+      fetch(BACKEND_SERVER, {
         method: 'POST',
         body: JSON.stringify({
           'jsonrpc': '2.0',

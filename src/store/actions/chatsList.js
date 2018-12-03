@@ -1,8 +1,9 @@
 import * as actionTypes from './actionTypes';
+import { BACKEND_SERVER } from '../../config';
 
 export const onCreateNewChat = (chatName, isGroup) => {
   return dispatch => {
-    fetch('http://127.0.0.1:5000', {
+    fetch(BACKEND_SERVER, {
       method: 'POST',
       body: JSON.stringify({
         'jsonrpc': '2.0',
@@ -16,7 +17,7 @@ export const onCreateNewChat = (chatName, isGroup) => {
           .then((value => {
             // console.log(value.result[0].chat_id);
 
-            fetch('http://127.0.0.1:5000', {
+            fetch(BACKEND_SERVER, {
               method: 'POST',
               body: JSON.stringify({
                 'jsonrpc': '2.0',
@@ -50,7 +51,7 @@ export const onCreateNewChat = (chatName, isGroup) => {
 
 export const onLoadChatNames = () => {
   return dispatch => {
-    fetch('http://127.0.0.1:5000', {
+    fetch(BACKEND_SERVER, {
       method: 'POST',
       body: JSON.stringify({
         'jsonrpc': '2.0',
@@ -102,7 +103,7 @@ export const onChatsListLoadFail = (error) => {
 
 export const onLoadMessages = () => {
   return dispatch => {
-    fetch('http://127.0.0.1:5000', {
+    fetch(BACKEND_SERVER, {
       method: 'POST',
       body: JSON.stringify({
         'jsonrpc': '2.0',
@@ -124,7 +125,7 @@ export const onLoadMessages = () => {
 
 
             if (i > 0)
-            fetch('http://127.0.0.1:5000', {
+            fetch(BACKEND_SERVER, {
               method: 'POST',
               body: JSON.stringify(
                 chat_ids.map(((value1) => {
@@ -148,7 +149,7 @@ export const onLoadMessages = () => {
                       while (resp.result[j]) {
                         if (resp.result[j].url)
                         {
-                          fetch('http://127.0.0.1:5000', {
+                          fetch(BACKEND_SERVER, {
                             method: 'POST',
                             body: JSON.stringify({
                               'jsonrpc': '2.0',

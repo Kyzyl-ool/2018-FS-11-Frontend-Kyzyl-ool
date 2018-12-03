@@ -1,7 +1,9 @@
-var Centrifuge = require('centrifuge');
-var centrifuge = new Centrifuge('ws://127.0.0.1:8000/connection/websocket');
+import { BACKEND_SERVER, CENTRIFUGO_SERVER } from '../../../config';
 
-fetch('http://127.0.0.1:5000', {
+var Centrifuge = require('centrifuge');
+var centrifuge = new Centrifuge(CENTRIFUGO_SERVER);
+
+fetch(BACKEND_SERVER, {
   method: 'POST',
   body: JSON.stringify({
     'jsonrpc': '2.0',

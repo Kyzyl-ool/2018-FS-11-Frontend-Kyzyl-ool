@@ -1,8 +1,9 @@
 import * as actionTypes from './actionTypes';
+import { BACKEND_SERVER } from '../../config';
 
 export const onGetUserData = () => {
   return dispatch => {
-    fetch('http://127.0.0.1:5000', {
+    fetch(BACKEND_SERVER, {
       method: 'POST',
       body: JSON.stringify({
         'jsonrpc': '2.0',
@@ -36,7 +37,7 @@ export const onGetUserData = () => {
 
 export const onCheckUserExistance = (user_id, user_first_name, user_last_name) => {
   return dispatch => {
-    fetch('http://127.0.0.1:5000', {
+    fetch(BACKEND_SERVER, {
       method: 'POST',
       body: JSON.stringify({
         'jsonrpc': '2.0',
@@ -49,7 +50,7 @@ export const onCheckUserExistance = (user_id, user_first_name, user_last_name) =
         response.json()
           .then((value => {
             if (!value.result[0]) {
-              fetch('http://127.0.0.1:5000', {
+              fetch(BACKEND_SERVER, {
                 method: 'POST',
                 body: JSON.stringify({
                   'jsonrpc': '2.0',
