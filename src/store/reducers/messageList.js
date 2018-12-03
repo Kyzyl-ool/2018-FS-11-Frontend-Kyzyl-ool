@@ -9,6 +9,20 @@ const initalStore = {
 
 const reducer = (state = initalStore, action) => {
   switch (action.type) {
+    case actionTypes.CENTRIFUGO_NEW_MESSAGE: {
+      const tmp = Object.assign({}, state.messages);
+      console.log(action.payload.data);
+
+      tmp[action.payload.data.id].push({
+        text: action.payload.data.content,
+        time: new Date(action.payload.data.time).toLocaleTimeString(),
+        spanText: action.payload.data.spanText,
+        user_id: +action.payload.data.user_id,
+      });
+
+      return updateObject(state, {messages: tmp});
+    }
+
     case actionTypes.MESSAGE_FORM_SUBMIT:
       const tmp = Object.assign({}, state.messages);
 

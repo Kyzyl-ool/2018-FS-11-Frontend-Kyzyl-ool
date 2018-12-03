@@ -5,9 +5,18 @@ import Chats from './lib/components/Chats/Chats';
 import AuthPage from './lib/components/AuthPage/AuthPage';
 import {connect} from 'react-redux';
 import * as actionCreators from './store/actions/index';
+import Receiver from './lib/components/MessageReceiver/messageReceiver';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.receiver = Receiver;
+    this.receiver.subscribe('1', (m) => {
+      if (+localStorage.getItem('userId') !== m.data.user_id)
+        this.props.onNewMessage(m);
+    })
+  }
   componentWillMount() {
     this.props.checkLogin();
   }
@@ -55,15 +64,17 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     chatNames: state.chatslist.chatNames,
-    amountOfUnreadMessages: state.chatslist.amountOfUnreadMessages,
     token: state.auth.access_token,
     isAuthorized: state.auth.isAuthorized,
+    messages: state.msglist.messages,
   }
 };
 
 const mapDispatchTpProps = dispatch => {
   return {
-    checkLogin: () => dispatch(actionCreators.authCheck())
+    checkLogin: () => dispatch(actionCreators.authCheck()),
+    onNewMessage: (values) => dispatch(actionCreators.onNewMessage(values)),
+
   }
 };
 

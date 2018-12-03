@@ -2,6 +2,7 @@ export {
   messageFormUpdateValue,
   messageFormSendFile,
   messageFormSubmit,
+  onNewMessage,
 } from './messageForm';
 
 export {

@@ -1,5 +1,12 @@
 import * as actionTypes from './actionTypes';
 
+export const onNewMessage = (values) => {
+  return{
+    type: actionTypes.CENTRIFUGO_NEW_MESSAGE,
+    payload: values
+  }
+};
+
 export const messageFormUpdateValue = (id, value) => {
   return {
     type: actionTypes.MESSAGE_FORM_UPDATE_VALUE,
@@ -22,7 +29,6 @@ export const messageFormSendFile = (id, file) => {
 
 export const messageFormSubmit = (id, text, time, spanText, file) => {
   return dispatch => {
-
     if (file) {
       let reader = new FileReader();
       reader.onload = (value) => {
@@ -41,9 +47,9 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
                 // console.log(value);
               })
           });
-
-
       };
+
+
 
       reader.readAsBinaryString(file);
 
@@ -99,7 +105,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
         .then((response) => {
           return response.json()
             .then((value) => {
-              console.log(value);
+              // console.log(value);
               dispatch({
                 type: actionTypes.MESSAGE_FORM_SUBMIT,
                 payload: {
@@ -107,10 +113,10 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
                   text: text,
                   time: time,
                   spanText: spanText,
-                  user_id: localStorage.getItem('userId')
+                  user_id: +localStorage.getItem('userId')
                 }
               });
-              return value.result.code === 200 ? 'Delivered' : 'ERROR';
+              // return value.result.code === 200 ? 'Delivered' : 'ERROR';
               // dispatch({
               //   type: actionTypes.MESSAGE_DELIVERED,
               //   payload: {

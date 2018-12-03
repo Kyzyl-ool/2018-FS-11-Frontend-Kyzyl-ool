@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import  './Message.css';
-import {Link, Router} from 'react-router-dom';
 
 class Message extends Component {
   constructor(props) {
@@ -22,8 +21,8 @@ class Message extends Component {
       }
 
     if (this.filename) {
-      console.log(this.filename);
-      console.log(this.props.file);
+      // console.log(this.filename);
+      // console.log(this.props.file);
     }
 
   }

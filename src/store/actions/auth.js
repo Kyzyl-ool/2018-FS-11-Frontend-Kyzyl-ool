@@ -1,6 +1,4 @@
 import * as actionTypes from './actionTypes';
-import * as actionCreators from './index';
-import { checkUserExistance } from './index';
 
 export const userLoginFail = (error) => {
   return {

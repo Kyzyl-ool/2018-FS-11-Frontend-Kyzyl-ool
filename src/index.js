@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
   chatslist: chatsListReducer,
   user: userReducer,
   auth: authReducer,
+  
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -25,6 +25,7 @@
   ],
   "devDependencies": {
     "axios": "^0.18.0",
+    "centrifuge": "^2.0.0",
     "react-redux": "^5.1.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",

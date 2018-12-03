@@ -7,6 +7,7 @@ import * as actionCreators from '../../../store/actions/index';
 class MessageForm extends Component {
   onHandleSubmit (event) {
     event.preventDefault();
+
     this.props.onSubmit(
       this.props.id,
       this.props.formData[this.props.id].text,
@@ -21,7 +22,7 @@ class MessageForm extends Component {
     render() {
       return (
         <form className="MessageForm"
-              onSubmit={(event) => this.onHandleSubmit(event)}
+              onSubmit={this.onHandleSubmit}
         >
 
           <div className="FormAndPinButton">

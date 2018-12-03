@@ -8,7 +8,7 @@ class MessageWindow extends Component {
     render() {
     return (
         <Aux>
-          <MessageList id={this.props.id}  />
+          <MessageList id={this.props.id} />
           <MessageForm id={this.props.id} />
         </Aux>
     );

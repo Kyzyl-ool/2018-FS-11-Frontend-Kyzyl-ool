@@ -14,7 +14,7 @@ export const onCreateNewChat = (chatName, isGroup) => {
       .then((response) => {
         response.json()
           .then((value => {
-            console.log(value.result[0].chat_id);
+            // console.log(value.result[0].chat_id);
 
             fetch('http://127.0.0.1:5000', {
               method: 'POST',
@@ -29,7 +29,7 @@ export const onCreateNewChat = (chatName, isGroup) => {
                 response.json()
                   .then((value1 =>
                   {
-                    console.log(value1);
+                    // console.log(value1);
                   }))
               });
 
@@ -160,7 +160,7 @@ export const onLoadMessages = () => {
                             .then((response) => {
                               response.json()
                                 .then((value2 => {
-                                  console.log(value2);
+                                  // console.log(value2);
                                   var binaryFile = atob(value2.result.file);
                                   var filetype = value2.result.type;
                                   var name = value2.result.name;
