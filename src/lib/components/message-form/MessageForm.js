@@ -30,7 +30,9 @@ class MessageForm extends Component {
                    value={this.props.formData[this.props.id].text}
                    onChange={(event) => this.props.onUpdateData(this.props.id, event.target.value)}
                    type="text"
-                   placeholder="Enter your message..."/>
+                   placeholder="Enter your message..."
+                   autoFocus={true}
+            />
 
 
             <div >

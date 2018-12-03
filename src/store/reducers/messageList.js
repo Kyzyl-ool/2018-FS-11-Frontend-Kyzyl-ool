@@ -1,6 +1,7 @@
 import { updateObject } from '../utility';
 import * as actionTypes from '../actions/actionTypes';
 import * as initialValues from './initialValues';
+import { BACKEND_SERVER } from '../../config';
 
 
 const initalStore = {
@@ -10,15 +11,27 @@ const initalStore = {
 const reducer = (state = initalStore, action) => {
   switch (action.type) {
     case actionTypes.CENTRIFUGO_NEW_MESSAGE: {
-      const tmp = Object.assign({}, state.messages);
-      console.log(action.payload.data);
 
-      tmp[action.payload.data.id].push({
+
+      const tmp = Object.assign({}, state.messages);
+      const number = tmp[action.payload.data.id].push({
         text: action.payload.data.content,
         time: new Date(action.payload.data.time).toLocaleTimeString(),
         spanText: action.payload.data.spanText,
         user_id: +action.payload.data.user_id,
+        filename: action.payload.data.filename,
+        filetype: action.payload.data.filetype,
+        filesize: action.payload.data.filesize,
+        file: action.payload.file,
       });
+
+      // console.log(tmp[action.payload.data.id][number-1]);
+
+
+      // console.log('payload', action.payload);
+
+
+
 
       return updateObject(state, {messages: tmp});
     }
@@ -50,6 +63,7 @@ const reducer = (state = initalStore, action) => {
 
       // console.log(tmp);
 
+      console.log('payload', action.payload);
 
       Object.keys(state.messages).forEach(
         (value => {
@@ -61,7 +75,7 @@ const reducer = (state = initalStore, action) => {
         })
       );
 
-
+      console.log(tmp);
 
       return updateObject(state, {
         messages: tmp
