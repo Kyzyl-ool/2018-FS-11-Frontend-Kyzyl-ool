@@ -10,6 +10,28 @@
     bottom: 1vh;
     border: 1px solid black;
     font-family: "American Typewriter", sans-serif;
-    font-size: 8pt;
+    font-size: 3vh;
     padding: 0.5%;
+    max-width: 40vw;
+
+}
+
+.ExitButton {
+    position: absolute;
+    bottom: 1vh;
+    right: 1vw;
+    border: 1px solid black;
+    font-family: "American Typewriter", sans-serif;
+    font-size: 3vh;
+    padding: 0.5%;
+    min-width: 10vw;
+    text-align: center;
+}
+
+.CreateNewChatButton {
+    border: 1px solid black;
+    font-family: "American Typewriter", sans-serif;
+    font-size: 3vh;
+    padding: 0.5%;
+    text-align: center;
 }

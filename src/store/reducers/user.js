@@ -3,22 +3,17 @@ import * as actionTypes from '../actions/actionTypes';
 
 
 const initalStore = {
-  user: '',
-  userId: -1,
-  isAuthorized: false,
+  user_first_name: '',
+  user_last_name: '',
+  userId: -1
 };
 
 const reducer = (state = initalStore, action) => {
   switch (action.type) {
-    case actionTypes.LOGIN_SUCCESS: {
+    case actionTypes.USER_DATA_LOADED: {
       return updateObject(state, {
-        user: action.payload.userName,
-        isAuthorized: true
-      })
-    }
-    case actionTypes.LOGIN_OK: {
-      return updateObject( state, {
-        isAuthorized: true
+        user_last_name: action.payload.user_last_name,
+        user_first_name: action.payload.user_first_name,
       })
     }
     default:
@@ -27,4 +22,3 @@ const reducer = (state = initalStore, action) => {
 };
 
 export default reducer;
-

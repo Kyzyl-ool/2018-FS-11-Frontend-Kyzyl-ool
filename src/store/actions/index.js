@@ -2,6 +2,7 @@ export {
   messageFormUpdateValue,
   messageFormSendFile,
   messageFormSubmit,
+  onNewMessage,
 } from './messageForm';
 
 export {
@@ -11,6 +12,14 @@ export {
   authSuccess
 } from './auth';
 
+
 export {
-  onGetChatsList,
-} from './chatsList';
+  onLoadChatNames,
+  onLoadMessages,
+  onCreateNewChat
+} from './chatsList'
+
+export {
+  onGetUserData,
+  onCheckUserExistance
+} from './user'

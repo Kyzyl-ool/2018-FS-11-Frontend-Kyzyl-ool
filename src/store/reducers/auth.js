@@ -5,7 +5,8 @@ import * as actionTypes from '../actions/actionTypes';
 const initalStore = {
   access_token: null,
   loading: false,
-  error: null
+  error: null,
+  isAuthorized: false,
 };
 
 const reducer = (state = initalStore, action) => {
@@ -27,6 +28,11 @@ const reducer = (state = initalStore, action) => {
       return updateObject(state, {
         error: action.payload.error,
         loading: false
+      })
+    }
+    case actionTypes.LOGIN_OK: {
+      return updateObject(state, {
+        isAuthorized: true
       })
     }
     default:

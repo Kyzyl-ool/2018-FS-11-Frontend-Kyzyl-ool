@@ -46,3 +46,12 @@
     min-width: 30vw;
     max-width: 60vw;
 }
+
+.Who {
+    position: absolute;
+    right: 4px;
+    bottom: 3px;
+    top: 3px;
+    font-size: 1vh;
+    font-weight: 400;
+}

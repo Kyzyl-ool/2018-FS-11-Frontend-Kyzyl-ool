@@ -5,26 +5,48 @@ import DialogueElem from './DialogueElem/DialogueElem';
 import {connect}  from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
 
+const newChatName = 'Chat';
+const newChatType = 'f';
+
 class Chats extends Component {
-  componentWillMount() {
+  componentWillMount () {
     if (this.props.needToUpdate) {
-      this.props.onGetChatsList(localStorage.getItem('access_token'), localStorage.getItem('userId'));
+      this.props.onLoadChatNames();
+      this.props.onGetUserData();
+      this.props.onGetMessages();
     }
+  }
+
+
+
+  static onExit() {
+    localStorage.clear();
+    window.location.reload();
+  }
+
+  onCreateNewChat() {
+    this.props.onNewChat(newChatName, newChatType);
   }
 
   render() {
     return (
       <Aux>
         {
-          this.props.chatNames.map(((value, index) =>
+          Object.keys(this.props.chatNames).map(((value) =>
           <DialogueElem
-            key={index}
-            name={value}
-            id={index}
+            key={value}
+            name={this.props.chatNames[value]}
+            id={value}
           />))
         }
+        <div className='CreateNewChatButton' onClick={() => this.onCreateNewChat()}>
+          Create new chat...
+        </div>
         <div className='ProfileDiv'>
-          Вы вошли как {localStorage.getItem('userName')} {localStorage.getItem('userName2')}
+          You entered as {this.props.user_first_name} {this.props.user_last_name}
+        </div>
+        <div className='ExitButton' onClick={Chats.onExit}>
+          Exit
         </div>
       </Aux>
     );
@@ -36,13 +58,17 @@ const mapStateToProps = state => {
     chatNames: state.chatslist.chatNames,
     amountOfUnreadMessages: state.chatslist.amountOfUnreadMessages,
     needToUpdate: state.chatslist.needToUpdate,
+    user_first_name: state.user.user_first_name,
+    user_last_name: state.user.user_last_name
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onGetChatsList: (access_token, userId) => dispatch(actionCreators.onGetChatsList(access_token, userId)),
-
+    onLoadChatNames: () => dispatch(actionCreators.onLoadChatNames()),
+    onGetUserData: () => dispatch(actionCreators.onGetUserData()),
+    onGetMessages: () => dispatch(actionCreators.onLoadMessages()),
+    onNewChat: (chatName, isGroup) => dispatch(actionCreators.onCreateNewChat(chatName, isGroup)),
   }
 };
 

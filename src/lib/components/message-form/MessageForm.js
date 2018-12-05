@@ -8,7 +8,6 @@ class MessageForm extends Component {
   onHandleSubmit (event) {
     event.preventDefault();
 
-
     this.props.onSubmit(
       this.props.id,
       this.props.formData[this.props.id].text,
@@ -23,7 +22,7 @@ class MessageForm extends Component {
     render() {
       return (
         <form className="MessageForm"
-              onSubmit={(event) => this.onHandleSubmit(event)}
+              onSubmit={this.onHandleSubmit}
         >
 
           <div className="FormAndPinButton">
@@ -31,7 +30,9 @@ class MessageForm extends Component {
                    value={this.props.formData[this.props.id].text}
                    onChange={(event) => this.props.onUpdateData(this.props.id, event.target.value)}
                    type="text"
-                   placeholder="Enter your message..."/>
+                   placeholder="Enter your message..."
+                   autoFocus={true}
+            />
 
 
             <div >
@@ -57,6 +58,7 @@ class MessageForm extends Component {
 const mapStateToProps = (state) => {
   return {
     formData: state.msgform.formData,
+    isFormDataUpdated: state.msgform.isFormDataUpdated
   }
 };
 

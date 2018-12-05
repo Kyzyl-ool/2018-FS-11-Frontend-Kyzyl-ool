@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './MessageList.css';
 import Message from './Message/Message';
 import {connect} from 'react-redux';
 
 
 class MessageList extends Component {
+
+  scrollToBottom = () => {
+    const messagesContainer = ReactDOM.findDOMNode(this);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  };
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
     render() {
       return (
             <div className="MessageList">
@@ -16,7 +26,12 @@ class MessageList extends Component {
                         text={value.text}
                         time={value.time}
                         spanText={value.spanText}
-                        file={value.file} />)
+                        user_id={value.user_id}
+                        filename={value.filename}
+                        filetype={value.filetype}
+                        filesize={value.filesize}
+                        file={value.file}
+                      />)
               }
             </div>
         );
