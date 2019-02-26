@@ -3,6 +3,7 @@ export {
   messageFormSendFile,
   messageFormSubmit,
   onNewMessage,
+  messageFormToggleVKeyboard
 } from './messageForm';
 
 export {

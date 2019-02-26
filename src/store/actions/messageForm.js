@@ -57,6 +57,12 @@ export const messageFormUpdateValue = (id, value) => {
   }
 };
 
+export const messageFormToggleVKeyboard = (id) => {
+  return {
+    type: actionTypes.TOGGLE_VKEYBOARD
+  }
+};
+
 export const messageFormSendFile = (id, file) => {
   return {
     type : actionTypes.MESSAGE_FORM_SEND_FILE,
