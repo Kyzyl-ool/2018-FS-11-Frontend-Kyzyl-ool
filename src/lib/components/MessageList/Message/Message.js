@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import  './Message.css';
+import { BACKEND_SERVER, FRONTEND_SERVER, JUST_SERVER } from '../../../../config';
 
 class Message extends Component {
   constructor(props) {
@@ -34,12 +35,12 @@ class Message extends Component {
     if (value.type.startsWith('image')) {
       const url = URL.createObjectURL(value);
       // URL.revokeObjectURL(url);
-      return <img alt="attach" className="AttachedImage" src={url}/>;
+      return <img alt="attach" className="AttachedImage" src={`${JUST_SERVER+'/'+value.name}`}/>;
     }
     else {
-      let url = URL.createObjectURL(value);
+      // let url = URL.createObjectURL(value);
       // URL.revokeObjectURL(url);
-      return <a href={url}>Attachment</a>;
+      return <a href={`${JUST_SERVER+/public/+value.name}`}>Attachment</a>;
     }
   }
 

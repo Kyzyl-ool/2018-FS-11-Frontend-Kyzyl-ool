@@ -149,20 +149,22 @@ export const onLoadMessages = () => {
                       while (resp.result[j]) {
                         if (resp.result[j].url)
                         {
+                          // console.log(resp.result[j].url.replace(' ', '_'));
                           fetch(BACKEND_SERVER, {
                             method: 'POST',
                             body: JSON.stringify({
                               'jsonrpc': '2.0',
                               'id': 0,
                               'method': 'download_file',
-                              'params': [resp.result[j].url, resp.result[j].type],
+                              'params': [resp.result[j].url.replace(' ', '_'), resp.result[j].type],
                             })
                           })
                             .then((response) => {
                               response.json()
                                 .then((value2 => {
-                                  // console.log(value2);
-                                  var binaryFile = atob(value2.result.file);
+                                  console.log(value2);
+                                  // var binaryFile = atob(value2.result.file);
+                                  var binaryFile = 0;
                                   var filetype = value2.result.type;
                                   var name = value2.result.name;
                                   var lastmodified = new Date(value2.result.lastmodified);
