@@ -7,8 +7,8 @@ import { BACKEND_SERVER } from '../../../config';
 
 class AuthPage extends Component {
   componentDidMount() {
-    let url = new URL(window.location.href);
-    let token = url.searchParams.get('code');
+    const url = new URL(window.location.href);
+    const token = url.searchParams.get('code');
 
     if (!this.props.isAuthorized && token) {
       console.log('Authorization token:', token);

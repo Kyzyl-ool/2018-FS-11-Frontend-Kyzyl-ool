@@ -32,7 +32,7 @@ class Message extends Component {
       return null;
     }
     if (value.type.startsWith('image')) {
-      let url = URL.createObjectURL(value);
+      const url = URL.createObjectURL(value);
       // URL.revokeObjectURL(url);
       return <img alt="attach" className="AttachedImage" src={url}/>;
     }

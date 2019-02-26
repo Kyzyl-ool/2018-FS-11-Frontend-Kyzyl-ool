@@ -15,7 +15,7 @@ export const onGetUserData = () => {
       .then((response) => {
         response.json()
           .then((value) => {
-            // console.log(value.result);
+            console.log(value.result);
             const json_data = JSON.parse(value.result).response[0];
 
             dispatch({
