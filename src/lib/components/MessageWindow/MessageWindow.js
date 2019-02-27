@@ -11,7 +11,7 @@ class MessageWindow extends Component {
         <Aux>
           <MessageList id={this.props.id} />
           <MessageForm id={this.props.id} />
-          <VKeyboard  />
+          <VKeyboard id={this.props.id} />
         </Aux>
     );
   }

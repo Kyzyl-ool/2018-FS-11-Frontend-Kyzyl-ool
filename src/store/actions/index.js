@@ -24,3 +24,8 @@ export {
   onGetUserData,
   onCheckUserExistance
 } from './user'
+
+export {
+  onEmojiFilenameLoaded,
+  onEmojiClick
+} from './vKeyboard'

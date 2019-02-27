@@ -7,3 +7,13 @@
     left: 35%;
     background: white;
 }
+
+.emoji {
+    padding: 2px;
+    max-width: 9%;
+    cursor: pointer;
+}
+
+.emoji:hover {
+    color: #000;
+}
