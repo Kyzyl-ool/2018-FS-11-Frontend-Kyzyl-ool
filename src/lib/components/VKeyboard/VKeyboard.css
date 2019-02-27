@@ -1,0 +1,9 @@
+.VKeyboard {
+    border: 4px solid lavender;
+    position: absolute;
+    width: 40%;
+    height: 30%;
+    top: 30%;
+    left: 35%;
+    background: white;
+}
