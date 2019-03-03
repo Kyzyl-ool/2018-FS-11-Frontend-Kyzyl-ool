@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import  './Message.css';
-import {  JUST_SERVER } from '../../../../config';
 
 class Message extends Component {
   constructor(props) {
@@ -32,11 +31,12 @@ class Message extends Component {
     if (value === undefined) {
       return null;
     }
+    const url = URL.createObjectURL(value);
     if (value.type.startsWith('image')) {
-      return <img alt="attach" className="AttachedImage" src={`${JUST_SERVER+'/'+value.name}`}/>;
+      return <img alt="attach" className="AttachedImage" src={url}/>;
     }
     else {
-      return <a href={`${JUST_SERVER+/public/+value.name}`}>Attachment</a>;
+      return <a href={url}>Attachment</a>;
     }
   }
 

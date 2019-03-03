@@ -5,7 +5,7 @@ import * as initialValues from './initialValues';
 const initalStore = {
   formData: initialValues.formData,
   isFormDataUpdated: false,
-  isVKeyboardEnabled: false
+  isVKeyboardEnabled: false,
 };
 
 const reducer = (state = initalStore, action) => {
@@ -13,16 +13,6 @@ const reducer = (state = initalStore, action) => {
     case actionTypes.TOGGLE_VKEYBOARD: {
       return updateObject(state, {isVKeyboardEnabled: !state.isVKeyboardEnabled})
     }
-
-    case actionTypes.EMOJI_CLICK: {
-      const tmp = Object.assign({}, state.formData);
-      tmp[action.payload.id].text = action.payload.source;
-      return updateObject(state, {
-        formData: tmp,
-        isVKeyboardEnabled: !state.isVKeyboardEnabled
-      });
-    }
-
     case actionTypes.MESSAGE_FORM_UPDATE_VALUE: {
       const tmp = Object.assign({}, state.formData);
       tmp[action.payload.id].text = action.payload.text;

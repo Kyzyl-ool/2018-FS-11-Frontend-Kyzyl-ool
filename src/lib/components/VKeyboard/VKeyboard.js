@@ -2,32 +2,32 @@ import React, { Component } from 'react';
 import './VKeyboard.css';
 import Aux from '../../../hoc/Aux/Aux';
 import {connect} from 'react-redux';
-import { BACKEND_SERVER, JUST_SERVER } from '../../../config';
+import { JUST_SERVER } from '../../../config';
 import * as actionCreators from '../../../store/actions/index';
 
 class VKeyboard extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    if (this.props.emojiFilenames.length === 0)
-      fetch(BACKEND_SERVER, {
-        method: 'POST',
-        body: JSON.stringify({
-          'jsonrpc': '2.0',
-          'method': 'get_emoji_filenames',
-          'id': 0
-        })
-      })
-        .then((response => {
-          response.json()
-            .then((value =>
-            {
-              const tmp = value.result;
-              tmp.sort();
-              this.props.onEmojiFilenamesLoaded(tmp);
-            }))
-        }))
-  }
+    // if (this.props.emojiFilenames.length === 0)
+    //   fetch(BACKEND_SERVER, {
+    //     method: 'POST',
+    //     body: JSON.stringify({
+    //       'jsonrpc': '2.0',
+    //       'method': 'get_emoji_filenames',
+    //       'id': 0
+    //     })
+    //   })
+    //     .then((response => {
+    //       response.json()
+    //         .then((value =>
+    //         {
+    //           const tmp = value.result;
+    //           tmp.sort();
+    //           this.props.onEmojiFilenamesLoaded(tmp);
+    //         }))
+    //     }))
+  // }
 
   // componentDidMount() {
   //   console.log(this.props.isEnabled);
@@ -36,7 +36,6 @@ class VKeyboard extends Component {
   onEmojiClick(event) {
     // console.log(event.target.src);
     this.props.onEmojiClick(this.props.id, event.target.src);
-
   }
 
 

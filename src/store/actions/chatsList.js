@@ -101,6 +101,29 @@ export const onChatsListLoadFail = (error) => {
   }
 };
 
+function b64toBlob(b64Data, contentType, sliceSize) {
+  contentType = contentType || '';
+  sliceSize = sliceSize || 512;
+
+  var byteCharacters = atob(b64Data);
+  var byteArrays = [];
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+
+  return new Blob(byteArrays, { type: contentType });
+}
+
 export const onLoadMessages = () => {
   return dispatch => {
     fetch(BACKEND_SERVER, {
@@ -162,23 +185,14 @@ export const onLoadMessages = () => {
                             .then((response) => {
                               response.json()
                                 .then((value2 => {
-                                  console.log(value2);
-                                  // var binaryFile = atob(value2.result.file);
-                                  var binaryFile = 0;
+                                  // console.log(value2);
                                   var filetype = value2.result.type;
                                   var name = value2.result.name;
-                                  var lastmodified = new Date(value2.result.lastmodified);
-
-                                  var blob = new Blob([binaryFile], {
-                                    type: filetype,
-                                  });
-                                  blob.lastModifiedDate = lastmodified;
-                                  blob.name = name;
 
                                   dispatch({
                                     type: actionTypes.FILE_LOADED,
                                     payload: {
-                                      file: blob,
+                                      file: b64toBlob(value2.result.file, filetype, 512),
                                       name
                                     }
                                   })

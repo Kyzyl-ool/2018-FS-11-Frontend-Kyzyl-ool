@@ -18,13 +18,7 @@ class MessageForm extends Component {
 
   onVirtualKeyboardButtonClick () {
     this.props.onToggleVKeyboard(this.props.id);
-    console.log(this.props.isVKeyboardEnabled);
-
   }
-
-
-
-
 
     render() {
       return (
@@ -42,7 +36,7 @@ class MessageForm extends Component {
             />
 
             <span onClick={this.onVirtualKeyboardButtonClick.bind(this)}>
-                <img alt="open_virtual_keyboard" className="VirtualKeyboardIcon" src="http://meowbook.org/public/keyboard.png"/>
+                <img alt="open_virtual_keyboard" className="VirtualKeyboardIcon" src="http://meowbook.org/keyboard.png"/>
             </span>
 
             <div >

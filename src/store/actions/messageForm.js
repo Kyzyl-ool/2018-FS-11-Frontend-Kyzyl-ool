@@ -95,8 +95,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           });
       };
 
-
-
+      console.log(file);
       reader.readAsBinaryString(file);
 
 
