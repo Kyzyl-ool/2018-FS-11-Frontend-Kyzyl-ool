@@ -6,14 +6,14 @@
     top: 30%;
     left: 35%;
     background: white;
+    overflow-y: scroll;
 }
 
 .emoji {
-    padding: 2px;
-    max-width: 9%;
+    display: inline-block;
+    margin: 2px;
     cursor: pointer;
-}
-
-.emoji:hover {
-    color: #000;
+    background: url("activity.png?sprite");
+    width: 32px;
+    height: 32px;
 }

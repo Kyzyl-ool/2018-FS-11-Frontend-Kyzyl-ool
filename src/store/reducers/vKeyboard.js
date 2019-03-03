@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 
 const initalStore = {
-  emojiFilenames: [],
+  emojiAmount: 0,
+  emojis: []
 };
 
 const reducer = (state = initalStore, action) => {
@@ -11,7 +12,7 @@ const reducer = (state = initalStore, action) => {
     case actionTypes.EMOJI_FILENAMES_LOADED: {
       // console.log(action.payload.filenames);
       return updateObject(state, {
-        emojiFilenames: action.payload.filenames,
+        emojiAmount: action.payload.filenames,
       })
     }
     default:
