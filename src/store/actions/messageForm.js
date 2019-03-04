@@ -76,7 +76,8 @@ export const messageFormSendFile = (id, file) => {
 export const messageFormSubmit = (id, text, time, spanText, file) => {
   return dispatch => {
     if (file) {
-      let reader = new FileReader();
+      console.log(file);
+      const reader = new FileReader();
       reader.onload = (value) => {
         fetch(BACKEND_SERVER, {
           method: 'POST',
@@ -90,12 +91,11 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           .then((response) => {
             response.json()
               .then(value => {
-                // console.log(value);
+                console.log(value);
               })
           });
       };
 
-      console.log(file);
       reader.readAsBinaryString(file);
 
 
