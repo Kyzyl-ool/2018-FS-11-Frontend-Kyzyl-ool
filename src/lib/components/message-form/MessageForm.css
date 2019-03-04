@@ -1,25 +1,24 @@
 .MessageForm {
     display: flex;
     flex-direction: row;
-    height: 10vh;
+    max-height: 9vh;
     justify-content: center;
     align-items: center;
-    padding: 2%;
+    margin: 2%;
 }
 
 .InputForm {
     border: 1px solid lightgray;
-    width: 65vw;
-    font-size: 3.5vh;
+    font-size: 2vh;
     font-family: "American Typewriter", serif;
     border-radius: 5px;
-    height: 10vh;
+    height: 6vh;
     margin-right: 2%;
+    width: 50vw;
 }
 
 .SendButton {
-    width: 20vw;
-    height: 10vh;
+    height: 6vh;
     border-radius: 3px;
     font-size: 3vh;
     font-family: "American Typewriter", serif;
@@ -30,7 +29,7 @@
 
 .PinFileIcon {
     padding: 3px;
-    max-height: 8vh;
+    max-height: 6vh;
     cursor: pointer;
     /*position: absolute;*/
     /*top: 0;*/
@@ -45,7 +44,7 @@
 
 .VirtualKeyboardIcon {
     padding: 3px;
-    max-height: 8vh;
+    max-height: 6vh;
     cursor: pointer;
     /*position: absolute;*/
     /*top: 3%;*/

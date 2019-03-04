@@ -1,7 +1,7 @@
 .MessageList {
     display: flex;
     border: 4px solid lavender;
-    height: 80vh;
+    height: 86vh;
     border-radius: 5px;
     flex-direction: column;
     align-items: flex-end;
