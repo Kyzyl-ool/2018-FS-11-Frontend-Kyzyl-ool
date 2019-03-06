@@ -72,6 +72,7 @@ class VKeyboard extends Component {
         response.json()
           .then((value =>
           {
+            // console.log(value);
             const blob = b64toBlob(value.result.file, 'image/png', 512);
             blob.name = value.result.name;
             this.props.onSubmit(this.props.id, ' ', new Date().toLocaleTimeString(), 'Emoji', blob);

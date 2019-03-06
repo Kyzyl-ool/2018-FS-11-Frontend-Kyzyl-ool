@@ -17,14 +17,15 @@ class AuthPage extends Component {
         body: JSON.stringify({
           'jsonrpc': '2.0',
           'method': 'get_access_token',
-          'id': 1,
+          'id': 0,
           'params': [token]
         })
       })
         .then((response) => {
           response.json()
             .then((value) => {
-              let json_value = JSON.parse(value.result);
+              // console.log(value);
+              const json_value = JSON.parse(value.result);
               if (!json_value.error) {
                 this.props.onSuccessLogin(json_value.access_token, json_value.user_id);
                 // this.props.onCheckExistance(+localStorage.getItem('userId'), this.props.user_first_name+' '+this.props.user_last_name, this.props.user_first_name);

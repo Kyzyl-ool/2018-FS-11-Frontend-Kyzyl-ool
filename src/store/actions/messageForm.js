@@ -16,6 +16,7 @@ export const onNewMessage = (values) => {
         .then((response) => {
           response.json()
             .then(value2 => {
+              // console.log(value2);
               var binaryFile = atob(value2.result.file);
               var filetype = value2.result.type;
               var name = value2.result.name;
@@ -91,7 +92,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           .then((response) => {
             response.json()
               .then(value => {
-                console.log(value);
+                // console.log(value);
               })
           });
       };
