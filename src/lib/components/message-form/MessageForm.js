@@ -12,7 +12,7 @@ class MessageForm extends Component {
       this.props.id,
       this.props.formData[this.props.id].text,
       new Date().toISOString(),
-      'Sending...',
+      'Delivered',
       this.props.formData[this.props.id].file);
   }
 
