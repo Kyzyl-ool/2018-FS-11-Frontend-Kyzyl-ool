@@ -16,7 +16,7 @@ export const onNewMessage = (values) => {
         .then((response) => {
           response.json()
             .then(value2 => {
-              // console.log(value2);
+              console.log(value2);
               var binaryFile = atob(value2.result.file);
               var filetype = value2.result.type;
               var name = value2.result.name;
@@ -92,7 +92,7 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           .then((response) => {
             response.json()
               .then(value => {
-                // console.log(value);
+                console.log(value);
               })
           });
       };
@@ -106,13 +106,13 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           'jsonrpc': '2.0',
           'id': 0,
           'method': 'new_file_message',
-          'params': [+id, +localStorage.getItem('userId'), text, file.name, file.type, file.size],
+          'params': [+id, +localStorage.getItem('userId'), text, file.name, file.type, file.size, time],
         })
       })
         .then((response) => {
           response.json()
             .then((value => {
-              // console.log(value);
+              console.log(value);
 
 
               dispatch({
@@ -145,13 +145,13 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           'jsonrpc': '2.0',
           'id': 0,
           'method': 'new_message',
-          'params': [+id, +localStorage.getItem('userId'), text],
+          'params': [+id, +localStorage.getItem('userId'), text, time],
         })
       })
         .then((response) => {
           return response.json()
             .then((value) => {
-              // console.log(value);
+              console.log(value);
               dispatch({
                 type: actionTypes.MESSAGE_FORM_SUBMIT,
                 payload: {
