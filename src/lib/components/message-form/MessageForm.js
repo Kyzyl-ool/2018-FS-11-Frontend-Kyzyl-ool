@@ -36,12 +36,12 @@ class MessageForm extends Component {
             />
 
             <span onClick={this.onVirtualKeyboardButtonClick.bind(this)}>
-                <img alt="open_virtual_keyboard" className="VirtualKeyboardIcon" src="http://meowbook.org/keyboard.png"/>
+                <img alt="open_virtual_keyboard" className="VirtualKeyboardIcon" src="http://meowbook.ru/keyboard.png"/>
             </span>
 
             <div >
               <label htmlFor="attach_file">
-                <img alt="attach" className="PinFileIcon" src="http://meowbook.org/public/attach.png"/>
+                <img alt="attach" className="PinFileIcon" src="http://meowbook.ru/attach.png"/>
               </label>
               <input
                 onChange={(event) => this.props.onSendFile(this.props.id, event.target.files[0])}
