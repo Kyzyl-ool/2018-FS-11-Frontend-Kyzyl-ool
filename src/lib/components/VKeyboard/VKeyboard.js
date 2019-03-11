@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './VKeyboard.css';
 import Aux from '../../../hoc/Aux/Aux';
 import {connect} from 'react-redux';
-import { JUST_SERVER, BACKEND_SERVER } from '../../../config';
+import { BACKEND_SERVER } from '../../../config';
 import * as actionCreators from '../../../store/actions/index';
 
 function b64toBlob(b64Data, contentType, sliceSize) {
