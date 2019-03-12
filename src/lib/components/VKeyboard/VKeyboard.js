@@ -4,6 +4,7 @@ import Aux from '../../../hoc/Aux/Aux';
 import {connect} from 'react-redux';
 import { BACKEND_SERVER } from '../../../config';
 import * as actionCreators from '../../../store/actions/index';
+import foo from '../foo';
 
 function b64toBlob(b64Data, contentType, sliceSize) {
   contentType = contentType || '';
@@ -75,7 +76,10 @@ class VKeyboard extends Component {
             // console.log(value);
             const blob = b64toBlob(value.result.file, 'image/png', 512);
             blob.name = value.result.name;
-            this.props.onSubmit(this.props.id, ' ', new Date().toISOString(), 'Emoji', blob);
+            
+            const time = new Date().toISOString();
+            foo(this.props.id, ' ', 'Sending...', blob,  time);
+            this.props.onSubmit(this.props.id, ' ', time, 'Emoji', blob);
             // this.props.onSendFile(this.props.id, blob);
           }))
       })
