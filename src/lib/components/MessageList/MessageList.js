@@ -16,10 +16,12 @@ class MessageList extends Component {
     this.scrollToBottom();
   }
     render() {
+      const { messages } = this.props;
+
       return (
             <div className="MessageList">
               {
-                  this.props.messages[this.props.id].map(
+                messages[this.props.id] && messages[this.props.id].map(
                     (value, index) =>
                       <Message
                         key={index}

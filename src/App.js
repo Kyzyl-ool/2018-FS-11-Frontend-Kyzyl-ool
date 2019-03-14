@@ -8,6 +8,7 @@ import * as actionCreators from './store/actions/index';
 import Receiver from './lib/components/MessageReceiver/messageReceiver';
 
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +23,9 @@ class App extends Component {
   }
 
   render() {
+
+
+
     let route = (
       <Switch>
         <Route

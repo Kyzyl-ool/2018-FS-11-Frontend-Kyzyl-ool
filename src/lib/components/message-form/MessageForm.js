@@ -2,18 +2,69 @@ import React, { Component } from 'react';
 import  './MessageForm.css';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
-
+import workerCode from './worker';
+import foo from '../foo';
 
 class MessageForm extends Component {
+  constructor(props) {
+    super(props);
+    this.worker = this.getSharedWorker();
+  }
+
+
+  getSharedWorker () {
+    const workerFile = new Blob([`(${workerCode})(self)`], {type: 'text/javascript'});
+    return new Promise((res, rej) => {
+      const reader = new FileReader();
+      reader.addEventListener('loadend', (event) => {
+        const worker = new SharedWorker(event.target.result);
+        worker.port.addEventListener('message', this.onWorkerMessage.bind(this));
+        worker.port.start();
+        window.addEventListener('beforeunload', () => {
+          worker.port.postMessage('disconnect');
+        });
+        res(worker);
+      });
+      reader.addEventListener('error', rej);
+      reader.readAsDataURL(workerFile);
+    });
+  }
+
+  onWorkerMessage (event) {
+    foo(event.data.id, event.data.text, event.data.spanText, event.data.file, event.data.time);
+    this.worker.then((worker) => {
+      worker.port.postMessage('disconnect');
+    });
+  }
+
   onHandleSubmit (event) {
     event.preventDefault();
 
-    this.props.onSubmit(
-      this.props.id,
-      this.props.formData[this.props.id].text,
-      new Date().toISOString(),
-      'Delivered',
-      this.props.formData[this.props.id].file);
+    if (this.props.formData[this.props.id].text) {
+
+      const o = {
+        id: this.props.id,
+        text: this.props.formData[this.props.id].text,
+        time: new Date().toISOString(),
+        spanText: 'Sending...',
+        file: this.props.formData[this.props.id].file
+      };
+
+      this.props.onSubmit(
+        this.props.id,
+        this.props.formData[this.props.id].text,
+        new Date().toISOString(),
+        'Sending...',
+        this.props.formData[this.props.id].file
+      );
+
+
+      this.worker.then((worker) => {
+        worker.port.postMessage(
+          o
+        );
+      });
+    }
   }
 
   onVirtualKeyboardButtonClick () {
