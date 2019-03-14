@@ -63,14 +63,6 @@ function foo(id, text, spanText, file, time){
         return response.json()
           .then((value) => {
             console.log(value);
-
-            // return value.result.code === 200 ? 'Delivered' : 'ERROR';
-            // dispatch({
-            //   type: actionTypes.MESSAGE_DELIVERED,
-            //   payload: {
-            //     message_id:
-            //   }
-            // })
           });
       });
 

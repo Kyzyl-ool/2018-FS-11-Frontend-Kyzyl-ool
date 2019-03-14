@@ -20,9 +20,6 @@ class App extends Component {
   }
   componentWillMount() {
     this.props.checkLogin();
-    // const a = 1/0;
-    // const b = JSON.parse('asdadasd');
-    // const c = 5;
   }
 
   render() {

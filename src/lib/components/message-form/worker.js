@@ -6,13 +6,9 @@ export default ((self) => {
     port.addEventListener('message', (event) => {
       console.log(event.data);
       if (event.data === 'disconnect') {
-        // ports.pop();
         ports.splice(ports.indexOf(event.target), 1);
       } else {
         ports[0].postMessage(event.data);
-        // ports.filter(port => port !== event.target).forEach((port) => {
-        //   port.postMessage(event.data);
-        // });
       }
     });
     port.start();
