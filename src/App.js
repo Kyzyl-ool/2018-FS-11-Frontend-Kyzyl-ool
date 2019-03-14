@@ -8,6 +8,7 @@ import * as actionCreators from './store/actions/index';
 import Receiver from './lib/components/MessageReceiver/messageReceiver';
 
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,9 +20,15 @@ class App extends Component {
   }
   componentWillMount() {
     this.props.checkLogin();
+    // const a = 1/0;
+    // const b = JSON.parse('asdadasd');
+    // const c = 5;
   }
 
   render() {
+
+
+
     let route = (
       <Switch>
         <Route
