@@ -21,7 +21,7 @@ class MessageList extends Component {
       return (
             <div className="MessageList">
               {
-                  messages.length && messages[this.props.id].map(
+                messages[this.props.id] && messages[this.props.id].map(
                     (value, index) =>
                       <Message
                         key={index}
