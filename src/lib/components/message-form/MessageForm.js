@@ -11,13 +11,14 @@ class MessageForm extends Component {
     this.props.onSubmit(
       this.props.id,
       this.props.formData[this.props.id].text,
-      new Date().toLocaleTimeString(),
-      'Sending...',
+      new Date().toISOString(),
+      'Delivered',
       this.props.formData[this.props.id].file);
   }
 
-
-
+  onVirtualKeyboardButtonClick () {
+    this.props.onToggleVKeyboard(this.props.id);
+  }
 
     render() {
       return (
@@ -34,10 +35,13 @@ class MessageForm extends Component {
                    autoFocus={true}
             />
 
+            <span onClick={this.onVirtualKeyboardButtonClick.bind(this)}>
+                <img alt="open_virtual_keyboard" className="VirtualKeyboardIcon" src="http://meowbook.ru/keyboard.png"/>
+            </span>
 
             <div >
               <label htmlFor="attach_file">
-                <img alt="attach" className="PinFileIcon" src="http://meowbook.org/attach.png"/>
+                <img alt="attach" className="PinFileIcon" src="http://meowbook.ru/attach.png"/>
               </label>
               <input
                 onChange={(event) => this.props.onSendFile(this.props.id, event.target.files[0])}
@@ -45,6 +49,8 @@ class MessageForm extends Component {
                 id="attach_file"
                 type="file"/>
             </div>
+
+
 
           </div>
           <input
@@ -58,7 +64,8 @@ class MessageForm extends Component {
 const mapStateToProps = (state) => {
   return {
     formData: state.msgform.formData,
-    isFormDataUpdated: state.msgform.isFormDataUpdated
+    isFormDataUpdated: state.msgform.isFormDataUpdated,
+    isVKeyboardEnabled: state.msgform.isVKeyboardEnabled
   }
 };
 
@@ -67,6 +74,7 @@ const mapDispatchToProps = dispatch => {
     onUpdateData: (id, value) => dispatch(actionCreators.messageFormUpdateValue(id, value)),
     onSendFile: (id, value) => dispatch(actionCreators.messageFormSendFile(id, value)),
     onSubmit: (id, text, time, spanText, file) => dispatch(actionCreators.messageFormSubmit(id, text, time, spanText, file)),
+    onToggleVKeyboard: (id) => dispatch(actionCreators.messageFormToggleVKeyboard(id)),
 
   }
 };

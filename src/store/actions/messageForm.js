@@ -16,6 +16,7 @@ export const onNewMessage = (values) => {
         .then((response) => {
           response.json()
             .then(value2 => {
+              console.log(value2);
               var binaryFile = atob(value2.result.file);
               var filetype = value2.result.type;
               var name = value2.result.name;
@@ -57,6 +58,12 @@ export const messageFormUpdateValue = (id, value) => {
   }
 };
 
+export const messageFormToggleVKeyboard = (id) => {
+  return {
+    type: actionTypes.TOGGLE_VKEYBOARD
+  }
+};
+
 export const messageFormSendFile = (id, file) => {
   return {
     type : actionTypes.MESSAGE_FORM_SEND_FILE,
@@ -70,7 +77,8 @@ export const messageFormSendFile = (id, file) => {
 export const messageFormSubmit = (id, text, time, spanText, file) => {
   return dispatch => {
     if (file) {
-      let reader = new FileReader();
+      console.log(file);
+      const reader = new FileReader();
       reader.onload = (value) => {
         fetch(BACKEND_SERVER, {
           method: 'POST',
@@ -84,12 +92,10 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           .then((response) => {
             response.json()
               .then(value => {
-                // console.log(value);
+                console.log(value);
               })
           });
       };
-
-
 
       reader.readAsBinaryString(file);
 
@@ -100,13 +106,13 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           'jsonrpc': '2.0',
           'id': 0,
           'method': 'new_file_message',
-          'params': [+id, +localStorage.getItem('userId'), text, file.name, file.type, file.size],
+          'params': [+id, +localStorage.getItem('userId'), text, file.name, file.type, file.size, time],
         })
       })
         .then((response) => {
           response.json()
             .then((value => {
-              // console.log(value);
+              console.log(value);
 
 
               dispatch({
@@ -139,13 +145,13 @@ export const messageFormSubmit = (id, text, time, spanText, file) => {
           'jsonrpc': '2.0',
           'id': 0,
           'method': 'new_message',
-          'params': [+id, +localStorage.getItem('userId'), text],
+          'params': [+id, +localStorage.getItem('userId'), text, time],
         })
       })
         .then((response) => {
           return response.json()
             .then((value) => {
-              // console.log(value);
+              console.log(value);
               dispatch({
                 type: actionTypes.MESSAGE_FORM_SUBMIT,
                 payload: {

@@ -1,6 +1,33 @@
 import * as actionTypes from './actionTypes';
 import { BACKEND_SERVER } from '../../config';
 
+
+
+function b64toBlob(b64Data, contentType, sliceSize) {
+  contentType = contentType || '';
+  sliceSize = sliceSize || 512;
+
+  var byteCharacters = atob(b64Data);
+  var byteArrays = [];
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+
+  return new Blob(byteArrays, { type: contentType });
+}
+
+
+
 export const onCreateNewChat = (chatName, isGroup) => {
   return dispatch => {
     fetch(BACKEND_SERVER, {
@@ -149,34 +176,27 @@ export const onLoadMessages = () => {
                       while (resp.result[j]) {
                         if (resp.result[j].url)
                         {
+                          // console.log(resp.result[j].url.replace(' ', '_'));
                           fetch(BACKEND_SERVER, {
                             method: 'POST',
                             body: JSON.stringify({
                               'jsonrpc': '2.0',
                               'id': 0,
                               'method': 'download_file',
-                              'params': [resp.result[j].url, resp.result[j].type],
+                              'params': [resp.result[j].url.replace(' ', '_'), resp.result[j].type],
                             })
                           })
                             .then((response) => {
                               response.json()
                                 .then((value2 => {
                                   // console.log(value2);
-                                  var binaryFile = atob(value2.result.file);
                                   var filetype = value2.result.type;
                                   var name = value2.result.name;
-                                  var lastmodified = new Date(value2.result.lastmodified);
-
-                                  var blob = new Blob([binaryFile], {
-                                    type: filetype,
-                                  });
-                                  blob.lastModifiedDate = lastmodified;
-                                  blob.name = name;
 
                                   dispatch({
                                     type: actionTypes.FILE_LOADED,
                                     payload: {
-                                      file: blob,
+                                      file: b64toBlob(value2.result.file, filetype, 512),
                                       name
                                     }
                                   })

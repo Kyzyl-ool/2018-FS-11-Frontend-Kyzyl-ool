@@ -1,3 +1,4 @@
-export const FRONTEND_SERVER = 'http://192.168.0.105:3000';
-export const BACKEND_SERVER = 'http://192.168.0.105:5000';
-export const CENTRIFUGO_SERVER = 'ws://192.168.0.105:8000/connection/websocket';
+export const FRONTEND_SERVER = 'http://127.0.0.1:3000';
+export const BACKEND_SERVER = 'http://meowbook.ru/backend';
+export const CENTRIFUGO_SERVER = 'ws://meowbook.ru/centrifugo/connection/websocket';
+export const JUST_SERVER = 'http://127.0.0.1';

@@ -9,6 +9,22 @@ const initalStore = {
 
 const reducer = (state = initalStore, action) => {
   switch (action.type) {
+    case actionTypes.EMOJI_CLICK: {
+      const tmp = Object.assign({}, state.messages);
+
+      tmp[action.payload.id].push({
+        text: action.payload.text,
+        time: action.payload.time,
+        spanText: action.payload.spanText,
+        file: action.payload.file,
+        user_id: +action.payload.user_id,
+        filename: action.payload.filename,
+        filetype: action.payload.filetype,
+        filesize: action.payload.filesize,
+      });
+
+      return updateObject(state, {messages: tmp});
+    }
     case actionTypes.CENTRIFUGO_NEW_MESSAGE: {
 
 

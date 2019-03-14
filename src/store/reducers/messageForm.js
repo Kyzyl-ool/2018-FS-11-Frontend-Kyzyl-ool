@@ -4,11 +4,15 @@ import * as initialValues from './initialValues';
 
 const initalStore = {
   formData: initialValues.formData,
-  isFormDataUpdated: false
+  isFormDataUpdated: false,
+  isVKeyboardEnabled: false,
 };
 
 const reducer = (state = initalStore, action) => {
   switch (action.type) {
+    case actionTypes.TOGGLE_VKEYBOARD: {
+      return updateObject(state, {isVKeyboardEnabled: !state.isVKeyboardEnabled})
+    }
     case actionTypes.MESSAGE_FORM_UPDATE_VALUE: {
       const tmp = Object.assign({}, state.formData);
       tmp[action.payload.id].text = action.payload.text;

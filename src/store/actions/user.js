@@ -15,18 +15,25 @@ export const onGetUserData = () => {
       .then((response) => {
         response.json()
           .then((value) => {
-            // console.log(value.result);
-            const json_data = JSON.parse(value.result).response[0];
+            if (JSON.parse(value.result).error)
+            {
+              localStorage.removeItem('access_token');
+              window.location.reload();
+              // location.reload();
+            }
+            else {
+              const json_data = JSON.parse(value.result).response[0];
 
-            dispatch({
-              type: actionTypes.USER_DATA_LOADED,
-              payload: {
-                user_first_name: json_data.first_name,
-                user_last_name: json_data.last_name,
-              }
-            });
+              dispatch({
+                type: actionTypes.USER_DATA_LOADED,
+                payload: {
+                  user_first_name: json_data.first_name,
+                  user_last_name: json_data.last_name,
+                }
+              });
 
-            dispatch(onCheckUserExistance(+localStorage.getItem('userId'), json_data.first_name, json_data.last_name));
+              dispatch(onCheckUserExistance(+localStorage.getItem('userId'), json_data.first_name, json_data.last_name));
+            }
           })
       })
       .catch((error) => {

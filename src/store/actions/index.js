@@ -3,6 +3,7 @@ export {
   messageFormSendFile,
   messageFormSubmit,
   onNewMessage,
+  messageFormToggleVKeyboard
 } from './messageForm';
 
 export {
@@ -23,3 +24,8 @@ export {
   onGetUserData,
   onCheckUserExistance
 } from './user'
+
+export {
+  onEmojiFilenameLoaded,
+  onEmojiClick
+} from './vKeyboard'

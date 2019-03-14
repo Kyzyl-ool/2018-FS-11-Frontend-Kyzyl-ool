@@ -31,14 +31,11 @@ class Message extends Component {
     if (value === undefined) {
       return null;
     }
+    const url = URL.createObjectURL(value);
     if (value.type.startsWith('image')) {
-      let url = URL.createObjectURL(value);
-      // URL.revokeObjectURL(url);
       return <img alt="attach" className="AttachedImage" src={url}/>;
     }
     else {
-      let url = URL.createObjectURL(value);
-      // URL.revokeObjectURL(url);
       return <a href={url}>Attachment</a>;
     }
   }

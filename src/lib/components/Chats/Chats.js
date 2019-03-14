@@ -5,7 +5,6 @@ import DialogueElem from './DialogueElem/DialogueElem';
 import {connect}  from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
 
-const newChatName = 'Chat';
 const newChatType = 'f';
 
 class Chats extends Component {
@@ -25,7 +24,15 @@ class Chats extends Component {
   }
 
   onCreateNewChat() {
-    this.props.onNewChat(newChatName, newChatType);
+    new Promise((res) => {
+      const tmp = prompt('Enter new chat name:');
+      if (tmp)
+        res(tmp);
+    })
+      .then((value) => {
+        this.props.onNewChat(value, newChatType);
+      })
+
   }
 
   render() {
