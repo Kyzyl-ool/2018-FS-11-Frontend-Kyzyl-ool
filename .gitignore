@@ -4,3 +4,4 @@ node_modules/
 dist/
 react_test/
 nohup.out
+src/notifications.js
