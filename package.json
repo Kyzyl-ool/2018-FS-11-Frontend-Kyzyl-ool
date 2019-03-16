@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "express-fileupload": "^1.0.0",
+    "firebase": "^5.9.0",
     "http-proxy-middleware": "^0.19.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
