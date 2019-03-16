@@ -24,7 +24,6 @@ export const authSuccess = (access_token, userId) => {
   return dispatch => {
     localStorage.setItem('access_token', access_token);
     localStorage.setItem('userId', userId);
-    askForPermissioToReceiveNotifications();
 
 
     dispatch({
