@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import { BACKEND_SERVER } from '../../config';
+import { askForPermissioToReceiveNotifications } from '../../notifications';
 
 export const userLoginFail = (error) => {
   return {
@@ -48,6 +49,7 @@ export const authCheck = () => {
     const access_token = localStorage.getItem('access_token');
     if (access_token) {
       console.log('Logged in');
+      askForPermissioToReceiveNotifications();
       dispatch({type: actionTypes.LOGIN_OK});
     }
     else {
