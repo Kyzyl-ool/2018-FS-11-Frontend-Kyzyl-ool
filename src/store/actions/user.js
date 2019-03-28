@@ -19,7 +19,6 @@ export const onGetUserData = () => {
             {
               localStorage.removeItem('access_token');
               window.location.reload();
-              // location.reload();
             }
             else {
               const json_data = JSON.parse(value.result).response[0];

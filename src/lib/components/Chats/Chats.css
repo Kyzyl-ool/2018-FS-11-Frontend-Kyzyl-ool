@@ -26,6 +26,12 @@
     padding: 0.5%;
     min-width: 10vw;
     text-align: center;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.ExitButton:hover {
+    background: #f0f0f0;
 }
 
 .CreateNewChatButton {
@@ -34,4 +40,12 @@
     font-size: 3vh;
     padding: 0.5%;
     text-align: center;
+    cursor: pointer;
+    transition-duration: 0.3s;
 }
+
+.CreateNewChatButton:hover {
+    background: #f0f0f0;
+}
+
+
