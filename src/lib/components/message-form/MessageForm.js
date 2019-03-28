@@ -53,7 +53,7 @@ class MessageForm extends Component {
       this.props.onSubmit(
         this.props.id,
         this.props.formData[this.props.id].text,
-        new Date().toISOString(),
+        new Date().toLocaleTimeString(),
         'Sending...',
         this.props.formData[this.props.id].file
       );

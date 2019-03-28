@@ -25,6 +25,7 @@
     border: 1px solid slategrey;
     margin-left: 2%;
     cursor: pointer;
+    transition: ease-out 0.1s;
 }
 
 .PinFileIcon {
@@ -46,7 +47,17 @@
     padding: 3px;
     max-height: 6vh;
     cursor: pointer;
+    border-radius: 50%;
     /*position: absolute;*/
     /*top: 3%;*/
     /*right: 12%;*/
+}
+
+
+.SendButton:hover {
+    box-shadow: 0px 0px 3px 0px black;
+}
+
+.SendButton:active {
+    box-shadow: none;
 }

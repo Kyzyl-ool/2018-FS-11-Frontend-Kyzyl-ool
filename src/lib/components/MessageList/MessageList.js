@@ -16,6 +16,7 @@ class MessageList extends Component {
     this.scrollToBottom();
   }
     render() {
+
       const { messages } = this.props;
 
       return (
