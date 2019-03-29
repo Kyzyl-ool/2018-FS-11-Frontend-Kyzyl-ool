@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  './MessageForm.css';
+import styles from './MessageForm.module.css';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
 import workerCode from './worker';
@@ -73,12 +73,12 @@ class MessageForm extends Component {
 
     render() {
       return (
-        <form className="MessageForm"
+        <form className={styles.MessageForm}
               onSubmit={this.onHandleSubmit}
         >
 
-          <div className="FormAndPinButton">
-            <input className="InputForm"
+          <div className={styles.FormAndPinButton}>
+            <input className={styles.InputForm}
                    value={this.props.formData[this.props.id].text}
                    onChange={(event) => this.props.onUpdateData(this.props.id, event.target.value)}
                    type="text"
@@ -87,12 +87,12 @@ class MessageForm extends Component {
             />
 
             <span onClick={this.onVirtualKeyboardButtonClick.bind(this)}>
-                <img alt="open_virtual_keyboard" className="VirtualKeyboardIcon" src="http://meowbook.ru/keyboard.png"/>
+                <img alt="open_virtual_keyboard" className={styles.VirtualKeyboardIcon} src="http://meowbook.ru/keyboard.png"/>
             </span>
 
             <div >
               <label htmlFor="attach_file">
-                <img alt="attach" className="PinFileIcon" src="http://meowbook.ru/attach.png"/>
+                <img alt="attach" className={styles.PinFileIcon} src="http://meowbook.ru/attach.png"/>
               </label>
               <input
                 onChange={(event) => this.props.onSendFile(this.props.id, event.target.files[0])}
@@ -106,7 +106,7 @@ class MessageForm extends Component {
           </div>
           <input
             onClick={(event) => this.onHandleSubmit(event)}
-            className="SendButton" type="submit" value="Send"/>
+            className={styles.SendButton} type="submit" value="Send"/>
         </form>
       )
     }

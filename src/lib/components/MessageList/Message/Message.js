@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './Message.css';
+import styles from './Message.module.css';
 
 class Message extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class Message extends Component {
     }
     const url = URL.createObjectURL(value);
     if (value.type.startsWith('image')) {
-      return <img alt="attach" className="AttachedImage" src={url}/>;
+      return <img alt="attach" className={styles.AttachedImage} src={url}/>;
     }
     else {
       return <a href={url}>Attachment</a>;
@@ -47,24 +47,24 @@ class Message extends Component {
     else {
       if (!this.filename)
       return (
-        <div className={this.notYour ? "LeftMessageAttributes Message" : "Message"} hidden={this.hidden}>
+        <div className={this.notYour ? styles.Message+styles.LeftMessageAttributes  : styles.Message } hidden={this.hidden}>
           {this.attachment(this.file)}
           <p>{this.text}</p>
           <time className={styles.TimeLabel}>{this.time}</time>
           <span className={styles.StatusLabel}> {this.spanText} </span>
-          <span className='Who'>
+          <span className={styles.Who}>
             From {this.user_id}
           </span>
         </div>
       );
       else
         return (
-          <div className={this.notYour ? "LeftMessageAttributes Message" : "Message"} hidden={this.hidden}>
+          <div className={this.notYour ? styles.LeftMessageAttributes+styles.Message : styles.Message } hidden={this.hidden}>
             {this.attachment(this.file)}
             <p>{this.text}</p>
-            <time className="TimeLabel">{this.time}</time>
-            <span className="StatusLabel"> {this.spanText} </span>
-            <span className='Who'>
+            <time className={styles.TimeLabel}>{this.time}</time>
+            <span className={styles.StatusLabel}> {this.spanText} </span>
+            <span className={styles.Who}>
             From {this.user_id}
             Size: {this.filesize}
           </span>

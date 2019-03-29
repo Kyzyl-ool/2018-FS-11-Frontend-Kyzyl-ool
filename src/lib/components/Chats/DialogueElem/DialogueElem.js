@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import styles from './DialogueElem.css';
+import styles from './DialogueElem.module.css';
 import {Link} from 'react-router-dom';
-
-console.log(styles);
 
 class DialogueElem extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux/Aux';
-import './Chats.css';
+import styles from './Chats.module.css';
 import DialogueElem from './DialogueElem/DialogueElem';
 import {connect}  from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
@@ -46,13 +46,13 @@ class Chats extends Component {
             id={value}
           />))
         }
-        <div className='CreateNewChatButton' onClick={() => this.onCreateNewChat()}>
+        <div className={styles.CreateNewChatButton} onClick={() => this.onCreateNewChat()}>
           Create new chat...
         </div>
-        <div className='ProfileDiv'>
+        <div className={styles.ProfileDiv}>
           You entered as {this.props.user_first_name} {this.props.user_last_name}
         </div>
-        <div className='ExitButton' onClick={Chats.onExit}>
+        <div className={styles.ExitButton} onClick={Chats.onExit}>
           Exit
         </div>
       </Aux>
