@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import  './Message.css';
+import styles from './Message.css';
 
 class Message extends Component {
   constructor(props) {
@@ -50,8 +50,8 @@ class Message extends Component {
         <div className={this.notYour ? "LeftMessageAttributes Message" : "Message"} hidden={this.hidden}>
           {this.attachment(this.file)}
           <p>{this.text}</p>
-          <time className="TimeLabel">{this.time}</time>
-          <span className="StatusLabel"> {this.spanText} </span>
+          <time className={styles.TimeLabel}>{this.time}</time>
+          <span className={styles.StatusLabel}> {this.spanText} </span>
           <span className='Who'>
             From {this.user_id}
           </span>

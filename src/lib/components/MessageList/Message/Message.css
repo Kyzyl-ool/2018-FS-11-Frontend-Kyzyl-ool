@@ -16,9 +16,6 @@
     word-break: break-all;
     position: relative;
     font-weight: 600;
-    /*transform:rotateX(180deg);*/
-    /*animation: move 3s ease-out;*/
-    /*transition-delay: 1s;*/
 }
 
 .LeftMessageAttributes {
@@ -57,8 +54,6 @@
     font-size: 1vh;
     font-weight: 400;
 }
-
-
 
 @keyframes move {
     0% {
