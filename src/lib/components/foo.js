@@ -1,11 +1,11 @@
 import { BACKEND_SERVER } from '../../config';
 
-function foo(id, text, spanText, file, time){
+async function foo(id, text, spanText, file, time) {
   if (file) {
     console.log(file);
     const reader = new FileReader();
-    reader.onload = (value) => {
-      fetch(BACKEND_SERVER, {
+    reader.onload = async () => {
+      const response = await fetch(BACKEND_SERVER, {
         method: 'POST',
         body: JSON.stringify({
           'jsonrpc': '2.0',
@@ -13,19 +13,13 @@ function foo(id, text, spanText, file, time){
           'method': 'upload_file',
           'params': [btoa(reader.result), file.name],
         })
-      })
-        .then((response) => {
-          response.json()
-            .then(value => {
-              console.log(value);
-            })
-        });
+      });
+      console.log(await response.json());
     };
 
     reader.readAsBinaryString(file);
 
-
-    fetch(BACKEND_SERVER, {
+    const response = await fetch(BACKEND_SERVER, {
       method: 'POST',
       body: JSON.stringify({
         'jsonrpc': '2.0',
@@ -33,24 +27,11 @@ function foo(id, text, spanText, file, time){
         'method': 'new_file_message',
         'params': [+id, +localStorage.getItem('userId'), text, file.name, file.type, file.size, time],
       })
-    })
-      .then((response) => {
-        response.json()
-          .then((value => {
-            console.log(value);
-
-
-
-            // return value.result.code === 200 ? 'Delivered' : 'ERROR';
-
-          }))
-      })
-
-
-
+    });
+    console.log(await response.json());
   }
   else {
-    fetch(BACKEND_SERVER, {
+    const response = await fetch(BACKEND_SERVER, {
       method: 'POST',
       body: JSON.stringify({
         'jsonrpc': '2.0',
@@ -58,14 +39,8 @@ function foo(id, text, spanText, file, time){
         'method': 'new_message',
         'params': [+id, +localStorage.getItem('userId'), text, time],
       })
-    })
-      .then((response) => {
-        return response.json()
-          .then((value) => {
-            console.log(value);
-          });
-      });
-
+    });
+    console.log(await response.json());
   }
 }
 

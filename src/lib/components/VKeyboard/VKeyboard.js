@@ -33,25 +33,29 @@ function b64toBlob(b64Data, contentType, sliceSize) {
 class VKeyboard extends Component {
   constructor(props) {
     super(props);
+    this.getEmojisAmount();
+  }
 
-    if (this.props.emojiAmount === 0)
-      fetch(BACKEND_SERVER, {
-        method: 'POST',
-        body: JSON.stringify({
-          'jsonrpc': '2.0',
-          'method': 'get_emojis_amount',
-          'id': 0,
-          'params': ['activity']
-        })
-      })
-        .then((response => {
-          response.json()
-            .then((value =>
-            {
-              // console.log(value);
-              this.props.onEmojiAmountLoaded(value.result);
-            }))
-        }))
+  async getEmojisAmount() {
+    if (this.props.emojiAmount === 0) {
+      try {
+        const response = await fetch(BACKEND_SERVER, {
+          method: 'POST',
+          body: JSON.stringify({
+            'jsonrpc': '2.0',
+            'method': 'get_emojis_amount',
+            'id': 0,
+            'params': ['activity']
+          })
+        });
+        this.props.onEmojiAmountLoaded((await response.json()).result);
+      }
+      catch (e) {
+        console.log(e);
+      }
+
+    }
+
   }
 
 
