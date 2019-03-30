@@ -1,7 +1,7 @@
 import { BACKEND_SERVER, CENTRIFUGO_SERVER } from '../../../config';
 
-var Centrifuge = require('centrifuge');
-var centrifuge = new Centrifuge(CENTRIFUGO_SERVER);
+const Centrifuge = require('centrifuge');
+const centrifuge = new Centrifuge(CENTRIFUGO_SERVER);
 
 fetch(BACKEND_SERVER, {
   method: 'POST',

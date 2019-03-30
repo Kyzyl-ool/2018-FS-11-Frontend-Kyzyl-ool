@@ -10,18 +10,18 @@ function b64toBlob(b64Data, contentType, sliceSize) {
   contentType = contentType || '';
   sliceSize = sliceSize || 512;
 
-  var byteCharacters = atob(b64Data);
-  var byteArrays = [];
+  const byteCharacters = atob(b64Data);
+  let byteArrays = [];
 
-  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-    var slice = byteCharacters.slice(offset, offset + sliceSize);
+  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    const slice = byteCharacters.slice(offset, offset + sliceSize);
 
-    var byteNumbers = new Array(slice.length);
-    for (var i = 0; i < slice.length; i++) {
+    let byteNumbers = new Array(slice.length);
+    for (let i = 0; i < slice.length; i++) {
       byteNumbers[i] = slice.charCodeAt(i);
     }
 
-    var byteArray = new Uint8Array(byteNumbers);
+    const byteArray = new Uint8Array(byteNumbers);
 
     byteArrays.push(byteArray);
   }
@@ -59,12 +59,12 @@ class VKeyboard extends Component {
   }
 
 
-  onEmojiClick(event) {
+  async onEmojiClick(event) {
     // console.log(event.target.src);
     this.props.onEmojiClick(this.props.id, event.target.src);
     this.props.onToggleVKeyboard(this.props.id);
 
-    fetch(BACKEND_SERVER, {
+    const response = await fetch(BACKEND_SERVER, {
       method: 'POST',
       body: JSON.stringify({
         'jsonrpc': '2.0',
@@ -72,22 +72,14 @@ class VKeyboard extends Component {
         'id': 0,
         'params': [+event.target.id]
       })
-    })
-      .then((response) => {
-        response.json()
-          .then((value =>
-          {
-            // console.log(value);
-            const blob = b64toBlob(value.result.file, 'image/png', 512);
-            blob.name = value.result.name;
-
-            const time = new Date().toISOString();
-            foo(this.props.id, ' ', 'Sending...', blob,  time);
-            this.props.onSubmit(this.props.id, ' ', time, 'Emoji', blob);
-            // this.props.onSendFile(this.props.id, blob);
-          }))
-      })
-
+    });
+    const value = await response.json();
+    const blob = b64toBlob(value.result.file, 'image/png', 512);
+    blob.name = value.result.name;
+    const time = new Date().toISOString();
+    foo(this.props.id, ' ', 'Sending...', blob,  time);
+    this.props.onSubmit(this.props.id, ' ', time, 'Emoji', blob);
+    // this.props.onSendFile(this.props.id, blob);
   }
 
 
@@ -95,13 +87,11 @@ class VKeyboard extends Component {
     return (
       <Aux>
         <div className={styles.VKeyboard} hidden={!this.props.isEnabled} >
-
           {
             Array.from(new Array(this.props.emojiAmount)).map(
               ((value, index) => <div id={index} onClick={(event) => this.onEmojiClick(event)} className={styles.emoji} key={index} style={{backgroundPosition: `-${32*(index%2)}px -${32*Math.floor(index/2)}px`}}/>)
             )
           }
-
         </div>
       </Aux>
     )
