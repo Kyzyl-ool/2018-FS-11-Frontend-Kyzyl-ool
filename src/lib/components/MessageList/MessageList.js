@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './MessageList.css';
+import styles from './MessageList.module.css';
 import Message from './Message/Message';
 import {connect} from 'react-redux';
 
@@ -16,10 +16,11 @@ class MessageList extends Component {
     this.scrollToBottom();
   }
     render() {
+
       const { messages } = this.props;
 
       return (
-            <div className="MessageList">
+            <div className= {styles.MessageList}>
               {
                 messages[this.props.id] && messages[this.props.id].map(
                     (value, index) =>

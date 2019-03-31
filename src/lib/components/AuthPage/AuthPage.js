@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './AuthPage.css';
+import styles from './AuthPage.module.css';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
 import { BACKEND_SERVER } from '../../../config';
@@ -46,8 +46,8 @@ class AuthPage extends Component {
 
   render() {
     return (
-      <div className='AuthPage'>
-        <button className='AuthButton' onClick={this.onHandleSubmit}>
+      <div className={styles.AuthPage}>
+        <button className={styles.AuthButton} onClick={this.onHandleSubmit}>
           Login by VK
         </button>
       </div>

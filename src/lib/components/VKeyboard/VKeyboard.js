@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './VKeyboard.css';
+import styles from './VKeyboard.module.css';
 import Aux from '../../../hoc/Aux/Aux';
 import {connect} from 'react-redux';
 import { BACKEND_SERVER } from '../../../config';
@@ -76,7 +76,7 @@ class VKeyboard extends Component {
             // console.log(value);
             const blob = b64toBlob(value.result.file, 'image/png', 512);
             blob.name = value.result.name;
-            
+
             const time = new Date().toISOString();
             foo(this.props.id, ' ', 'Sending...', blob,  time);
             this.props.onSubmit(this.props.id, ' ', time, 'Emoji', blob);
@@ -90,11 +90,11 @@ class VKeyboard extends Component {
   render() {
     return (
       <Aux>
-        <div className='VKeyboard' hidden={!this.props.isEnabled} >
+        <div className={styles.VKeyboard} hidden={!this.props.isEnabled} >
 
           {
             Array.from(new Array(this.props.emojiAmount)).map(
-              ((value, index) => <div id={index} onClick={(event) => this.onEmojiClick(event)} className='emoji' key={index} style={{backgroundPosition: `-${32*(index%2)}px -${32*Math.floor(index/2)}px`}}/>)
+              ((value, index) => <div id={index} onClick={(event) => this.onEmojiClick(event)} className={styles.emoji} key={index} style={{backgroundPosition: `-${32*(index%2)}px -${32*Math.floor(index/2)}px`}}/>)
             )
           }
 

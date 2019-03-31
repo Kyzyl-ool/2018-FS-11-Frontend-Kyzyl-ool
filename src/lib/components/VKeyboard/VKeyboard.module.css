@@ -13,7 +13,7 @@
     display: inline-block;
     margin: 2px;
     cursor: pointer;
-    background: url("activity.png?sprite");
+    background: url("./activity.png?sprite");
     width: 32px;
     height: 32px;
 }
