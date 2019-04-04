@@ -15,7 +15,6 @@ fetch(BACKEND_SERVER, {
   .then((response) => {
     response.json()
       .then((value => {
-        // console.log(value);
         centrifuge.setToken(value.result);
         centrifuge.connect();
       }))

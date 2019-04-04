@@ -41,7 +41,9 @@ async function foo(id, text, spanText, file, time) {
       })
     });
     console.log(await response.json());
+
   }
 }
 
 export default foo;
+

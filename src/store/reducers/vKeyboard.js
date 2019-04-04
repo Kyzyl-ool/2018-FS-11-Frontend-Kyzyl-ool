@@ -10,7 +10,6 @@ const initalStore = {
 const reducer = (state = initalStore, action) => {
   switch (action.type) {
     case actionTypes.EMOJI_FILENAMES_LOADED: {
-      // console.log(action.payload.filenames);
       return updateObject(state, {
         emojiAmount: action.payload.filenames,
       })

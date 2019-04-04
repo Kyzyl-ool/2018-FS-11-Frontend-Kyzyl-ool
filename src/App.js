@@ -33,7 +33,6 @@ class App extends Component {
       </Switch>
     );
 
-    // console.log('Authorized:', this.props.isAuthorized);
     if (this.props.isAuthorized) {
       route = (
         <Switch>

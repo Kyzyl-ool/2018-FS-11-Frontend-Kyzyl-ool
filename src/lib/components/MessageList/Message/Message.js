@@ -19,12 +19,6 @@ class Message extends Component {
         this.user_id = props.user_id;
         this.notYour = this.user_id !== +localStorage.getItem('userId');
       }
-
-    if (this.filename) {
-      // console.log(this.filename);
-      // console.log(this.props.file);
-    }
-
   }
 
   attachment(value) {

@@ -60,7 +60,6 @@ class VKeyboard extends Component {
 
 
   async onEmojiClick(event) {
-    // console.log(event.target.src);
     this.props.onEmojiClick(this.props.id, event.target.src);
     this.props.onToggleVKeyboard(this.props.id);
 
@@ -79,7 +78,6 @@ class VKeyboard extends Component {
     const time = new Date().toISOString();
     foo(this.props.id, ' ', 'Sending...', blob,  time);
     this.props.onSubmit(this.props.id, ' ', time, 'Emoji', blob);
-    // this.props.onSendFile(this.props.id, blob);
   }
 
 
