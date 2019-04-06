@@ -57,7 +57,7 @@ export const onCreateNewChat = (chatName, isGroup) => {
                 response.json()
                   .then((value1 =>
                   {
-                    // console.log(value1);
+                    console.log(value1);
                   }))
               });
 
@@ -90,7 +90,6 @@ export const onLoadChatNames = () => {
       .then((response) => {
         response.json()
           .then((value) => {
-            // console.log(value);
             let i = 0;
             let chatNames = {};
             while (value.result[i]) {
@@ -142,7 +141,6 @@ export const onLoadMessages = () => {
       .then((response) => {
         response.json()
           .then(value => {
-            // console.log(value);
             var i = 0;
             var chat_ids = [];
             while (value.result[i]) {
@@ -168,7 +166,6 @@ export const onLoadMessages = () => {
               .then((response) => {
                 response.json()
                   .then((value1 => {
-                    // console.log(value1);
                     let mockMessages = {};
                     value1.forEach((resp) => {
                       mockMessages[resp.id] = [];
@@ -176,7 +173,6 @@ export const onLoadMessages = () => {
                       while (resp.result[j]) {
                         if (resp.result[j].url)
                         {
-                          // console.log(resp.result[j].url.replace(' ', '_'));
                           fetch(BACKEND_SERVER, {
                             method: 'POST',
                             body: JSON.stringify({
@@ -189,7 +185,6 @@ export const onLoadMessages = () => {
                             .then((response) => {
                               response.json()
                                 .then((value2 => {
-                                  // console.log(value2);
                                   var filetype = value2.result.type;
                                   var name = value2.result.name;
 

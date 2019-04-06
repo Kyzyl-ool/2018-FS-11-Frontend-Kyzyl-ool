@@ -6,36 +6,29 @@ import { BACKEND_SERVER } from '../../../config';
 
 
 class AuthPage extends Component {
+  async getAccessToken(first_token) {
+    const response = await fetch(BACKEND_SERVER, {
+      method: 'POST',
+      body: JSON.stringify({
+        'jsonrpc': '2.0',
+        'method': 'get_access_token',
+        'id': 0,
+        'params': [first_token]
+      })
+    });
+
+    const json_value = JSON.parse((await response.json()).result);
+    if (!json_value.error) {
+      this.props.onSuccessLogin(json_value.access_token, json_value.user_id);
+    }
+  }
   componentDidMount() {
     const url = new URL(window.location.href);
-    const token = url.searchParams.get('code');
+    const first_token = url.searchParams.get('code');
 
-    if (!this.props.isAuthorized && token) {
-      console.log('Authorization token:', token);
-      fetch(BACKEND_SERVER, {
-        method: 'POST',
-        body: JSON.stringify({
-          'jsonrpc': '2.0',
-          'method': 'get_access_token',
-          'id': 0,
-          'params': [token]
-        })
-      })
-        .then((response) => {
-          response.json()
-            .then((value) => {
-              // console.log(value);
-              const json_value = JSON.parse(value.result);
-              if (!json_value.error) {
-                this.props.onSuccessLogin(json_value.access_token, json_value.user_id);
-                // this.props.onCheckExistance(+localStorage.getItem('userId'), this.props.user_first_name+' '+this.props.user_last_name, this.props.user_first_name);
-                // window.location.reload();
-              }
-            })
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    if (!this.props.isAuthorized && first_token) {
+      console.log('Authorization token:', first_token);
+      this.getAccessToken(first_token);
     }
   }
 
@@ -68,7 +61,6 @@ const mapDispatchToProps = dispatch => {
   return {
     onLoginTry: () => dispatch(actionCreators.auth()),
     onSuccessLogin: (access_token, userId) => dispatch(actionCreators.authSuccess(access_token, userId)),
-    onCheckExistance: (user_id, first_name, last_name) => dispatch(actionCreators.onCheckUserExistance(user_id, first_name, last_name)),
   }
 };
 

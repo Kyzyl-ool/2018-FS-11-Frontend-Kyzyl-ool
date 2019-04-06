@@ -39,15 +39,6 @@ const reducer = (state = initalStore, action) => {
         filesize: action.payload.data.filesize,
         file: action.payload.file,
       });
-
-      // console.log(tmp[action.payload.data.id][number-1]);
-
-
-      // console.log('payload', action.payload);
-
-
-
-
       return updateObject(state, {messages: tmp});
     }
 
@@ -75,11 +66,6 @@ const reducer = (state = initalStore, action) => {
 
     case actionTypes.FILE_LOADED: {
       const tmp = Object.assign({}, state.messages);
-
-      // console.log(tmp);
-
-      // console.log('payload', action.payload);
-
       Object.keys(state.messages).forEach(
         (value => {
           tmp[value].forEach((value) => {
@@ -89,9 +75,6 @@ const reducer = (state = initalStore, action) => {
           });
         })
       );
-
-      // console.log(tmp);
-
       return updateObject(state, {
         messages: tmp
       });

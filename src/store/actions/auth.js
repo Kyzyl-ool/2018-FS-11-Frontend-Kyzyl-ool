@@ -54,8 +54,6 @@ export const authCheck = () => {
     }
     else {
       console.log('Not logged in');
-      // dispatch(auth());
-      // dispatch(authSuccess(access_token));
     }
 
   }
