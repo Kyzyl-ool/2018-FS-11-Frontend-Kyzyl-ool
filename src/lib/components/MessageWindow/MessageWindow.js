@@ -9,6 +9,7 @@ import styles from './MessageWindow.module.css';
 
 function MessageWindow(props) {
   const [title, setTitle] = useState(props.title);
+
     return (
         <div className={styles.MessageWindow}>
           <ChatTitle title={title} />

@@ -1,0 +1,17 @@
+.Cross {
+    position: fixed;
+    right: 10%;
+    background-color: #e0e0e0;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    transition: 0.2s ease;
+    border-radius: 5px;
+    border: 1px solid gray;
+    z-index: 2;
+}
+
+.Cross:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 0 1px 1px black;
+}
