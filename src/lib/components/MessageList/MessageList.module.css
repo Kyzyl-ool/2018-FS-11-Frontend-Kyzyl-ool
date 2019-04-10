@@ -1,12 +1,14 @@
 .MessageList {
     display: flex;
     border: 4px solid lavender;
-    height: 86vh;
+    height: 84vh;
+    width: 95vw;
     border-radius: 5px;
     flex-direction: column;
     align-items: flex-end;
     background: #f0f0f0;
     overflow-y: auto;
+    margin-top: -6vh;
     /*justify-content: flex-end;*/
     /*animation: move 0.1s;*/
     /*transform:rotateX(180deg);*/
