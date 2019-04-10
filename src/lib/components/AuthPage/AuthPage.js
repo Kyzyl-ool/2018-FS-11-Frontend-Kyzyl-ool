@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import styles from './AuthPage.module.css';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
@@ -22,6 +22,7 @@ class AuthPage extends Component {
       this.props.onSuccessLogin(json_value.access_token, json_value.user_id);
     }
   }
+
   componentDidMount() {
     const url = new URL(window.location.href);
     const first_token = url.searchParams.get('code');

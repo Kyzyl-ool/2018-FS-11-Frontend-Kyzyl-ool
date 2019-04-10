@@ -8,7 +8,7 @@ import * as actionCreators from '../../../store/actions/index';
 const newChatType = 'f';
 
 class Chats extends Component {
-  componentWillMount () {
+  componentDidMount () {
     if (this.props.needToUpdate) {
       this.props.onLoadChatNames();
       this.props.onGetUserData();
