@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './DialogueElem.module.css';
 import {Link} from 'react-router-dom';
+import Cross from './Cross';
 
-class DialogueElem extends Component {
-  render() {
+function DialogueElem (props) {
+  const [name, setName] = useState(props.name);
+  const [id, setId] = useState(props.id);
+
     return (
       <div>
-        <Link className={styles.DialogueElem} to={`/chats/${this.props.id}`} >
-            {this.props.name}
+        <Link className={styles.DialogueElem} to={`/chats/${id}`} >
+            {name} <Cross name={name} />
         </Link>
       </div>
     );
-  }
 }
 
 export default DialogueElem;

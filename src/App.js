@@ -43,7 +43,7 @@ class App extends Component {
                   <Route
                     key={value}
                     path={`/chats/${value}`}
-                    component={() => <MessageWindow id={value} />}
+                    component={() => <MessageWindow title={this.props.chatNames[value]} id={value} />}
                   />
               )
             )

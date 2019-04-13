@@ -1,20 +1,23 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import MessageForm from '../message-form/MessageForm';
 import MessageList from '../MessageList/MessageList';
-import Aux from '../../../hoc/Aux/Aux';
+import div from '../../../hoc/Aux/Aux';
 import VKeyboard from '../VKeyboard/VKeyboard';
+import ChatTitle from './ChatTitle/ChatTitle';
+import styles from './MessageWindow.module.css';
 
 
-class MessageWindow extends Component {
-    render() {
+function MessageWindow(props) {
+  const [title, setTitle] = useState(props.title);
+
     return (
-        <Aux>
-          <MessageList id={this.props.id} />
-          <MessageForm id={this.props.id} />
-          <VKeyboard id={this.props.id} />
-        </Aux>
+        <div className={styles.MessageWindow}>
+          <ChatTitle title={title} />
+          <MessageList id={props.id} />
+          <MessageForm id={props.id} />
+          <VKeyboard id={props.id} />
+        </div>
     );
-  }
 }
 
-export default  MessageWindow;
+export default MessageWindow;

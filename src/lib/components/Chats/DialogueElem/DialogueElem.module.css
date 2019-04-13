@@ -24,7 +24,6 @@
 
 .DialogueElem:active {
     box-shadow: none;
-
 }
 
 @keyframes pulse {
