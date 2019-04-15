@@ -1,6 +1,6 @@
 import * as initialValues from './initialValues';
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../utility';
+import { updateObject } from '../updateObject';
 
 const initalStore = {
   chatNames: initialValues.chatNames,

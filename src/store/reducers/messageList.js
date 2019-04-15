@@ -1,4 +1,4 @@
-import { updateObject } from '../utility';
+import { updateObject } from '../updateObject';
 import * as actionTypes from '../actions/actionTypes';
 import * as initialValues from './initialValues';
 
