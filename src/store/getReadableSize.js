@@ -1,4 +1,4 @@
-function getReadableSize(size) {
+export function getReadableSize(size) {
   if (size === undefined) {
     throw new Error('Empty argument (undefined)');
   }

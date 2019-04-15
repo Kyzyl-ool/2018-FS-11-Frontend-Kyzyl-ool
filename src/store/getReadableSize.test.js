@@ -1,4 +1,4 @@
-import getReadableSize from '../store/getReadableSize';
+import getReadableSize from './getReadableSize.js';
 
 describe('Функция хоть что-то возвращает', () => {
   it('Должно вернуть хоть что-то', () => {
