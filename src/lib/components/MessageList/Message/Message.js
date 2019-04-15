@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Message.module.css';
+import getReadableSize from '../../../../store/getReadableSize';
 
 class Message extends Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class Message extends Component {
             <span className={styles.StatusLabel}> {this.spanText} </span>
             <span className={styles.Who}>
             From {this.user_id}
-            Size: {this.filesize}
+            Size: {getReadableSize(this.filesize)}
           </span>
           </div>
         );
