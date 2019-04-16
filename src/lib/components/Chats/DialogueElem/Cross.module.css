@@ -1,5 +1,5 @@
 .Cross {
-    position: fixed;
+    position: absolute;
     right: 10%;
     background-color: #e0e0e0;
     width: 32px;

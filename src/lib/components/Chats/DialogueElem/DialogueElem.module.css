@@ -15,6 +15,7 @@
     text-decoration: none;
     color: #000;
     transition-duration: 0.3s;
+    text-align: center;
 }
 
 .DialogueElem:hover {
