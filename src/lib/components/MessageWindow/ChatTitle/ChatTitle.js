@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './ChatTitle.module.css';
 
 function ChatTitle(props) {
-  let [title, setTitle] = useState(props.title);
+  let [title] = useState(props.title);
 
 
   return (
